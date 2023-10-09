@@ -17,17 +17,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home/admin', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
-Route::get('/home/user', [App\Http\Controllers\HomeController::class, 'user'])->name('user');
-
 Route::resource('login', 'App\Http\Controllers\LoginController');
 Route::resource('register', 'App\Http\Controllers\RegisterController');
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Prefijo para las rutas de administración
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
+    Route::get('/user', [App\Http\Controllers\HomeController::class, 'user'])->name('user');
+    Route::resource('motos', 'App\Http\Controllers\Admin\MotoController');
+    Route::resource('servicios', 'App\Http\Controllers\Admin\ServicioController');
+    Route::resource('users', 'App\Http\Controllers\Admin\UserController');
+});
 
-Auth::routes();
+Route::prefix('clientes')->group(function () {
+    Route::get('/clientPanel', 'App\Http\Controllers\ClientController@clientPanel')->name('clientes.clientPanel');
+});
+
+

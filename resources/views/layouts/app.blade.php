@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="es">
 <head>
+    <link rel="icon" type="image/x-icon" href="{!! asset('images/logo/logo.png') !!}">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,7 +25,7 @@
                
                 <div class="navbar-brand">
                     <img src="{!! asset('images/logo/logo.png') !!}" width="50px">
-                    MotoGest
+                    <a href="/">MotoGest</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,25 +43,25 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">Inciar Sesión</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
                                 </li>
                             @endif
                         @else
                         @if(Auth::user()->rol->name == "Admin")
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin') }}">Administrador</a>
+                                <a class="nav-link" href="{{ route('admin') }}">Panel de administrador</a>
                             </li>
                         @endif
 
                         @if(Auth::user()->rol->name == "User")
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user') }}">Usuario</a>
+                                <a class="nav-link" href="{{ route('clientes.clientPanel') }}">Panel de cliente</a>
                             </li>
                         @endif
 

@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-    <h1>Borrar esta ruta</h1>
+    <h1>Panel de cliente</h1>
 </div>
 @endsection
