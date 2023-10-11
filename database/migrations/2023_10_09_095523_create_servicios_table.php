@@ -17,11 +17,11 @@ return new class extends Migration
             $table->foreign('idMoto')->references('idMoto')->on('motos');
             $table->string('tipoServicio');
             $table->string('descripcion');
-            $table->date('fechaInicio');
-            $table->date('fechaFin')->nullable();
-            $table->string('horaServicio');
+            $table->date('fechaSolicitada');
+            $table->date('fechaInicioServicio')->nullable();
+            $table->date('fechaFinServicio')->nullable();
+            $table->date('horaServicio');
             $table->string('estadoServicio');
-
         });
     }
 

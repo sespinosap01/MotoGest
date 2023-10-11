@@ -26,14 +26,9 @@ Auth::routes();
 // Prefijo para las rutas de administración
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
-    Route::get('/user', [App\Http\Controllers\HomeController::class, 'user'])->name('user');
-    Route::resource('motos', 'App\Http\Controllers\Admin\MotoController');
-    Route::resource('servicios', 'App\Http\Controllers\Admin\ServicioController');
-    Route::resource('users', 'App\Http\Controllers\Admin\UserController');
+    Route::get('users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
 });
 
-Route::prefix('clientes')->group(function () {
+Route::prefix('clientes')->middleware('auth')->group(function () {
     Route::get('/clientPanel', 'App\Http\Controllers\ClientController@clientPanel')->name('clientes.clientPanel');
 });
-
-

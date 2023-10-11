@@ -12,7 +12,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <a href="">Gestionar Users</a>
+                <a href="{{ route('users.index') }}">Gestionar Users</a>
             </div>
         </div>
         <div class="col-md-8">

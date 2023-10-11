@@ -15,9 +15,10 @@ return new class extends Migration
             $table->bigIncrements('idMoto');
             $table->unsignedBigInteger('idUsuario');
             $table->foreign('idUsuario')->references('idUsuario')->on('users');
-            $table->integer('potencia');
             $table->string('marca');
             $table->string('modelo');
+            $table->integer('potencia');
+            $table->date('fechaFabricacion');
             $table->integer('kilometraje');
             $table->string('imagen');
             $table->string('matricula')->unique();
