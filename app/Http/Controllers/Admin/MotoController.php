@@ -12,7 +12,6 @@ class MotoController extends Controller
     {
         $motos = Moto::all();
 
-        return view('admin.motos.index', ['motos'=>$motos]);
-
+        return view('auth.admin.motos.index', ['motos'=>$motos]);
     }
 }

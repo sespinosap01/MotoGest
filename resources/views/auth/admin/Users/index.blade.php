@@ -1,24 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Lista de Usuarios</h1>
+<div class="container">
 
-    <table>
+@if(Auth::user()->rol->name == "User")
+<p>No tienes acceso a esta página</p>
+<a href="/home">Volver</a>
+@endif
+@if(Auth::user()->rol->name == "Admin")
+    <h1>Gestionar Usuarios</h1>
+    <button>Crear usuario</button>
+
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th>Id Usuario</th>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Fecha de Nacimiento</th>
                 <th>Numero de telefono</th>
                 <th>Fecha de Registro</th>
                 <th>Rol</th>
+                <th>Acciones</th>
+
             </tr>
         </thead>
         <tbody>
             @foreach ($users as $user)
                 <tr>
-                    <td>{{ $user->idUsuario }}</td>
+                    <th>{{ $user->idUsuario }}</th>
                     <td>{{ $user->nombre }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->fechaNacimiento }}</td>
@@ -33,8 +43,11 @@
                             Otro
                         @endif
                     </td>
+                    <td><button>acciones</button><button>acciones</button><button>acciones</button></td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    @endif
+</div>
 @endsection

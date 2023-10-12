@@ -17,12 +17,12 @@
         </div>
         <div class="col-md-8">
             <div class="card">
-                <a href="">Gestionar Motos</a>
+                <a href="{{ route('motos.index') }}">Gestionar Motos</a>
             </div>
         </div>
         <div class="col-md-8">
             <div class="card">
-                <a href="">Gestionar Servicios</a>
+                <a href="{{ route('servicios.index') }}">Gestionar Servicios</a>
             </div>
         </div>
     </div>

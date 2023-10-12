@@ -1,11 +1,41 @@
-@extends('layouts.app')  
+@extends('layouts.app')
 
 @section('content')
-    <h1>Listado de Motos</h1>
+<div class="container">
 
-    <ul>
-        @foreach ($motos as $moto)
-            <li>{{ $moto->marca }} - {{ $moto->modelo }}</li>
-        @endforeach
-    </ul>
+@if(Auth::user()->rol->name == "User")
+<p>No tienes acceso a esta página</p>
+<a href="/home">Volver</a>
+@endif
+@if(Auth::user()->rol->name == "Admin")
+    <h1>Gestionar Motos</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>ID Propietario</th>
+
+                <th>Acciones</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($motos as $moto)
+                <tr>
+                    <th>{{ $moto->idMoto }}</th>
+                    <td>{{ $moto->marca }}</td>
+                    <td>{{ $moto->modelo }}</td>
+                    <td>{{ $moto->idUsuario }}</td>
+
+                    <td><button>acciones</button><button>acciones</button><button>acciones</button></td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    @endif
+</div>
+
 @endsection
