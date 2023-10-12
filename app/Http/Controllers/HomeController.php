@@ -26,8 +26,8 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function admin()
+    public function adminPanel()
     {
-        return view('auth.admin');
+        return view('auth.adminPanel');
     }
 }

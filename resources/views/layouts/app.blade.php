@@ -60,7 +60,7 @@
                         @else
                         @if(Auth::user()->rol->name == "Admin")
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin') }}">Panel de administrador</a>
+                                <a class="nav-link" href="{{ route('adminPanel') }}">Panel de administrador</a>
                             </li>
                         @endif
 
