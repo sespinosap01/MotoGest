@@ -12,11 +12,11 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-end">Nombre</label>
 
                             <div class="col-md-6">
                                 <input id="nombre" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -28,7 +28,7 @@
 
                         <div class="row mb-3">
                             <label for="email"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                class="col-md-4 col-form-label text-md-end">Correo electrónico</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -36,7 +36,7 @@
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                    <strong>Este correo electrónico ya está en uso</strong>
                                 </span>
                                 @enderror
                             </div>
@@ -44,7 +44,7 @@
 
                         <div class="row mb-3">
                             <label for="password"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                class="col-md-4 col-form-label text-md-end">Contraseña</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password"
@@ -53,7 +53,7 @@
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                    <strong>Las contraseñas no coinciden o son inferiores a 8 caracteres</strong>
                                 </span>
                                 @enderror
                             </div>
@@ -61,7 +61,7 @@
 
                         <div class="row mb-3">
                             <label for="password-confirm"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                                class="col-md-4 col-form-label text-md-end">Confirma la contraseña</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control"
@@ -74,7 +74,7 @@
                                 Nacimiento</label>
                             <div class="col-md-6">
                                 <input id="fechaNacimiento" type="date" class="form-control" name="fechaNacimiento"
-                                    required>
+                                name="fechaNacimiento" value="{{ old('fechaNacimiento') }}" required autocomplete="fechaNacimiento" autofocus   required>
                             </div>
                         </div>
 
@@ -82,7 +82,7 @@
                             <label for="fechaNanumTelefonocimiento" class="col-md-4 col-form-label text-md-end">Teléfono</label>
                             <div class="col-md-6">
                                 <input id="numTelefono" type="number" class="form-control" name="numTelefono"
-                                    required maxlength="9" minlength="9">
+                                name="numTelefono" value="{{ old('numTelefono') }}" required autocomplete="numTelefono" autofocus required maxlength="9">
                             </div>
                         </div>
 

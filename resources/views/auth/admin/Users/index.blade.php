@@ -9,7 +9,7 @@
 @endif
 @if(Auth::user()->rol->name == "Admin")
     <h1>Gestionar Usuarios</h1>
-    <button>Crear usuario</button>
+    <button class="btn btn-info btn-sm">Crear usuario</button>
 
     <table class="table table-hover">
         <thead>
@@ -43,7 +43,7 @@
                             Otro
                         @endif
                     </td>
-                    <td><button>acciones</button><button>acciones</button><button>acciones</button></td>
+                    <td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td>
                 </tr>
             @endforeach
         </tbody>

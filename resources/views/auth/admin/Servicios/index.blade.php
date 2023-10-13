@@ -15,8 +15,11 @@
    justify-content: center;">
             @foreach ($servicios as $servicio)
 
-            <div class="card p-2">
-                <div class="card-header"><b>{{ $servicio->tipoServicio }} || {{ $servicio->estadoServicio }} || ID Moto: {{ $servicio->idMoto }}</b></div>
+            <div class="card">
+                <div class="card-header">
+                    <b>{{ $servicio->tipoServicio }} || {{ $servicio->estadoServicio }} || ID Moto: {{ $servicio->idMoto }}</b>
+                </div>
+                <div class="card-body">
                 <p><b>Descripcion: </b>{{ $servicio->descripcion }}</p>
                 <p><b>Fecha Solicitada: </b>{{ $servicio->fechaSolicitada }}</p>
                 <p><b>Fecha de inicio: </b> @if ($servicio->fechaInicioServicio == null)
@@ -30,6 +33,8 @@
                                             {{ $servicio->fechaFinServicio }}     
                 </p>  
                 <p><b>Hora Solicitada: </b>{{ $servicio->horaServicio }}</p>
+
+                </div>
             </div>
             @endforeach
         </div>

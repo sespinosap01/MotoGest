@@ -58,15 +58,18 @@
                                 </li>
                             @endif
                         @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">Home</a>
+                        </li>
                         @if(Auth::user()->rol->name == "Admin")
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('adminPanel') }}">Panel de administrador</a>
+                               <button class="btn btn-warning btn-sm"><a class="nav-link" href="{{ route('adminPanel') }}">Panel de administrador</a></button> 
                             </li>
                         @endif
 
                         @if(Auth::user()->rol->name == "User")
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('clientes.clientPanel') }}">Panel de cliente</a>
+                                <button class="btn btn-warning btn-sm"><a class="nav-link" href="{{ route('clientes.clientPanel') }}">Panel de cliente</a></button> 
                             </li>
                         @endif
 
@@ -76,12 +79,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="">                                   
+                                        Editar perfil
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         Cerrar Sesión
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>

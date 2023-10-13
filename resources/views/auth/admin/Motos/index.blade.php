@@ -28,8 +28,7 @@
                     <td>{{ $moto->marca }}</td>
                     <td>{{ $moto->modelo }}</td>
                     <td>{{ $moto->idUsuario }}</td>
-
-                    <td><button>acciones</button><button>acciones</button><button>acciones</button></td>
+                    <td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td>
                 </tr>
             @endforeach
         </tbody>
