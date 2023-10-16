@@ -92,9 +92,9 @@
                         </div>
 
                         <select name="rol_id" id="rol_id" class="form-control" hidden>
-                            <option value="1">Selecciona un rol</option>
+                            <option value="1">rol</option>
                             @foreach ($roles as $rol)
-                            <option value="{{$rol->id}}">{{$rol->name}}</option>
+                            <option value="{{$rol->id}}"></option>
                             @endforeach
                         </select>
 
@@ -102,7 +102,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    Registrarse
                                 </button>
                             </div>
                         </div>
