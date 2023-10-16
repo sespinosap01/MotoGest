@@ -16,4 +16,12 @@ class UserController extends Controller
         return view('auth.admin.users.index',  ['users'=>$users]);
     }
 
+    public function destroy($idUsuario){
+        $user = User::find($idUsuario);
+
+        $user ->delete();
+
+        return redirect()->route('users.index');
+    }
+
 }

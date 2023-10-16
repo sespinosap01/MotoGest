@@ -9,6 +9,8 @@ class Moto extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'idMoto';
+
 
     public function usuario(){
         return $this->belongsTo(User::class, 'idUsuario');

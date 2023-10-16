@@ -22,7 +22,6 @@
                 <th>Fecha de Registro</th>
                 <th>Rol</th>
                 <th>Acciones</th>
-
             </tr>
         </thead>
         <tbody>
@@ -43,7 +42,14 @@
                             Otro
                         @endif
                     </td>
-                    <td><button class="btn btn-warning btn-sm">Editar</button><button class="btn btn-danger btn-sm">Eliminar</button></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm">Editar</button>
+                        <form action="{{route('user.destroy', $user->idUsuario)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

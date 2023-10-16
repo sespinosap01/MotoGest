@@ -14,4 +14,12 @@ class MotoController extends Controller
 
         return view('auth.admin.motos.index', ['motos'=>$motos]);
     }
+
+    public function destroy(string $idMoto){
+        $moto = Moto::find($idMoto);
+
+        $moto ->delete();
+
+        return redirect()->route('motos.index');
+    }
 }

@@ -29,6 +29,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::get('motos', [App\Http\Controllers\Admin\MotoController::class, 'index'])->name('motos.index');
     Route::get('servicios', [App\Http\Controllers\Admin\ServicioController::class, 'index'])->name('servicios.index');
+
+    Route::resource('user', 'App\Http\Controllers\Admin\UserController');
+    Route::resource('moto', 'App\Http\Controllers\Admin\MotoController');
 });
 
 // Prefijo para las rutas de cliente
