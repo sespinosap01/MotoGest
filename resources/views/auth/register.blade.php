@@ -13,7 +13,6 @@
 
                         <div class="row mb-3">
                             <label for="nombre" class="col-md-4 col-form-label text-md-end">Nombre</label>
-
                             <div class="col-md-6">
                                 <input id="nombre" type="text" class="form-control @error('name') is-invalid @enderror"
                                     name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
@@ -79,10 +78,16 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="fechaNanumTelefonocimiento" class="col-md-4 col-form-label text-md-end">Teléfono</label>
+                            <label for="numTelefono" class="col-md-4 col-form-label text-md-end">Teléfono</label>
                             <div class="col-md-6">
-                                <input id="numTelefono" type="number" class="form-control" name="numTelefono"
-                                name="numTelefono" value="{{ old('numTelefono') }}" required autocomplete="numTelefono" autofocus required maxlength="9">
+                                <input id="numTelefono" type="number" class="form-control @error('numTelefono') is-invalid @enderror"
+                                    name="numTelefono" value="{{ old('numTelefono') }}" required autocomplete="numTelefono" autofocus>
+
+                                @error('numTelefono')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>El numero de telefono debe tener 9 caracteres</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
 
