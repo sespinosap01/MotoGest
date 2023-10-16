@@ -16,6 +16,7 @@
                 <th>Marca</th>
                 <th>Modelo</th>
                 <th>ID Propietario</th>
+                <th>Matricula</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -26,6 +27,7 @@
                     <td>{{ $moto->marca }}</td>
                     <td>{{ $moto->modelo }}</td>
                     <td>{{ $moto->idUsuario }}</td>
+                    <td>{{ $moto->matricula }}</td>
                     <td>
                         <button class="btn btn-warning btn-sm">Editar</button>
                         <form action="{{route('moto.destroy', $moto->idMoto)}}" method="POST">

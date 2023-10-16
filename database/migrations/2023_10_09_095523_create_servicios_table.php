@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('servicios', function (Blueprint $table) {
             $table->bigIncrements('idServicio');
             $table->unsignedBigInteger('idMoto');
-            $table->foreign('idMoto')->references('idMoto')->on('motos');
+            $table->foreign('idMoto')->references('idMoto')->on('motos')->onDelete('cascade')->onUpdate('cascade');
             $table->string('tipoServicio');
             $table->string('descripcion');
             $table->date('fechaSolicitada');

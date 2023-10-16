@@ -14,15 +14,14 @@ return new class extends Migration
         Schema::create('motos', function (Blueprint $table) {
             $table->bigIncrements('idMoto');
             $table->unsignedBigInteger('idUsuario');
-            $table->foreign('idUsuario')->references('idUsuario')->on('users');
+            $table->foreign('idUsuario')->references('idUsuario')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('marca');
             $table->string('modelo');
             $table->integer('potencia');
-            $table->date('fechaFabricacion');
+            $table->integer('fechaFabricacion');
             $table->integer('kilometraje');
             $table->string('imagen');
             $table->string('matricula')->unique();
-            $table->string('numeroBastidor')->unique();
             $table->timestamps();
         });
     }
