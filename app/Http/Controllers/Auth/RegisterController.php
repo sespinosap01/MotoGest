@@ -60,8 +60,10 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'numTelefono' => ['required', 'string', 'min:9', 'max:9'],
+            'fechaNacimiento' => ['required', 'date', 'before_or_equal:' . now()->subYears(18)->format('Y-m-d')],
         ]);
     }
+    
 
     /**
      * Create a new user instance after a valid registration.

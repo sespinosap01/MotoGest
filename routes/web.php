@@ -32,6 +32,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::resource('user', 'App\Http\Controllers\Admin\UserController');
     Route::resource('moto', 'App\Http\Controllers\Admin\MotoController');
+    
 });
 
 // Prefijo para las rutas de cliente

@@ -10,7 +10,7 @@
 
 @if(Auth::user()->rol->name == "Admin")
     <h1>Gestionar Usuarios</h1>
-    <button class="btn btn-info btn-sm">Crear usuario</button>
+    <a href="{{ route('user.create') }}" class="btn btn-info btn-sm">Crear usuario</a></button>
 
     @if(count($users) > 0)
         <table class="table table-hover">
@@ -45,7 +45,7 @@
                             @endif
                         </td>
                         <td>
-                            <button class="btn btn-warning btn-sm">Editar</button>
+                            <a href="{{route('user.edit' , $user->idUsuario)}}" class="btn btn-warning btn-sm">Editar</a>   
                             <form action="{{route('user.destroy', $user->idUsuario)}}" method="POST">
                                 @csrf
                                 @method('DELETE')

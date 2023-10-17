@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">Registro</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -63,19 +63,25 @@
                                 class="col-md-4 col-form-label text-md-end">Confirma la contraseña</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control"
+                                <input id="password-confirm" type="password" class="form-control" 
                                     name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="fechaNacimiento" class="col-md-4 col-form-label text-md-end">Fecha de
-                                Nacimiento</label>
+                            <label for="fechaNacimiento" class="col-md-4 col-form-label text-md-end">Fecha de nacimiento</label>
                             <div class="col-md-6">
-                                <input id="fechaNacimiento" type="date" class="form-control" name="fechaNacimiento"
-                                name="fechaNacimiento" value="{{ old('fechaNacimiento') }}" required autocomplete="fechaNacimiento" autofocus   required>
+                                <input id="fechaNacimiento" type="date" class="form-control @error('fechaNacimiento') is-invalid @enderror"
+                                    name="fechaNacimiento" value="{{ old('fechaNacimiento') }}" required autocomplete="fechaNacimiento" autofocus>
+
+                                @error('fechaNacimiento')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>Debes ser mayor de edad</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
+                        
 
                         <div class="row mb-3">
                             <label for="numTelefono" class="col-md-4 col-form-label text-md-end">Teléfono</label>
