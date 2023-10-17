@@ -4,6 +4,3 @@
     box-sizing: border-box;
 }
 
-body{
-    background-image: url("{!! asset('images/logo/logo.png') !!}"");
-}

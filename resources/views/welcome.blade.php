@@ -4,18 +4,20 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-
+    <link rel="icon" type="image/x-icon" href="{!! asset('images/logo/logo.png') !!}">
+    <title>MotoGest</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300&display=swap');
         
         * {
+            font-family: 'Sora', sans-serif;
+
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            font-family: 'Sora', sans-serif;
             margin: 0;
             font-family: Arial;
             font-size: 17px;
@@ -51,10 +53,17 @@
 
         #logoOverlay {
             position: fixed;
-            top: 14%;
-            left: 6%;
+            top: 30%;
+            left: 50%;
             transform: translate(-50%, -50%);
             z-index: 2; 
+            transition: width 0.3s;
+
+        }
+
+        #logoOverlay:hover{
+            width: 380px;
+            cursor: pointer;
         }
     </style>
 
@@ -63,7 +72,7 @@
 </head>
 
 <body>
-    <img id="logoOverlay" src="{!! asset('images/logo/logo.png') !!}" width="150px">
+    <img id="logoOverlay" src="{!! asset('images/logo/logoPNG.png') !!}" width="350px">
 
     <video autoplay muted loop id="backgroundVideo">
         <source src="{!! asset('images/varios/backgroundVideo.mp4') !!}" type="video/mp4">
@@ -82,7 +91,7 @@
             @else
             <button class="btn btn-primary"><a href="{{ route('login') }}">Iniciar Sesión</a></button>
             @if (Route::has('register'))
-            <button class="btn btn-secondary"><a href="{{ route('register') }}">Registrarse</a></button>
+            <button class="btn btn-warning"><a href="{{ route('register') }}">Registrarse</a></button>
             @endif
             @endauth
             @endif

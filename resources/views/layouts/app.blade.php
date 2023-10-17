@@ -19,8 +19,13 @@
                 }
     </style>
 
-    <!-- Scripts -->
+    <!-- Script vite -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <!-- AOS(animaciones de carga) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- AOS(animaciones de carga) -->
 
 </head>
 <body>
@@ -102,5 +107,9 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+        AOS.init();
+      </script>
 </body>
 </html>
