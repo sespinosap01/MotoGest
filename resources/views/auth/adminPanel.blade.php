@@ -24,7 +24,7 @@
                     <div class="card-body text-center">
                         <h2 class="card-title">Gestionar Motos</h2>
                         <img src="{!! asset('images/iconos/iconMoto.png') !!}" width="150px" alt="imgIcon"><br><br>
-                        <a href="{{ route('motos.index') }}" class="btn btn-primary">Ir a Motos</a>
+                        <a href="{{ route('motos.index') }}" class="btn btn-success">Ir a Motos</a>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     <div class="card-body text-center">
                         <h2 class="card-title">Gestionar Servicios</h2>
                         <img src="{!! asset('images/iconos/iconTool.png') !!}" width="150px" alt="imgIcon"><br><br>
-                        <a href="{{ route('servicios.index') }}" class="btn btn-warning">Ir a Servicios</a>
+                        <a href="{{ route('servicios.index') }}" class="btn btn-success">Ir a Servicios</a>
                     </div>
                 </div>
             </div>

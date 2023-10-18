@@ -9,6 +9,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Libreria Select2 -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="select2.css">
+    <link rel="stylesheet" href="select2-bootstrap.css">
+    <!-- Libreria Select2 -->
+
     <title>MotoGest</title>
 
     <!-- Fonts -->
@@ -31,11 +39,10 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-               
+            <div class="container">               
                 <div class="navbar-brand">
                     <img src="{!! asset('images/logo/logo.png') !!}" width="50px">
-                    <a href="/">MotoGest</a>
+                    <a href="/" class="text-decoration-none text-black">MotoGest</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -111,5 +118,14 @@
     <script>
         AOS.init();
       </script>
+
+<script>
+    // Configura Select2
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2({ 
+            
+        });
+    });
+</script>
 </body>
 </html>

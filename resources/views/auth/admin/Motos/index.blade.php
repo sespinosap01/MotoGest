@@ -10,6 +10,7 @@
 
 @if(Auth::user()->rol->name == "Admin")
     <h1>Gestionar Motos</h1>
+    <a href="{{ route('moto.create') }}" class="btn btn-info btn-sm">Crear moto</a></button>
 
     @if(count($motos) > 0)
         <table class="table table-hover">
@@ -18,7 +19,8 @@
                     <th>ID</th>
                     <th>Marca</th>
                     <th>Modelo</th>
-                    <th>ID Propietario</th>
+                    <th>Año de fabricación</th>
+                    <th>Propietario</th>
                     <th>Matricula</th>
                     <th>Acciones</th>
                 </tr>
@@ -29,10 +31,11 @@
                         <th>{{ $moto->idMoto }}</th>
                         <td>{{ $moto->marca }}</td>
                         <td>{{ $moto->modelo }}</td>
-                        <td>{{ $moto->idUsuario }}</td>
+                        <td>{{ $moto->fechaFabricacion }}</td>
+                        <td>{{ $moto->usuario->email }}</td>
                         <td>{{ $moto->matricula }}</td>
                         <td>
-                            <button class="btn btn-warning btn-sm">Editar</button>
+                            <a href="{{route('moto.edit' , $moto->idMoto)}}" class="btn btn-warning btn-sm">Editar</a>   
                             <form action="{{ route('moto.destroy', $moto->idMoto) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

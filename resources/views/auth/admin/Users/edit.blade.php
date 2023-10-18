@@ -55,21 +55,11 @@
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
-                            <strong>Las contraseñas no coinciden o son inferiores a 8 caracteres</strong>
+                            <strong>La contraseña es inferior a 8 caracteres</strong>
                         </span>
                         @enderror
                     </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Confirma la
-                        contraseña</label>
-
-                    <div class="col-md-6">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                            required autocomplete="new-password">
-                    </div>
-                </div>
+                </div>            
 
                 <div class="row mb-3">
                     <label for="fechaNacimiento" class="col-md-4 col-form-label text-md-end">Fecha de

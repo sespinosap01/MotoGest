@@ -72,7 +72,8 @@
 </head>
 
 <body>
-    <img id="logoOverlay" src="{!! asset('images/logo/logoPNG.png') !!}" width="350px">
+    <a href="{{ url('/home') }}">    <img id="logoOverlay" src="{!! asset('images/logo/logoPNG.png') !!}" width="350px">
+    </a>
 
     <video autoplay muted loop id="backgroundVideo">
         <source src="{!! asset('images/varios/backgroundVideo.mp4') !!}" type="video/mp4">
