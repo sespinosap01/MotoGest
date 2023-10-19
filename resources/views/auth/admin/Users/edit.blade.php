@@ -9,7 +9,7 @@
     @endif
 
     @if(Auth::user()->rol->name == "Admin")
-    <h1>Editar usuario</h1>
+    <h3>Editando a <b>{{$user->nombre}}</b></h3>
     <div class="row justify-content-center">
         <div class="col-md-8">
 

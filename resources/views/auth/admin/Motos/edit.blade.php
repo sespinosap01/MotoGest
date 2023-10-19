@@ -9,7 +9,7 @@
     @endif
 
     @if(Auth::user()->rol->name == "Admin")
-    <h1>Editar moto</h1>
+    <h3>Editando <b>{{$moto->marca}} {{$moto->modelo}}</b></h3>
     <div class="row justify-content-center">
         <div class="col-md-8">
 

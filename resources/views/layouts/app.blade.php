@@ -1,7 +1,12 @@
 <!doctype html>
 <html lang="es">
+
 <head>
     <link rel="icon" type="image/x-icon" href="{!! asset('images/logo/logo.png') !!}">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/ac494230e8.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,9 +27,11 @@
     <!-- Fonts -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300&display=swap');
-        *{
+
+        * {
             font-family: 'Sora', sans-serif;
-                }
+        }
+
     </style>
 
     <!-- Script vite -->
@@ -36,74 +43,79 @@
     <!-- AOS(animaciones de carga) -->
 
 </head>
+
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">               
+        <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+            <div class="container">
                 <div class="navbar-brand">
-                    <img src="{!! asset('images/logo/logo.png') !!}" width="50px">
-                    <a href="/" class="text-decoration-none text-black">MotoGest</a>
+                    <a href="/" class="text-decoration-none"><img src="{!! asset('images/logo/logoPNG.png') !!}"
+                            width="80px"></a>
                 </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
+                <div class="collapse navbar-collapse fs-5" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">Inciar Sesión</a>
-                                </li>
-                            @endif
+                        @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket"
+                                    style="color: #c65f20;"></i> Inciar Sesión</a>
+                        </li>
+                        @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
-                                </li>
-                            @endif
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}"><i class="fa-solid fa-id-card"
+                                    style="color: #c65f20;"></i> Registrarse</a>
+                        </li>
+                        @endif
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">Home</a>
+                            <a class="nav-link" href="{{ route('home') }}"> <i class="fa-solid fa-house"
+                                    style="color: #c65f20;"></i>
+                                Home</a>
                         </li>
                         @if(Auth::user()->rol->name == "Admin")
-                            <li class="nav-item">
-                               <button class="btn btn-warning btn-sm"><a class="nav-link" href="{{ route('adminPanel') }}">Panel de administrador</a></button> 
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('adminPanel') }}"> <i class="fa-solid fa-lock"
+                                    style="color: #c65f20;"></i>
+                                Panel de administrador</a>
+                        </li>
                         @endif
 
                         @if(Auth::user()->rol->name == "User")
-                            <li class="nav-item">
-                                <button class="btn btn-warning btn-sm"><a class="nav-link" href="{{ route('clientes.clientPanel') }}">Panel de cliente</a></button> 
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('clientes.clientPanel') }}"><i
+                                    class="fa-solid fa-table-columns" style="color: #c65f20;"></i>
+                                Panel de usuario</a>
+                        </li>
                         @endif
 
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->nombre }}
-                                </a>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i
+                                    class="fa-solid fa-user" style="color: #c65f20;"></i>
+                                {{ Auth::user()->nombre }}
+                            </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="">                                   
-                                        Editar perfil
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="">
+                                    Editar perfil
+                                </a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Cerrar Sesión
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                    Cerrar Sesión
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
@@ -117,15 +129,18 @@
 
     <script>
         AOS.init();
-      </script>
 
-<script>
-    // Configura Select2
-    $(document).ready(function() {
-        $('.js-example-basic-single').select2({ 
-            
+    </script>
+
+    <script>
+        // Configura Select2
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2({
+
+            });
         });
-    });
-</script>
+
+    </script>
 </body>
+
 </html>

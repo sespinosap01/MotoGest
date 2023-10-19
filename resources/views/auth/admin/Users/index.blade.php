@@ -9,8 +9,16 @@
 @endif
 
 @if(Auth::user()->rol->name == "Admin")
-    <h1>Gestionar Usuarios</h1>
-    <a href="{{ route('user.create') }}" class="btn btn-info btn-sm">Crear usuario</a></button>
+    
+<div class="row">
+    <div class="col-10">
+        <h1>Gestionar Usuarios</h1><a href="{{ route('user.create') }}" class="btn text-white btn-sm" style="background-color: #c65f20;">Crear usuario</a></button>
+
+    </div>
+    <div class="col-2">
+        <h4>Registros: {{ $totalUsers }}</h4>
+    </div>
+</div>
 
     @if(count($users) > 0)
         <table class="table table-hover">
@@ -45,12 +53,14 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{route('user.edit' , $user->idUsuario)}}" class="btn btn-warning btn-sm">Editar</a>   
-                            <form action="{{route('user.destroy', $user->idUsuario)}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                            </form>
+                            <div class="d-flex gap-3">
+                                <a href="{{route('user.edit' , $user->idUsuario)}}" class="btn btn-warning btn-sm">Editar</a>   
+                                <form action="{{route('user.destroy', $user->idUsuario)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

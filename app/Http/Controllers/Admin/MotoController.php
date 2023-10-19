@@ -13,8 +13,8 @@ class MotoController extends Controller
     {
         $motos = Moto::all();
         $users = User::all();
-
-        return view('auth.admin.motos.index', ['motos'=>$motos], ['users'=>$users]);
+        $totalMotos = Moto::count();
+        return view('auth.admin.motos.index', ['motos' => $motos, 'users' => $users, 'totalMotos' => $totalMotos]);
     }
 
     public function create(){

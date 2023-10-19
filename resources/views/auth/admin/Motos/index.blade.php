@@ -9,9 +9,15 @@
 @endif
 
 @if(Auth::user()->rol->name == "Admin")
-    <h1>Gestionar Motos</h1>
-    <a href="{{ route('moto.create') }}" class="btn btn-info btn-sm">Crear moto</a></button>
-
+    <div class="row">
+        <div class="col-10">
+            <h1>Gestionar Motos</h1><a href="{{ route('moto.create') }}" class="btn text-white btn-sm" style="background-color: #c65f20;">Crear moto</a></button>
+    
+        </div>
+        <div class="col-2">
+            <h4>Registros:{{$totalMotos}}</h4>
+        </div>
+    </div>
     @if(count($motos) > 0)
         <table class="table table-hover">
             <thead>
@@ -35,12 +41,14 @@
                         <td>{{ $moto->usuario->email }}</td>
                         <td>{{ $moto->matricula }}</td>
                         <td>
-                            <a href="{{route('moto.edit' , $moto->idMoto)}}" class="btn btn-warning btn-sm">Editar</a>   
-                            <form action="{{ route('moto.destroy', $moto->idMoto) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                            </form>
+                            <div class="d-flex gap-3">
+                                <a href="{{route('moto.edit' , $moto->idMoto)}}" class="btn btn-warning btn-sm">Editar</a>   
+                                <form action="{{ route('moto.destroy', $moto->idMoto) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

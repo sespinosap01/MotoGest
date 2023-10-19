@@ -88,7 +88,7 @@
         <div class="botonesDerecha">
             @if (Route::has('login'))
             @auth
-            <a href="{{ url('/home') }}" class="btn btn-primary">Entrar</a>
+            <a href="{{ url('/home') }}" class="btn text-white" style="background-color: #c65f20;">Entrar</a>
             @else
             <a href="{{ route('login') }}" class="btn btn-primary">Iniciar Sesión</a>
             @if (Route::has('register'))

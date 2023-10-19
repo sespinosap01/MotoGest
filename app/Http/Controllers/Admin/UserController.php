@@ -13,9 +13,10 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+        $totalUsers = User::count();
 
 
-        return view('auth.admin.users.index',  ['users'=>$users]);
+        return view('auth.admin.users.index',  ['users'=>$users, 'totalUsers'=>$totalUsers]);
     }
 
     public function create(){
