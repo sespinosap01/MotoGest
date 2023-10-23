@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('mantenimientos', function (Blueprint $table) {
             $table->bigIncrements('idMantenimiento');
-            $table->unsignedBigInteger('idMoto');
+            $table->unsignedBigInteger('idMoto')->unique();
             $table->foreign('idMoto')->references('idMoto')->on('motos')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('kilometraje');
             $table->date('fechaVencimientoSeguro');
