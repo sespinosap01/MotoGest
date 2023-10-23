@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('fechaFabricacion');
             $table->integer('kilometraje');
             $table->string('imagen');
-            $table->string('matricula')->unique();
+            $table->string('matricula');
             $table->timestamps();
         });
     }

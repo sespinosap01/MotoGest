@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Registro</div>
+                <div class="card-header"><h4>Registro</h4></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -76,7 +76,7 @@
 
                                 @error('fechaNacimiento')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>Debes ser mayor de edad</strong>
+                                    <strong>Debes ser mayor de 15 años</strong>
                                 </span>
                                 @enderror
                             </div>
@@ -107,7 +107,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn text-white" style="background-color: #c65f20;">
                                     Registrarse
                                 </button>
                             </div>

@@ -24,7 +24,7 @@ class StartSeed extends Seeder
         $adminRol->save();
 
         $userSeed = new User();
-        $userSeed->nombre="admin";
+        $userSeed->nombre="Admin";
         $userSeed->email="admin@gmail.com";
         $userSeed->password="12345678";
         $userSeed->fechaNacimiento="2000-01-01";

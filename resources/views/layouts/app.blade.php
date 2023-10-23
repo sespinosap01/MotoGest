@@ -64,7 +64,7 @@
                         @if (Route::has('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket"
-                                    style="color: #c65f20;"></i> Inciar Sesión</a>
+                                    style="color: #c65f20;"></i> Iniciar Sesión</a>
                         </li>
                         @endif
 
@@ -133,7 +133,7 @@
     </script>
 
     <script>
-        // Configura Select2
+        // Scritp para poder usar Select2
         $(document).ready(function () {
             $('.js-example-basic-single').select2({
 

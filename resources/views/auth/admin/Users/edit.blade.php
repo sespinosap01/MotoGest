@@ -50,7 +50,7 @@
 
                     <div class="col-md-6">
                         <input id="password" type="password"
-                            class="form-control @error('password') is-invalid @enderror" name="password" required
+                            class="form-control @error('password') is-invalid @enderror" name="password"@isset($user) value="{{$user->password}}" @endisset  required
                             autocomplete="new-password">
 
                         @error('password')
