@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreign('idUsuario')->references('idUsuario')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('marca');
             $table->string('modelo');
+            $table->integer('cilindrada');
             $table->integer('potencia');
             $table->integer('fechaFabricacion');
-            $table->integer('kilometraje');
             $table->string('imagen');
             $table->string('matricula');
             $table->timestamps();

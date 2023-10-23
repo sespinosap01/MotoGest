@@ -64,10 +64,17 @@
                     <div class="col-md-6">
                         <input id="modelo" type="text" class="form-control" name="modelo" required>                                                
                     </div>
-                </div>                                
+                </div> 
+                
+                <div class="row mb-3">
+                    <label for="cilindrada" class="col-md-4 col-form-label text-md-end">Cilindrada (cc)</label>
+                    <div class="col-md-6">
+                        <input id="cilindrada" type="number" class="form-control" name="cilindrada" required>                                                
+                    </div>
+                </div>
 
                 <div class="row mb-3">
-                    <label for="potencia" class="col-md-4 col-form-label text-md-end">Potencia</label>
+                    <label for="potencia" class="col-md-4 col-form-label text-md-end">Potencia (cv)</label>
                     <div class="col-md-6">
                         <input id="potencia" type="number" class="form-control" name="potencia" required>                                                
                     </div>

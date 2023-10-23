@@ -44,9 +44,9 @@ class MotoController extends Controller
         $moto->idUsuario = $request->input('idUsuario');
         $moto->marca = $request->input('marca');
         $moto->modelo = $request->input('modelo');
+        $moto->cilindrada = $request->input('cilindrada');
         $moto->potencia = $request->input('potencia');
         $moto->fechaFabricacion = $request->input('fechaFabricacion');
-        $moto->kilometraje = $request->input('kilometraje');
         $moto->imagen = $request->input('imagen');        
         $moto->matricula = $request->input('matricula');        
 

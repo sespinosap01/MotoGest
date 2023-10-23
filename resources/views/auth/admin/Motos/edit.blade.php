@@ -68,7 +68,14 @@
                     <div class="col-md-6">
                         <input id="modelo" type="text" class="form-control" @isset($moto) value="{{$moto->modelo}}" @endisset name="modelo" required>                                                
                     </div>
-                </div>                                
+                </div>   
+                
+                <div class="row mb-3">
+                    <label for="cilindrada" class="col-md-4 col-form-label text-md-end">Cilindrada</label>
+                    <div class="col-md-6">
+                        <input id="cilindrada" type="number" class="form-control" @isset($moto) value="{{$moto->cilindrada}}" @endisset name="cilindrada" required>                                                
+                    </div>
+                </div> 
 
                 <div class="row mb-3">
                     <label for="potencia" class="col-md-4 col-form-label text-md-end">Potencia</label>

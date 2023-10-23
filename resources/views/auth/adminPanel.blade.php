@@ -31,9 +31,9 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h2 class="card-title">Gestionar Servicios</h2>
+                        <h2 class="card-title">Gestionar Mantenimientos</h2>
                         <img src="{!! asset('images/iconos/iconTool.png') !!}" width="150px" alt="imgIcon"><br><br>
-                        <a href="{{ route('servicios.index') }}" class="btn text-white" style="background-color: #c65f20;">Ir a Servicios</a>
+                        <a href="{{ route('mantenimientos.index') }}" class="btn text-white" style="background-color: #c65f20;">Ir a Mantenimientos</a>
                     </div>
                 </div>
             </div>

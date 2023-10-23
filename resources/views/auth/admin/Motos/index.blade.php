@@ -25,6 +25,8 @@
                         <th>ID</th>
                         <th>Marca</th>
                         <th>Modelo</th>
+                        <th>Cilindrada</th>
+                        <th>Potencia</th>
                         <th>Año de fabricación</th>
                         <th>Propietario</th>
                         <th>Matricula</th>
@@ -37,6 +39,8 @@
                             <th>{{ $moto->idMoto }}</th>
                             <td>{{ $moto->marca }}</td>
                             <td>{{ $moto->modelo }}</td>
+                            <td>{{ $moto->cilindrada }}cc</td>
+                            <td>{{ $moto->potencia }}cv</td>
                             <td>{{ $moto->fechaFabricacion }}</td>
                             <td>{{ $moto->usuario->email }}</td>
                             <td>{{ $moto->matricula }}</td>

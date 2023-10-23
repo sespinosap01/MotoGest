@@ -28,7 +28,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/adminPanel', [App\Http\Controllers\HomeController::class, 'adminPanel'])->name('adminPanel');
     Route::get('users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::get('motos', [App\Http\Controllers\Admin\MotoController::class, 'index'])->name('motos.index');
-    Route::get('servicios', [App\Http\Controllers\Admin\ServicioController::class, 'index'])->name('servicios.index');
+    Route::get('mantenimientos', [App\Http\Controllers\Admin\MantenimientoController::class, 'index'])->name('mantenimientos.index');
 
     Route::resource('user', 'App\Http\Controllers\Admin\UserController');
     Route::resource('moto', 'App\Http\Controllers\Admin\MotoController');
