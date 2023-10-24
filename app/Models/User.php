@@ -51,4 +51,11 @@ class User extends Authenticatable
     public function rol(){
         return $this->hasOne('App\Models\Rol', 'id', 'rol_id');
     }
+
+    public function motos()
+{
+    return $this->hasMany('App\Models\Moto', 'idUsuario', 'idUsuario');
+}
+
+
 }

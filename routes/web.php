@@ -32,10 +32,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::resource('user', 'App\Http\Controllers\Admin\UserController');
     Route::resource('moto', 'App\Http\Controllers\Admin\MotoController');
-    
+    Route::resource('mantenimiento', 'App\Http\Controllers\Admin\MantenimientoController');
+
 });
 
 // Prefijo para las rutas de cliente
 Route::prefix('clientes')->middleware('auth')->group(function () {
-    Route::get('/clientPanel', 'App\Http\Controllers\ClientController@clientPanel')->name('clientes.clientPanel');
+    Route::get('/clientPanel', 'App\Http\Controllers\ClientPanelController@clientPanel')->name('clientes.clientPanel');
+
+    Route::resource('motopanel', 'App\Http\Controllers\ClientPanelController');
+
 });

@@ -19,7 +19,7 @@
                     <label for="nombre" class="col-md-4 col-form-label text-md-end">Nombre</label>
                     <div class="col-md-6">
                         <input id="nombre" type="text" class="form-control @error('name') is-invalid @enderror"
-                            name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
+                            name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus placeholder="Ej: Pedro López">
 
                         @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
 
                     <div class="col-md-6">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autocomplete="email">
+                            name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Ej: micorreo@gmail.com">
 
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -50,7 +50,7 @@
                     <div class="col-md-6">
                         <input id="password" type="password"
                             class="form-control @error('password') is-invalid @enderror" name="password" required
-                            autocomplete="new-password">
+                            autocomplete="new-password" placeholder="Introduce la contraseña">
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -66,7 +66,7 @@
 
                     <div class="col-md-6">
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                            required autocomplete="new-password">
+                            required autocomplete="new-password" placeholder="Confirma la contraseña">
                     </div>
                 </div>
 
@@ -85,7 +85,7 @@
                     <div class="col-md-6">
                         <input id="numTelefono" type="number"
                             class="form-control @error('numTelefono') is-invalid @enderror" name="numTelefono"
-                            value="{{ old('numTelefono') }}" required autocomplete="numTelefono" autofocus>
+                            value="{{ old('numTelefono') }}" required autocomplete="numTelefono" autofocus placeholder="Ej: 654321098">
 
                         @error('numTelefono')
                         <span class="invalid-feedback" role="alert">

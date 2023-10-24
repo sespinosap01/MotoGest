@@ -89,14 +89,7 @@
                     <div class="col-md-6">
                         <input id="fechaFabricacion" type="number" class="form-control" @isset($moto) value="{{$moto->fechaFabricacion}}" @endisset name="fechaFabricacion" required>                                                
                     </div>
-                </div> 
-
-                <div class="row mb-3">
-                    <label for="kilometraje" class="col-md-4 col-form-label text-md-end">Kilometraje</label>
-                    <div class="col-md-6">
-                        <input id="kilometraje" type="number" class="form-control" @isset($moto) value="{{$moto->kilometraje}}" @endisset name="kilometraje" required>                                                
-                    </div>
-                </div> 
+                </div>
 
                 <div class="row mb-3">
                     <label for="imagen" class="col-md-4 col-form-label text-md-end">Imagen</label>
