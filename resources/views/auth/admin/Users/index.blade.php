@@ -19,6 +19,7 @@
         <h4>Registros: {{ $totalUsers }}</h4>
     </div>
 </div>
+<br>
 
     @if(count($users) > 0)
         <table class="table table-hover">

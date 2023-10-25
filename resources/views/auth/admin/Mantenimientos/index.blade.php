@@ -61,7 +61,7 @@
             </table>
         @else
             <br>
-            <p>No hay mantenimientos registradas</p>
+            <p>No hay mantenimientos registrados</p>
         @endif
     @endif
     <br><br>

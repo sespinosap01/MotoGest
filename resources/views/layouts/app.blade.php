@@ -13,6 +13,12 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
 
     <!-- Libreria Select2 -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -21,6 +27,8 @@
     <link rel="stylesheet" href="select2.css">
     <link rel="stylesheet" href="select2-bootstrap.css">
     <!-- Libreria Select2 -->
+
+
 
     <title>MotoGest</title>
 
@@ -32,6 +40,21 @@
             font-family: 'Sora', sans-serif;
         }
 
+        #app {
+            flex: 1;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+        background: #c65f20; 
+       }
+
+        ::-webkit-scrollbar-thumb:hover {
+        background: #964818; 
+        }
     </style>
 
     <!-- Script vite -->
@@ -122,9 +145,11 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 mb-0">
             @yield('content')
         </main>
+    
+    
     </div>
 
     <script>
@@ -141,6 +166,7 @@
         });
 
     </script>
+
 </body>
 
 </html>

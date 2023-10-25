@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Moto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+
 
 class ClientPanelController extends Controller
 {
@@ -26,11 +29,15 @@ class ClientPanelController extends Controller
         return $this->saveMoto($request, null);
     }
 
-/*     public function update(Request $request , $idMoto){
+    public function update(Request $request , $idMoto){
         $moto = Moto::find($idMoto);
 
+        if (Gate::denies('update', $moto)) {
+            abort(403, 'No tienes permiso para realizar esta acción.');
+        }
+
         return $this->saveMoto($request, $idMoto);
-    } */
+    } 
 
     public function saveMoto(Request $request, $idMoto){
         if($idMoto){
@@ -52,13 +59,13 @@ class ClientPanelController extends Controller
         return redirect()->route('clientes.clientPanel');
     }
 
-   /*  public function edit($idMoto){
+     public function edit($idMoto){
         $moto = Moto::find($idMoto);
-
-        $users = User::all();
-        
-        return view('auth.admin.motos.edit', ['moto' => $moto], ['users' => $users]);
-    } */
+        if (Gate::denies('update', $moto)) {
+            abort(403, 'No tienes permiso para realizar esta acción.');
+        }
+        return view('clientes.motoCliente.edit', ['moto' => $moto],);
+    } 
 
     public function destroy(string $idMoto){
         $moto = Moto::find($idMoto);

@@ -1,11 +1,17 @@
 <?php
 
 namespace App\Providers;
+use App\Models\Moto;
 
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $policies = [
+        Moto::class => \App\Policies\MotoPolicy::class,
+    ];
+    
+
     /**
      * Register any application services.
      */

@@ -12,7 +12,6 @@
     <h3>Editando <b>{{$moto->marca}} {{$moto->modelo}}</b></h3>
     <div class="row justify-content-center">
         <div class="col-md-8">
-
             <form method="POST" action="{{ route('moto.update', $moto->idMoto) }}">
                 @csrf
                 @method('PUT')
@@ -107,7 +106,7 @@
                 
                 <div class="row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn text-white btn-sm" style="background-color: #c65f20;">
                             Editar moto
                         </button>
                     </div>

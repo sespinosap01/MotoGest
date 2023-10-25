@@ -17,7 +17,7 @@
                 <h4>Registros:{{$totalMotos}}</h4>
             </div>
         </div>
-
+        <br>
         @if(count($motos) > 0)
             <table class="table table-hover">
                 <thead>
