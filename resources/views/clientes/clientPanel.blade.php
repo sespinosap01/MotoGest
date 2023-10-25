@@ -6,7 +6,7 @@
         <div class="row mb-3">
             <h1>Mis Motos</h1>
             <div class="col-10">
-                <a href="" class="btn text-white btn-sm" style="background-color: #c65f20;">Crear nueva moto</a>
+                <a href="{{ route('motopanel.create') }}" class="btn text-white btn-sm" style="background-color: #c65f20;">Crear nueva moto</a>
             </div>
         </div>        @foreach ($motos as $moto)
         <div class="col-md-4">

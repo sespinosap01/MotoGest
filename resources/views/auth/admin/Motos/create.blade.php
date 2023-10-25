@@ -88,13 +88,6 @@
                 </div> 
 
                 <div class="row mb-3">
-                    <label for="kilometraje" class="col-md-4 col-form-label text-md-end">Kilometraje</label>
-                    <div class="col-md-6">
-                        <input id="kilometraje" type="number" class="form-control" name="kilometraje" required>                                                
-                    </div>
-                </div> 
-
-                <div class="row mb-3">
                     <label for="imagen" class="col-md-4 col-form-label text-md-end">Imagen</label>
                     <div class="col-md-6">
                         <input id="imagen" type="text" class="form-control" name="imagen" required value="img.png">                                                
