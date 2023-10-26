@@ -109,9 +109,10 @@
 
                 <div class="row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn text-white" style="background-color: #c65f20;">
+                        <button type="submit" class="btn btn-sm text-white" style="background-color: #c65f20;">
                             Crear usuario
                         </button>
+                        <a href="{{ route('users.index') }}" class="btn btn-sm btn-secondary" >Cancelar</a>
                     </div>
                 </div>
             </form>
