@@ -83,10 +83,10 @@
                 
                 <div class="row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn text-white mr-4" style="background-color: #c65f20;">
+                        <button type="submit" class="btn btn-sm text-white mr-4" style="background-color: #c65f20;">
                             Añadir moto
                         </button>
-                        <a href="{{ route('clientes.clientPanel') }}" class="btn btn-secondary" >Cancelar</a>
+                        <a href="{{ route('clientes.clientPanel') }}" class="btn btn-sm btn-secondary" >Cancelar</a>
                     </div>
                 </div>
             </form>

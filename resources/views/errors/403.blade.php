@@ -1,7 +1,9 @@
+@extends('layouts.app')
 
-
-<div class="container">
+@section('content')
+<div class="container" data-aos="fade-up">
     <h1>Error 403</h1>
-    <h3>¡Vaya! No tienes permiso para realizar esta acción</h3>
-    <a href="/home">Volver al home</a>
+    <h4>Falta de permisos</h4>
+    <p>¡Vaya! Parece que no tienes acceso a esto...</p>
 </div>
+@endsection

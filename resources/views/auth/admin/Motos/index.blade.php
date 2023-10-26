@@ -9,11 +9,11 @@
 
     @if(Auth::user()->rol->name == "Admin")
         <div class="row">
-            <div class="col-10">
+            <div class="col-6">
                 <h1>Gestionar Motos</h1>
                 <a href="{{ route('moto.create') }}" class="btn text-white btn-sm" style="background-color: #c65f20;">Crear moto</a>
             </div>
-            <div class="col-2">
+            <div class="col-6 text-right">
                 <h4>Registros:{{$totalMotos}}</h4>
             </div>
         </div>
