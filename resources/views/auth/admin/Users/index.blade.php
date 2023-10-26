@@ -12,7 +12,7 @@
     
 <div class="row">
     <div class="col-6">
-        <h1>Gestionar Usuarios</h1><a href="{{ route('user.create') }}" class="btn text-white btn-sm" style="background-color: #c65f20;">Crear usuario</a></button>
+        <h1><i class="fa-solid fa-user" style="color: #c65f20;"></i> Gestionar Usuarios</h1><a href="{{ route('user.create') }}" class="btn text-white btn-sm" style="background-color: #c65f20;">Crear usuario</a></button>
 
     </div>
     <div class="col-6 text-right">

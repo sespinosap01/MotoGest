@@ -9,7 +9,7 @@
     @endif
 
     @if(Auth::user()->rol->name == "Admin")
-    <h1>Crear usuario</h1>
+    <h1><i class="fa-solid fa-user" style="color: #c65f20;"></i> Crear usuario</h1>
     <div class="row justify-content-center">
         <div class="col-md-8">
 

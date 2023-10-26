@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container" data-aos="fade-up">
-    <h3>Editando <b>{{$moto->marca}} {{$moto->modelo}}</b></h3>
+    <h3><i class="fa-solid fa-motorcycle" style="color: #c65f20;"></i> Editando <b>{{$moto->marca}} {{$moto->modelo}}</b></h3>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form method="POST" action="{{ route('motopanel.update', $moto->idMoto) }}">

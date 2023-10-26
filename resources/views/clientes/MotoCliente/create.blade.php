@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container" data-aos="fade-up">
-    <h1>Añadir Moto</h1>
+    <h1><i class="fa-solid fa-motorcycle" style="color: #c65f20;"></i> Añadir Moto</h1>
     <div class="row justify-content-center">
         <div class="col-md-8">
 

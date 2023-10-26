@@ -11,7 +11,7 @@ html, body {
 
 .content {
     min-height: 100%;
-    margin-bottom: -20%; /* La altura del footer */
+    margin-bottom: -20%;
 }
 
 </style>
@@ -55,22 +55,62 @@ html, body {
 </div>
 
 <!-- About section -->
-<section id="about">
     <div class="container px-4">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h2>Sobre nosotros</h2>
-                <p>En MotoGest, estamos comprometidos a proporcionarte una forma sencilla y efectiva 
+                <p>En <b>MotoGest</b>, estamos comprometidos a proporcionarte una forma sencilla y efectiva 
                   de llevar un control sobre los mantenimientos de tu moto. Nuestra aplicación te permite
                   gestionarlos de forma sencilla</p>
           
             </div>
         </div>
     </div>
-</section>
+
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-8">
+                <h2>¡Descarga ya la app de <b>MotoGest</b>!</h2>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="{{ asset('images/varios/tablet.png') }}" width="90%">
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{ asset('images/varios/movil.png') }}" width="150%">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="col-md-6">
+                            <a href="https://www.apple.com/es/app-store/" class="btn btn-primary" target="_blank">Descargar en IOS</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="https://play.google.com/store/" class="btn btn-success" target="_blank">Descargar en Android</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="container px-4">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-8">
+                <h2>Preguntas frecuentes</h2>
+                <ul>
+                    <li>Pregunta de prueba</li>
+                    <li>Pregunta de prueba</li>
+                    <li>Pregunta de prueba</li>
+                    <li>Pregunta de prueba</li>
+                </ul>
+          
+            </div>
+        </div>
+    </div>
 
 <!-- Contact section -->
-<section id="contact">
     <div class="container px-4">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
@@ -79,7 +119,6 @@ html, body {
             </div>
         </div>
     </div>
-</section>
 <!-- Footer section -->
 <footer class="footer bg-dark text-white py-3 text-center">
    &copy; MotoGest 2023

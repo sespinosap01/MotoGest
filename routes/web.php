@@ -21,6 +21,9 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('login', 'App\Http\Controllers\LoginController');
 Route::resource('register', 'App\Http\Controllers\RegisterController');
+
+Route::resource('profile', 'App\Http\Controllers\ProfileController');
+
 Auth::routes();
 
 // Prefijo para las rutas de administración
@@ -35,6 +38,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('mantenimiento', 'App\Http\Controllers\Admin\MantenimientoController');
 
 });
+
+
 
 // Prefijo para las rutas de cliente
 Route::prefix('clientes')->middleware('auth')->group(function () {

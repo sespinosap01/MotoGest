@@ -2,18 +2,10 @@
 
 @section('content')
 <div class="container" data-aos="fade-up">
-
-    @if(Auth::user()->rol->name == "User")
-    <p>No tienes acceso a esta página</p>
-    <a href="/home">Volver</a>
-    @endif
-
-    @if(Auth::user()->rol->name == "Admin")
-    <h3><i class="fa-solid fa-user" style="color: #c65f20;"></i> Editando a <b>{{$user->nombre}}</b></h3>
+    <h1><i class="fa-solid fa-user" style="color: #c65f20;"></i> Editar Perfil</h1>
     <div class="row justify-content-center">
         <div class="col-md-8">
-
-            <form method="POST" action="{{ route('user.update', $user->idUsuario) }}">
+            <form method="POST" action="{{ route('profile.update', $user->idUsuario) }}">
                 @csrf
                 @method('PUT')
                 <div class="row mb-3">
@@ -50,7 +42,7 @@
 
                     <div class="col-md-6">
                         <input id="password" type="password"
-                            class="form-control @error('password') is-invalid @enderror" name="password"@isset($user) value="{{$user->password}}" @endisset  required
+                            class="form-control @error('password') is-invalid @enderror" name="password"@isset($user) @endisset  required
                             autocomplete="new-password">
 
                         @error('password')
@@ -86,28 +78,52 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <label for="rol_id" class="col-md-4 col-form-label text-md-end">Rol</label>
-                    <div class="col-md-6">
-                        <select name="rol_id" id="rol_id" class="form-control">
-                            <option value="1">Selecciona el rol</option>
-                            @foreach ($roles as $rol)
-                            <option value="{{$rol->id}}">{{$rol->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
+                <label for="rol_id" class="col-md-4 col-form-label text-md-end" hidden>Rol</label>
+                <div class="col-md-6">
+                    <select name="rol_id" id="rol_id" class="form-control" hidden>
+                        @if (Auth::user()->rol->name == "Admin")
+                            <option value="2" selected>Admin</option>
+                        @else
+                            <option value="1" selected>User</option>
+                        @endif
+                    </select>
+                </div>            
                 <div class="row mb-0">
                     <div class="col-md-6 offset-md-4">
                         <button type="submit" class="btn text-white btn-sm" style="background-color: #c65f20;">
-                            Editar usuario
+                            Editar perfil
                         </button>
-                        <a href="{{ route('users.index') }}" class="btn btn-sm btn-secondary" >Cancelar</a>
+                        <a href="/home" class="btn btn-sm btn-secondary" >Cancelar</a>
+                        <br><br>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$user->idUsuario}}">Eliminar perfil</button> 
+
                     </div>
                 </div>
             </form>
         </div>
-        @endif
+    </div>
+</div>
+<!-- Modal de confirmación de eliminación -->
+<div class="modal top fade" data-mdb-backdrop="false" id="confirmDeleteModal{{$user->idUsuario}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><b>Confirmar eliminación</b></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas <b>eliminar tu cuenta</b>? Esta accion es <b style="color: red">IRREVERSIBLE</b>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <form action="{{ route('profile.destroy', $user->idUsuario) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
+

@@ -9,7 +9,7 @@
     @endif
 
     @if(Auth::user()->rol->name == "Admin")
-    <h1>Crear moto</h1>
+    <h1><i class="fa-solid fa-motorcycle" style="color: #c65f20;"></i> Crear moto</h1>
     <div class="row justify-content-center">
         <div class="col-md-8">
 

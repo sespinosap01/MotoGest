@@ -16,7 +16,7 @@
         <div class="col-12">
             <div class="row mb-2">
                 <div class="col-6">
-                    <h1>Mis Motos</h1>
+                    <h1><i class="fa-solid fa-motorcycle" style="color: #c65f20;"></i> Mis Motos</h1>
                 </div>
                 <div class="col-6 text-right">
                     <a href="{{ route('motopanel.create') }}" class="btn text-white" style="background-color: #c65f20;">Añadir moto</a>

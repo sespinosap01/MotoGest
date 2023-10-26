@@ -10,7 +10,7 @@
     @if(Auth::user()->rol->name == "Admin")
         <div class="row">
             <div class="col-6">
-                <h1>Gestionar Mantenimientos</h1>
+                <h1><i class="fa-solid fa-wrench" style="color: #c65f20;"></i> Gestionar Mantenimientos</h1>
             </div>
             <div class="col-6 text-right">
                 <h4>Registros:{{$totalMantenimientos}}</h4>
