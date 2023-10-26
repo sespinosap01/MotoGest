@@ -101,7 +101,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}"> <i class="fa-solid fa-house"
                                     style="color: #c65f20;"></i>
-                                Home</a>
+                                Inicio</a>
                         </li>
                         @if(Auth::user()->rol->name == "Admin")
                         <li class="nav-item">
