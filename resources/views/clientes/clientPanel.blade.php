@@ -38,7 +38,7 @@
                 </div>
                 <div class="card-footer d-flex justify-content-between">
                     <a href="{{ route('motopanel.edit', $moto->idMoto) }}" class="btn btn-warning btn-sm">Editar</a>
-                    <a href="#" class="btn btn-success btn-sm">Mantenimientos</a>
+                    <a href="{{ route('fichas.index', $moto->idMoto) }}" class="btn btn-success btn-sm">Mantenimientos</a>
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$moto->idMoto}}">Eliminar</button>
                 </div>
             </div>

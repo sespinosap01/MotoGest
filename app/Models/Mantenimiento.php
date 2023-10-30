@@ -14,4 +14,18 @@ class Mantenimiento extends Model
     public function moto(){
         return $this->belongsTo(Moto::class, 'idMoto');
     }
+
+    protected $fillable = [
+        'kilometraje',
+        'kmAceiteMotor',
+        'kmRuedaTrasera',
+        'kmRuedaDelantera',
+        'kmPastillaFrenoDelantero',
+        'kmPastillaFrenoTrasero',
+        'kmReglajeValvulas',
+        'kmCadena',
+        'kmRetenesHorquilla',
+        'kmKitTransmision',
+    ];
+    
 }

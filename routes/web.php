@@ -44,7 +44,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 // Prefijo para las rutas de cliente
 Route::prefix('clientes')->middleware('auth')->group(function () {
     Route::get('/clientPanel', 'App\Http\Controllers\ClientPanelController@clientPanel')->name('clientes.clientPanel');
+    Route::get('clientes/fichas/index/{idMoto}', [App\Http\Controllers\FichaController::class, 'index'])->name('fichas.index');
 
     Route::resource('motopanel', 'App\Http\Controllers\ClientPanelController');
+    Route::resource('ficha', 'App\Http\Controllers\FichaController');
+
+    Route::post('clientes/fichas/{idMoto}/agregarGastos', [App\Http\Controllers\FichaController::class, 'agregarGastos'])->name('fichas.agregarGastos');
+    Route::post('clientes/fichas/{idMoto}/sumarKilometraje', [App\Http\Controllers\FichaController::class, 'sumarKilometraje'])->name('fichas.sumarKilometraje');
 
 });

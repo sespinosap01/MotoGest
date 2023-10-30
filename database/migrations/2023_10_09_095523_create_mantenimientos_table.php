@@ -15,20 +15,21 @@ return new class extends Migration
             $table->bigIncrements('idMantenimiento');
             $table->unsignedBigInteger('idMoto')->unique();
             $table->foreign('idMoto')->references('idMoto')->on('motos')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('kilometraje');
-            $table->date('fechaVencimientoSeguro');
-            $table->date('fechaVencimientoITV');
-            $table->date('fechaBateria');
-            $table->integer('kmAceiteMotor');
-            $table->integer('kmRuedaTrasera');
-            $table->integer('kmRuedaDelantera');
-            $table->integer('kmPastillaFrenoDelantero');
-            $table->integer('kmPastillaFrenoTrasero');
-            $table->integer('kmReglajeValvulas');
-            $table->integer('kmCadena');
-            $table->integer('kmRetenesHorquilla');
-            $table->integer('kmKitTransmision');
-            $table->integer('gastosGeneral');
+            $table->integer('kilometraje')->nullable();
+            $table->date('fechaVencimientoSeguro')->nullable();
+            $table->date('fechaVencimientoITV')->nullable();
+            $table->date('fechaBateria')->nullable();
+            $table->integer('kmAceiteMotor')->nullable();
+            $table->integer('kmRuedaTrasera')->nullable();
+            $table->integer('kmRuedaDelantera')->nullable();
+            $table->integer('kmPastillaFrenoDelantero')->nullable();
+            $table->integer('kmPastillaFrenoTrasero')->nullable();
+            $table->integer('kmReglajeValvulas')->nullable();
+            $table->integer('kmCadena')->nullable();
+            $table->integer('kmRetenesHorquilla')->nullable();
+            $table->integer('kmKitTransmision')->nullable();
+            $table->integer('gastosGeneral')->nullable();
+            
         });
     }
 
