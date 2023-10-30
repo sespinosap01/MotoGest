@@ -68,7 +68,6 @@ hr{
 
 <hr  id="about">
 
-<!-- About section -->
     <div class="container px-4 mb-3" data-aos="fade-left">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
@@ -78,7 +77,7 @@ hr{
                     de quienes comprenden la importancia de la gestión eficaz, te permite llevar un registro detallado y sin 
                     complicaciones de todas las tareas de mantenimiento necesarias para mantener tu moto en óptimas condiciones. 
                     Con <b>MotoGest</b>, podrás estar seguro de que tu moto recibirá la atención que merece, y todo esto al alcance de tu mano 
-                    de manera sencilla y conveniente."
+                    de manera sencilla y conveniente.
                 </p>
           
             </div>
@@ -118,7 +117,7 @@ hr{
                         <div class="card-header" id="faqHeading1">
                             <h5 class="mb-0">
                                 <button class="btn " type="button" data-toggle="collapse" data-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
-                                    ¿Qué información necesito proporcionar al registrar una moto?
+                                    <b>¿Qué información necesito proporcionar al registrar una moto?</b>
                                 </button>
                             </h5>
                         </div>
@@ -133,7 +132,7 @@ hr{
                         <div class="card-header" id="faqHeading2">
                             <h5 class="mb-0">
                                 <button class="btn " type="button" data-toggle="collapse" data-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
-                                    ¿Puedo agregar varias motos a mi cuenta?
+                                    <b>¿Puedo agregar varias motos a mi cuenta?</b>
                                 </button>
                             </h5>
                         </div>
@@ -148,7 +147,7 @@ hr{
                         <div class="card-header" id="faqHeading3">
                             <h5 class="mb-0">
                                 <button class="btn " type="button" data-toggle="collapse" data-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
-                                    ¿Qué tipo de información de mantenimiento debo ingresar?
+                                    <b>¿Qué tipo de información de mantenimiento debo ingresar?</b>
                                 </button>
                             </h5>
                         </div>
@@ -163,7 +162,7 @@ hr{
                         <div class="card-header" id="faqHeading4">
                             <h5 class="mb-0">
                                 <button class="btn " type="button" data-toggle="collapse" data-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
-                                    ¿Puedo recibir recordatorios para hacer mis mantenimientos?
+                                    <b>¿Puedo recibir recordatorios para hacer mis mantenimientos?</b>
                                 </button>
                             </h5>
                         </div>
@@ -178,7 +177,7 @@ hr{
                         <div class="card-header" id="faqHeading5">
                             <h5 class="mb-0">
                                 <button class="btn" type="button" data-toggle="collapse" data-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
-                                    ¿Está segura la información de mis motos en la plataforma?
+                                    <b>¿Está segura la información de mis motos en la plataforma?</b>
                                 </button>
                             </h5>
                         </div>
@@ -193,7 +192,7 @@ hr{
                         <div class="card-header" id="faqHeading6">
                             <h5 class="mb-0">
                                 <button class="btn " type="button" data-toggle="collapse" data-target="#faqCollapse6" aria-expanded="false" aria-controls="faqCollapse6">
-                                    ¿La aplicación tiene una versión móvil o una aplicación para smartphone?
+                                    <b>¿La aplicación tiene una versión móvil o una aplicación para smartphone?</b>
                                 </button>
                             </h5>
                         </div>
@@ -214,14 +213,75 @@ hr{
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h2>Contacto</h2>
-                <p>Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto con nosotros. Estamos aquí para ayudarte en todo lo que necesites.</p>
+                <p>Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto con nosotros en <a href="mailto:soporte@motogest.es">este correo</a>
+                . Estamos aquí para ayudarte en todo lo que necesites.</p>
             </div>
         </div>
     </div>
-<!-- Footer section -->
-<footer class="footer bg-dark text-white py-3 text-center">
-   &copy; MotoGest 2023
-</footer>
+
+<footer class="bg-dark text-center text-white">
+    <div class="container p-4">
+      <section class="mb-4">
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+          ><i class="fab fa-twitter"></i
+        ></a>
+
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+          ><i class="fab fa-google"></i
+        ></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+          ><i class="fab fa-instagram"></i
+        ></a>
+  
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+          ><i class="fab fa-linkedin-in"></i
+        ></a>
+
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+          ><i class="fab fa-github"></i
+        ></a>
+      </section>
+  
+        <form action="#">
+          <div class="row d-flex justify-content-center">
+            <div class="col-auto">
+              <p class="pt-2">
+                <strong>Suscribete a nuestra newsletter para estar a la última</strong>
+              </p>
+            </div>
+  
+            <div class="col-md-5 col-12">
+              <div class="form-outline form-white mb-4">
+                <input type="email" id="form5Example21" class="form-control" placeholder="Introduce tu correo electrónico"/>
+              </div>
+            </div>
+  
+            <div class="col-auto">
+              <button type="submit" class="btn btn-outline-light mb-4">
+                Suscribirse
+              </button>
+            </div>
+          </div>
+        </form>
+  
+      <section class="mb-4">
+        <p>
+            Suscribirte a nuestra newsletter te brinda información exclusiva sobre las últimas actualizaciones, 
+            consejos y ofertas relacionados con el mundo de las motocicletas y el mantenimiento de tu moto.
+            Mantente informado sobre las novedades de MotoGest, recibe sugerencias útiles y descubre ofertas 
+            especiales para optimizar el rendimiento de tu moto. ¡No te pierdas esta oportunidad de estar al 
+            tanto de todo lo relacionado con tu pasión por las motos! Suscríbete hoy.
+        </p>
+      </section>  
+    </div>
+  
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      ©2023 <b>MotoGest</b>
+    </div>
+  </footer>
 </div>
 
 @endsection
