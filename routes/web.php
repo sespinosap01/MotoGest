@@ -51,5 +51,6 @@ Route::prefix('clientes')->middleware('auth')->group(function () {
 
     Route::post('clientes/fichas/{idMoto}/agregarGastos', [App\Http\Controllers\FichaController::class, 'agregarGastos'])->name('fichas.agregarGastos');
     Route::post('clientes/fichas/{idMoto}/sumarKilometraje', [App\Http\Controllers\FichaController::class, 'sumarKilometraje'])->name('fichas.sumarKilometraje');
+    Route::post('clientes/fichas/{idMoto}/update-kilometraje/{field}', [App\Http\Controllers\FichaController::class, 'updateKilometraje'])->name('fichas.updateKilometraje');
 
 });

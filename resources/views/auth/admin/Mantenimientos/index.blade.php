@@ -42,14 +42,69 @@
                             <td>{{ $mantenimiento->idMantenimiento }}</td>
                             <td>{{ $mantenimiento->Moto->marca }} {{ $mantenimiento->Moto->modelo }}</td>
                             <td>{{ $mantenimiento->Moto->matricula }}</td>
-                            <td>{{ $mantenimiento->kilometraje }}km</td>
-                            <td>{{ $mantenimiento->kmRuedaTrasera }}km</td>
-                            <td>{{ $mantenimiento->kmRuedaDelantera }}km</td>
-                            <td>{{ \Carbon\Carbon::parse($mantenimiento->fechaVencimientoSeguro)->format('d/m/Y') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($mantenimiento->fechaVencimientoITV)->format('d/m/Y') }}</td>
-                            <td>{{ $mantenimiento->kmAceiteMotor }}km</td>
-                            <td>{{ $mantenimiento->kmReglajeValvulas }}km</td>
-                            <td>{{ $mantenimiento->gastosGeneral }}€</td>
+                            <td>
+                                @if(isset($mantenimiento->kilometraje))
+                                    {{ $mantenimiento->kilometraje }}km
+                                @else
+                                N/D
+                                @endif
+                            </td>
+                    
+                            <td>
+                                @if(isset($mantenimiento->kmRuedaTrasera))
+                                    {{ $mantenimiento->kmRuedaTrasera }}km
+                                @else
+                                N/D
+                                @endif
+                            </td>
+                    
+                            <td>
+                                @if(isset($mantenimiento->kmRuedaDelantera))
+                                    {{ $mantenimiento->kmRuedaDelantera }}km
+                                @else
+                                N/D
+                                @endif
+                            </td>
+                    
+                            <td>
+                                @if(isset($mantenimiento->fechaVencimientoSeguro))
+                                    {{ \Carbon\Carbon::parse($mantenimiento->fechaVencimientoSeguro)->format('d/m/Y') }}
+                                @else
+                                N/D
+                                @endif
+                            </td>
+                    
+                            <td>
+                                @if(isset($mantenimiento->fechaVencimientoITV))
+                                    {{ \Carbon\Carbon::parse($mantenimiento->fechaVencimientoITV)->format('d/m/Y') }}
+                                @else
+                                N/D
+                                @endif
+                            </td>
+                    
+                            <td>
+                                @if(isset($mantenimiento->kmAceiteMotor))
+                                    {{ $mantenimiento->kmAceiteMotor }}km
+                                @else
+                                N/D
+                                @endif
+                            </td>
+                    
+                            <td>
+                                @if(isset($mantenimiento->kmReglajeValvulas))
+                                    {{ $mantenimiento->kmReglajeValvulas }}km
+                                @else
+                                N/D
+                                @endif
+                            </td>
+                    
+                            <td>
+                                @if(isset($mantenimiento->gastosGeneral))
+                                    {{ $mantenimiento->gastosGeneral }}€
+                                @else
+                                N/D
+                                @endif
+                            </td>
                             <td>
                                 <div class="d-flex gap-3">
                                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$mantenimiento->idMantenimiento}}">Eliminar</button> 

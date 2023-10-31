@@ -76,5 +76,25 @@ class FichaController extends Controller
         return redirect()->route('fichas.index', ['idMoto' => $idMoto]);
     }
     
+    public function updateKilometraje(Request $request, $idMoto, $field) {
+        $moto = Moto::find($idMoto);
+    
+        if ($moto->idUsuario !== auth()->user()->idUsuario) {
+            return abort(403);
+        }
+
+        $nuevoKilometraje = $request->input('nuevoKilometraje');
+        $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
+    
+        if (!$mantenimiento) {
+            return abort(404);
+        }
+    
+        $mantenimiento->$field = $nuevoKilometraje;
+        $mantenimiento->save();
+    
+        return redirect()->route('fichas.index', ['idMoto' => $idMoto]);
+    }
+    
     
 }
