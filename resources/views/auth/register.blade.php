@@ -87,7 +87,7 @@
                             <label for="numTelefono" class="col-md-4 col-form-label text-md-end">Teléfono</label>
                             <div class="col-md-6">
                                 <input id="numTelefono" type="number" class="form-control @error('numTelefono') is-invalid @enderror"
-                                    name="numTelefono" value="{{ old('numTelefono') }}" required autocomplete="numTelefono" autofocus placeholder="Ej: 654321098">
+                                    name="numTelefono" value="{{ old('numTelefono') }}" required autocomplete="numTelefono" autofocus placeholder="Ej: 654321098" oninput="limitarLongitud(this, 9)">
 
                                 @error('numTelefono')
                                 <span class="invalid-feedback" role="alert">

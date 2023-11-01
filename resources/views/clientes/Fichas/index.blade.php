@@ -10,6 +10,20 @@
         box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
         transform: translate(0, -5px);
     }
+
+    progress {
+        width: 100px;
+        height: 8px;
+        border: 2px solid gray;
+        border-radius: 10px;
+
+    }
+
+      progress::-webkit-progress-value {
+        background-color: lightgreen;
+        border-radius: 10px;
+    }
+
 </style>
 
 
@@ -81,7 +95,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-solid fa-calendar" style="color: #c65f20;"></i> Vencimiento de la ITV</h5>
                     @if(isset($mantenimiento->fechaVencimientoITV))
-                    {{ \Carbon\Carbon::parse($mantenimiento->fechaVencimientoITV)->format('d/m/Y') }}
+                    <p>{{ \Carbon\Carbon::parse($mantenimiento->fechaVencimientoITV)->format('d/m/Y') }}</p>
                     @else
                     <p class="card-text">No hay datos registrados</p>
                     @endif
@@ -98,7 +112,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-regular fa-calendar" style="color: #c65f20;"></i> Vencimiento del seguro</h5>
                     @if(isset($mantenimiento->fechaVencimientoSeguro))
-                    {{ \Carbon\Carbon::parse($mantenimiento->fechaVencimientoSeguro)->format('d/m/Y') }}
+                    <p>{{ \Carbon\Carbon::parse($mantenimiento->fechaVencimientoSeguro)->format('d/m/Y') }}</p>
                     @else
                     <p class="card-text">No hay datos registrados</p>
                     @endif
@@ -115,7 +129,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-solid fa-calendar-days" style="color: #c65f20;"></i> Fecha de la batería</h5>
                     @if(isset($mantenimiento->fechaBateria))
-                    {{ \Carbon\Carbon::parse($mantenimiento->fechaBateria)->format('d/m/Y') }}
+                   <p>{{ \Carbon\Carbon::parse($mantenimiento->fechaBateria)->format('d/m/Y') }}</p>
                     @else
                     <p class="card-text">No hay datos registrados</p>
                     @endif
@@ -132,7 +146,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Aceite del motor</h5>
                     @if(isset($mantenimiento->kmAceiteMotor))
-                    <p class="card-text">{{ $mantenimiento->kmAceiteMotor }} km</p>
+                    <p class="card-text">{{ $mantenimiento->kmAceiteMotor }} km <progress id="file" max="6500" value="{{ $mantenimiento->kmAceiteMotor }}"></progress></p>
                     @else
                     <p class="card-text">No hay datos registrados</p>
                     @endif
@@ -149,9 +163,9 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Rueda trasera</h5>
+                    <h5 class="card-title">Neumático trasero</h5>
                     @if(isset($mantenimiento->kmRuedaTrasera))
-                    <p class="card-text">{{ $mantenimiento->kmRuedaTrasera }} km</p>
+                    <p class="card-text">{{ $mantenimiento->kmRuedaTrasera }} km <progress id="file" max="7000" value="{{ $mantenimiento->kmRuedaTrasera }}"></progress></p>
                     @else
                     <p class="card-text">No hay datos registrados</p>
                     @endif
@@ -170,9 +184,9 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Rueda delantera</h5>
+                    <h5 class="card-title">Neumático delantero</h5>
                     @if(isset($mantenimiento->kmRuedaDelantera))
-                    <p class="card-text">{{ $mantenimiento->kmRuedaDelantera }} km</p>
+                    <p class="card-text">{{ $mantenimiento->kmRuedaDelantera }} km <progress id="file" max="9000" value="{{ $mantenimiento->kmRuedaDelantera }}"></progress></p>
                     @else
                     <p class="card-text">No hay datos registrados</p>
                     @endif
@@ -330,8 +344,8 @@
                     <form action="{{ route('fichas.updateKilometraje', ['idMoto' => $moto->idMoto, 'field' => 'kilometraje']) }}" method="POST">
                         @csrf
                         <p>Vas a <b>modificar</b> el kilometraje del tacómetro, si introduces más kilómetros de los 
-                        que tenías anteriormente <b>no se sumarán</b> a las otras piezas de la moto. <b>Si quieres sumar</b> kilómetros
-                        tanto al tacómetro como a todas las piezas, deberas usar la opcion <b><i>"Añadir kilómetros"</i></b></p>
+                        que tenías anteriormente <b>no se sumarán</b> a los otros apartados del mantenimiendo de la moto. <b>Si quieres sumar</b> kilómetros
+                        tanto al tacómetro como a todos los apartados, deberás usar la opcion <b><i>"Añadir kilómetros"</i></b></p>
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje" value="{{ $mantenimiento->kilometraje }}" placeholder="Introduce los kilómetros" oninput="limitarLongitud(this, 9)">
                         <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
                     </form>
