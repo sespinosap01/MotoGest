@@ -10,44 +10,42 @@
         box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
         transform: translate(0, -5px);
     }
-
 </style>
+
+
 <div class="container ">
     <h1 class="mb-3"><i class="fa-solid fa-motorcycle" style="color: #c65f20;"></i> {{$moto->marca}} {{$moto->modelo}}
     </h1>
     <div class="row d-flex justify-content-around">
-        <div class=" col-md-6 mb-4">
+        <div class="col-md-6 mb-4">
             <div class="card shadow transition">
                 <div class="card-body text-center">
-                    <h2 class="card-title">Kilometraje total</h2>
+                    <h2 class="card-title"><i class="fa-solid fa-gauge" style="color: #c65f20;"></i> Kilometraje del tacómetro</h2>
                     @if(isset($mantenimiento->kilometraje))
-                    <h5 class="card-text">{{ $mantenimiento->kilometraje }} km</h5>
+                    <p><h5 class="card-text">{{ $mantenimiento->kilometraje }} km</h5></p>
                     @else
-                    <p class="card-text">No hay datos registrados</p>
+                    <p><h5 class="card-text">No hay datos registrados</h5></p>
                     @endif
-                    <form action="{{ route('fichas.updateKilometraje', ['idMoto' => $moto->idMoto, 'field' => 'kilometraje']) }}" method="POST">
-                        @csrf
-                        <input type="number" class="form-control mb-3" name="nuevoKilometraje"
-                            placeholder="Modificar kilómetros">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
-                    </form>
+                    <button type="button" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#modalForm">
+                        Modificar Kilómetros
+                    </button>
                 </div>
             </div>
         </div>
         <div class=" col-md-6 mb-4">
             <div class="card shadow transition">
                 <div class="card-body text-center">
-                    <h2 class="card-title">Gastos totales</h2>
+                    <h2 class="card-title"><i class="fa-solid fa-money-bills" style="color: #c65f20;"></i> Gastos totales</h2>
                     @if(isset($mantenimiento->gastosGeneral))
-                    <h5 class="card-text">{{ $mantenimiento->gastosGeneral }}€</h5>
+                    <p><h5 class="card-text">{{ $mantenimiento->gastosGeneral }}€</h5></p>
                     @else
-                    <p class="card-text">No hay datos registrados</p>
+                    <p><h5 class="card-text">No hay datos registrados</h5></p>
                     @endif
                     <form action="{{ route('fichas.updateKilometraje', ['idMoto' => $moto->idMoto, 'field' => 'gastosGeneral']) }}" method="POST">
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
-                            placeholder="Modificar gastos">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                             hidden oninput="limitarLongitud(this, 9)">
+                        <button type="submit" class="btn btn-sm btn-secondary">Reestablecer</button>
                     </form>
                 </div>
             </div>
@@ -55,12 +53,12 @@
         <div class="col-md-6 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Añadir kilómetros</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-plus" style="color: #c65f20;"></i> Añadir kilómetros</h5>
                     <form action="{{ route('fichas.sumarKilometraje', ['idMoto' => $moto->idMoto]) }}" method="POST">
                         @csrf
-                        <input type="number" class="form-control mb-3" name="kilometraje"
-                            placeholder="Introduce los kilometros a sumar">
-                        <button type="submit" class="btn btn-success">Sumar kilómetros</button>
+                        <input type="number" class="form-control mb-3" name="kilometraje" placeholder="Introduce los kilómetros a sumar" oninput="limitarLongitud(this, 9)">
+
+                        <button type="submit" class="btn btn-success btn-sm">Sumar kilómetros</button>
                     </form>
                 </div>
             </div>
@@ -68,12 +66,12 @@
         <div class="col-md-6 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Añadir gastos</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-coins" style="color: #c65f20;"></i> Añadir gastos</h5>
                     <form action="{{ route('fichas.agregarGastos', ['idMoto' => $moto->idMoto]) }}" method="POST">
                         @csrf
                         <input type="number" class="form-control mb-3" name="sumarGastos"
-                            placeholder="Introduce los gastos a sumar">
-                        <button type="submit" class="btn btn-success">Sumar gastos</button>
+                            placeholder="Introduce los gastos a sumar" oninput="limitarLongitud(this, 9)">
+                        <button type="submit" class="btn btn-success btn-sm">Sumar gastos</button>
                     </form>
                 </div>
             </div>
@@ -81,7 +79,7 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Vencimiento de la ITV</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-calendar" style="color: #c65f20;"></i> Vencimiento de la ITV</h5>
                     @if(isset($mantenimiento->fechaVencimientoITV))
                     {{ \Carbon\Carbon::parse($mantenimiento->fechaVencimientoITV)->format('d/m/Y') }}
                     @else
@@ -98,7 +96,7 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Vencimiento del seguro</h5>
+                    <h5 class="card-title"><i class="fa-regular fa-calendar" style="color: #c65f20;"></i> Vencimiento del seguro</h5>
                     @if(isset($mantenimiento->fechaVencimientoSeguro))
                     {{ \Carbon\Carbon::parse($mantenimiento->fechaVencimientoSeguro)->format('d/m/Y') }}
                     @else
@@ -115,7 +113,7 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Fecha de la batería</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-calendar-days" style="color: #c65f20;"></i> Fecha de la batería</h5>
                     @if(isset($mantenimiento->fechaBateria))
                     {{ \Carbon\Carbon::parse($mantenimiento->fechaBateria)->format('d/m/Y') }}
                     @else
@@ -141,7 +139,7 @@
                     <form action="{{ route('fichas.updateKilometraje', ['idMoto' => $moto->idMoto, 'field' => 'kmAceiteMotor']) }}" method="POST">
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
-                            placeholder="Modificar kilómetros">
+                            placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
                         <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
                     </form>
                 </div>
@@ -162,7 +160,7 @@
                         method="POST">
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
-                            placeholder="Modificar kilómetros">
+                            placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
                         <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
                     </form>
                 </div>
@@ -183,7 +181,7 @@
                         method="POST">
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
-                            placeholder="Modificar kilómetros">
+                            placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
                         <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
                     </form>
                 </div>
@@ -204,7 +202,7 @@
                         method="POST">
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
-                            placeholder="Modificar kilómetros">
+                            placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
                         <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
                     </form>
                 </div>
@@ -225,7 +223,7 @@
                         method="POST">
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
-                            placeholder="Modificar kilómetros">
+                            placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
                         <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
                     </form>
                 </div>
@@ -246,7 +244,7 @@
                         method="POST">
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
-                            placeholder="Modificar kilómetros">
+                            placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
                         <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
                     </form>
                 </div>
@@ -267,7 +265,7 @@
                         method="POST">
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
-                            placeholder="Modificar kilómetros">
+                            placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
                         <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
                     </form>
                 </div>
@@ -288,7 +286,7 @@
                         method="POST">
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
-                            placeholder="Modificar kilómetros">
+                            placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
                         <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
                     </form>
                 </div>
@@ -309,12 +307,36 @@
                         method="POST">
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
-                            placeholder="Modificar kilómetros">
+                            placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
                         <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
                     </form>
                 </div>
             </div>
 
+        </div>
+    </div>
+
+    <!--Modal para kilometraje-->
+    <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalFormLabel">Modificar Kilometraje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('fichas.updateKilometraje', ['idMoto' => $moto->idMoto, 'field' => 'kilometraje']) }}" method="POST">
+                        @csrf
+                        <p>Vas a <b>modificar</b> el kilometraje del tacómetro, si introduces más kilómetros de los 
+                        que tenías anteriormente <b>no se sumarán</b> a las otras piezas de la moto. <b>Si quieres sumar</b> kilómetros
+                        tanto al tacómetro como a todas las piezas, deberas usar la opcion <b><i>"Añadir kilómetros"</i></b></p>
+                        <input type="number" class="form-control mb-3" name="nuevoKilometraje" value="{{ $mantenimiento->kilometraje }}" placeholder="Introduce los kilómetros" oninput="limitarLongitud(this, 9)">
+                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     @endsection

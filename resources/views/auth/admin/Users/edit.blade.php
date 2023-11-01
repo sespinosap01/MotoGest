@@ -76,7 +76,7 @@
                     <div class="col-md-6">
                         <input id="numTelefono" type="number"
                             class="form-control @error('numTelefono') is-invalid @enderror" name="numTelefono"
-                            @isset($user) value="{{$user->numTelefono}}" @endisset required autocomplete="numTelefono" autofocus>
+                            @isset($user) value="{{$user->numTelefono}}" @endisset required autocomplete="numTelefono" autofocus oninput="limitarLongitud(this, 9)">
 
                         @error('numTelefono')
                         <span class="invalid-feedback" role="alert">

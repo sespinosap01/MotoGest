@@ -85,7 +85,7 @@
                     <div class="col-md-6">
                         <input id="numTelefono" type="number"
                             class="form-control @error('numTelefono') is-invalid @enderror" name="numTelefono"
-                            value="{{ old('numTelefono') }}" required autocomplete="numTelefono" autofocus placeholder="Ej: 654321098">
+                            value="{{ old('numTelefono') }}" required autocomplete="numTelefono" autofocus placeholder="Ej: 654321098" oninput="limitarLongitud(this, 9)">
 
                         @error('numTelefono')
                         <span class="invalid-feedback" role="alert">

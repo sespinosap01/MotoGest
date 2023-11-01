@@ -69,21 +69,21 @@
                 <div class="row mb-3">
                     <label for="cilindrada" class="col-md-4 col-form-label text-md-end">Cilindrada (cc)</label>
                     <div class="col-md-6">
-                        <input id="cilindrada" type="number" class="form-control" name="cilindrada" required>                                                
+                        <input id="cilindrada" type="number" class="form-control" name="cilindrada" required oninput="limitarLongitud(this, 9)">                                                
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <label for="potencia" class="col-md-4 col-form-label text-md-end">Potencia (cv)</label>
                     <div class="col-md-6">
-                        <input id="potencia" type="number" class="form-control" name="potencia" required>                                                
+                        <input id="potencia" type="number" class="form-control" name="potencia" required oninput="limitarLongitud(this, 9)">                                                
                     </div>
                 </div> 
 
                 <div class="row mb-3">
                     <label for="fechaFabricacion" class="col-md-4 col-form-label text-md-end">Año de fabricación</label>
                     <div class="col-md-6">
-                        <input id="fechaFabricacion" type="number" class="form-control" name="fechaFabricacion" required>                                                
+                        <input id="fechaFabricacion" type="number" class="form-control" name="fechaFabricacion" required oninput="limitarLongitud(this, 9)">                                                
                     </div>
                 </div> 
 

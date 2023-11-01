@@ -226,7 +226,7 @@ hr{
           ><i class="fab fa-facebook-f"></i
         ></a>
         <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-twitter"></i
+          ><i class="fab fa-x-twitter"></i
         ></a>
 
         <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"

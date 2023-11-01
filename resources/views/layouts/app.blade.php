@@ -56,6 +56,14 @@
         background: #964818; 
         }
     </style>
+    
+    <script>
+        function limitarLongitud(input, maxLength) {
+            if (input.value.length > maxLength) {
+            input.value = input.value.slice(0, maxLength);
+        }
+    }
+    </script>
 
     <!-- Script vite -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
