@@ -19,8 +19,23 @@
 
     }
 
-      progress::-webkit-progress-value {
-        background-color: lightgreen;
+    .progressVerde::-webkit-progress-value {
+        background-color: #6fb86f;
+        border-radius: 10px;
+    }
+
+    .progressAmarillo::-webkit-progress-value {
+        background-color: #FFC107;
+        border-radius: 10px;
+    }
+
+    .progressRojo::-webkit-progress-value {
+        background-color: #ff0000bc;
+        border-radius: 10px;
+    }
+
+    .progressNegro::-webkit-progress-value {
+        background-color:#212529;
         border-radius: 10px;
     }
 
@@ -95,31 +110,68 @@
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-solid fa-calendar" style="color: #c65f20;"></i> Vencimiento de la ITV</h5>
                     @if(isset($mantenimiento->fechaVencimientoITV))
-                    <p>{{ \Carbon\Carbon::parse($mantenimiento->fechaVencimientoITV)->format('d/m/Y') }}</p>
+                    @php
+                        $fechaVencimientoITV = \Carbon\Carbon::parse($mantenimiento->fechaVencimientoITV);
+                        $fechaActual = now();
+                        $diasRestantes = $fechaActual->diffInDays($fechaVencimientoITV);
+                    @endphp
+
+                    @if ($fechaActual > $fechaVencimientoITV)
+                        <p>{{ $fechaVencimientoITV->format('d/m/Y') }}</p>
+                        <p style="color: red;"><i class="fa-solid fa-triangle-exclamation" style="color: red;"></i> ¡Tienes caducada la ITV de tu moto!</p>
+                    @elseif ($diasRestantes == 0)
+                        <p>{{ $fechaVencimientoITV->format('d/m/Y') }}</p>
+                        <p style="color: #ff6600;"><i class="fa-solid fa-triangle-exclamation" style="color: #ff6600;"></i> ¡La ITV de tu moto caduca mañana!</p>
+                    @elseif ($diasRestantes < 50)
+                        <p>{{ $fechaVencimientoITV->format('d/m/Y') }}</p>
+                        <p style="color: #ff6600;"><i class="fa-solid fa-triangle-exclamation" style="color: #ff6600;"></i> ¡Solo quedan {{ $diasRestantes }} días para que caduque tu ITV!</p>
                     @else
-                    <p class="card-text">No hay datos registrados</p>
+                        <p>{{ $fechaVencimientoITV->format('d/m/Y') }}</p>
+                        <p>Tu ITV caduca en {{ $diasRestantes }} días</p>
                     @endif
+                @else
+                    <p class="card-text">No hay datos registrados</p>
+                @endif                
                     <form action="{{ route('fichas.updateKilometraje', ['idMoto' => $moto->idMoto, 'field' => 'fechaVencimientoITV']) }}" method="POST">
                         @csrf
                         <input type="date" class="form-control mb-3" name="nuevoKilometraje">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
             </div>
         </div>
+        
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-regular fa-calendar" style="color: #c65f20;"></i> Vencimiento del seguro</h5>
                     @if(isset($mantenimiento->fechaVencimientoSeguro))
-                    <p>{{ \Carbon\Carbon::parse($mantenimiento->fechaVencimientoSeguro)->format('d/m/Y') }}</p>
+                    @php
+                        $fechaVencimientoSeguro = \Carbon\Carbon::parse($mantenimiento->fechaVencimientoSeguro);
+                        $fechaActual = now();
+                        $diasRestantesSeguro = $fechaActual->diffInDays($fechaVencimientoSeguro);
+                    @endphp
+    
+                    @if ($fechaActual > $fechaVencimientoSeguro)
+                        <p>{{ $fechaVencimientoSeguro->format('d/m/Y') }}</p>
+                        <p style="color: red;"><i class="fa-solid fa-triangle-exclamation" style="color: red;"></i> ¡Tu seguro está caducado!</p>
+                    @elseif ($diasRestantesSeguro == 0)
+                        <p>{{ $fechaVencimientoSeguro->format('d/m/Y') }}</p>
+                        <p style="color: #ff6600;"><i class="fa-solid fa-triangle-exclamation" style="color: #ff6600;"></i> ¡Tu seguro caduca mañana!</p>
+                    @elseif ($diasRestantesSeguro < 50)
+                        <p>{{ $fechaVencimientoSeguro->format('d/m/Y') }}</p>
+                        <p style="color: #ff6600;"><i class="fa-solid fa-triangle-exclamation" style="color: #ff6600;"></i> ¡Solo quedan {{ $diasRestantesSeguro }} días para que caduque tu seguro!</p>
                     @else
-                    <p class="card-text">No hay datos registrados</p>
+                        <p>{{ $fechaVencimientoSeguro->format('d/m/Y') }}</p>
+                        <p>Tu seguro caduca en {{ $diasRestantesSeguro }} días</p>
                     @endif
+                @else
+                    <p class="card-text">No hay datos registrados</p>
+                @endif
                     <form action="{{ route('fichas.updateKilometraje', ['idMoto' => $moto->idMoto, 'field' => 'fechaVencimientoSeguro']) }}" method="POST">
                         @csrf
                         <input type="date" class="form-control mb-3" name="nuevoKilometraje">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
             </div>
@@ -129,24 +181,55 @@
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-solid fa-calendar-days" style="color: #c65f20;"></i> Fecha de la batería</h5>
                     @if(isset($mantenimiento->fechaBateria))
-                   <p>{{ \Carbon\Carbon::parse($mantenimiento->fechaBateria)->format('d/m/Y') }}</p>
+                        @php
+                            // Convierte la fecha de la batería a un objeto Carbon
+                            $fechaBateria = \Carbon\Carbon::parse($mantenimiento->fechaBateria);
+                            
+                            // Calcula los días desde el último cambio
+                            $diasDesdeCambio = $fechaBateria->diffInDays(\Carbon\Carbon::now());
+                        @endphp
+                        
+                        <p>{{ $fechaBateria->format('d/m/Y') }}</p>
+                        @if ($diasDesdeCambio == 0)
+                        <p class="card-text">La batería se ha cambiado hoy</p>
+                        @elseif ($diasDesdeCambio == 1)
+                        <p class="card-text">La batería se cambió ayer</p>
+                        @else
+                        <p class="card-text">La batería tiene {{ $diasDesdeCambio }} días desde el último cambio</p>
+                        @endif
                     @else
-                    <p class="card-text">No hay datos registrados</p>
+                        <p class="card-text">No hay datos registrados</p>
                     @endif
                     <form action="{{ route('fichas.updateKilometraje', ['idMoto' => $moto->idMoto, 'field' => 'fechaBateria']) }}" method="POST">
-                    @csrf
-                    <input type="date" class="form-control mb-3" name="nuevoKilometraje">
-                    <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
-                </form>
+                        @csrf
+                        <input type="date" class="form-control mb-3" name="nuevoKilometraje">
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
+                    </form>
                 </div>
             </div>
         </div>
+        
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Aceite del motor</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-oil-can" style="color: #c65f20;"></i> Aceite del motor</h5>
                     @if(isset($mantenimiento->kmAceiteMotor))
-                    <p class="card-text">{{ $mantenimiento->kmAceiteMotor }} km <progress id="file" max="6500" value="{{ $mantenimiento->kmAceiteMotor }}"></progress></p>
+                    <p class="card-text">{{ $mantenimiento->kmAceiteMotor }} km 
+                        <progress id="file" 
+                        @if($mantenimiento->kmAceiteMotor <=4500)
+                        class="progressVerde"
+                        @elseif($mantenimiento->kmAceiteMotor <=6000)
+                        class="progressAmarillo"
+                        @elseif($mantenimiento->kmAceiteMotor <=6500)
+                        class="progressRojo"
+                        @elseif($mantenimiento->kmAceiteMotor >6500)
+                        class="progressNegro"
+                        @endif
+                        max="6500" value="{{ $mantenimiento->kmAceiteMotor }}">
+                        </progress> 6500 km</p>
+                        @if($mantenimiento->kmAceiteMotor >6500)
+                        <p style="color: red"> <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i> ¡Has superado el kilometraje recomendado!</p>
+                        @endif
                     @else
                     <p class="card-text">No hay datos registrados</p>
                     @endif
@@ -154,7 +237,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
             </div>
@@ -163,9 +246,24 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Neumático trasero</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-person-biking" style="color: #c65f20;"></i> Neumático trasero</h5>
                     @if(isset($mantenimiento->kmRuedaTrasera))
-                    <p class="card-text">{{ $mantenimiento->kmRuedaTrasera }} km <progress id="file" max="7000" value="{{ $mantenimiento->kmRuedaTrasera }}"></progress></p>
+                    <p class="card-text">{{ $mantenimiento->kmRuedaTrasera }} km 
+                        <progress id="file" 
+                        @if($mantenimiento->kmRuedaTrasera <=5000)
+                        class="progressVerde"
+                        @elseif($mantenimiento->kmRuedaTrasera <=6000)
+                        class="progressAmarillo"
+                        @elseif($mantenimiento->kmRuedaTrasera <=7000)
+                        class="progressRojo"
+                        @elseif($mantenimiento->kmRuedaTrasera >7000)
+                        class="progressNegro"
+                        @endif
+                        max="7000" value="{{ $mantenimiento->kmRuedaTrasera }}">
+                        </progress> 7000 km</p>
+                        @if($mantenimiento->kmRuedaTrasera >7000)
+                        <p style="color: red"> <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i> ¡Has superado el kilometraje recomendado!</p>
+                        @endif
                     @else
                     <p class="card-text">No hay datos registrados</p>
                     @endif
@@ -175,7 +273,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
             </div>
@@ -184,10 +282,25 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Neumático delantero</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-person-biking" style="color: #c65f20;"></i> Neumático delantero</h5>
                     @if(isset($mantenimiento->kmRuedaDelantera))
-                    <p class="card-text">{{ $mantenimiento->kmRuedaDelantera }} km <progress id="file" max="9000" value="{{ $mantenimiento->kmRuedaDelantera }}"></progress></p>
-                    @else
+                    <p class="card-text">{{ $mantenimiento->kmRuedaDelantera }} km 
+                        <progress id="file" 
+                        @if($mantenimiento->kmRuedaDelantera <=6000)
+                        class="progressVerde"
+                        @elseif($mantenimiento->kmRuedaDelantera <=7000)
+                        class="progressAmarillo"
+                        @elseif($mantenimiento->kmRuedaDelantera <=9000)
+                        class="progressRojo"
+                        @elseif($mantenimiento->kmRuedaDelantera >9000)
+                        class="progressNegro"
+                        @endif
+                        max="9000" value="{{ $mantenimiento->kmRuedaDelantera }}">
+                        </progress> 9000 km</p>
+                        @if($mantenimiento->kmRuedaDelantera >9000)
+                        <p style="color: red"> <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i> ¡Has superado el kilometraje recomendado!</p>
+                        @endif                    
+                        @else
                     <p class="card-text">No hay datos registrados</p>
                     @endif
                     <form
@@ -196,7 +309,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
             </div>
@@ -205,10 +318,26 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Pastillas de freno delantero</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-compact-disc" style="color: #c65f20;"></i> Pastillas de freno delantero</h5>
                     @if(isset($mantenimiento->kmPastillaFrenoDelantero))
-                    <p class="card-text">{{ $mantenimiento->kmPastillaFrenoDelantero }} km</p>
-                    @else
+                    <p class="card-text">{{ $mantenimiento->kmPastillaFrenoDelantero }} km 
+                        <progress id="file" 
+                        @if($mantenimiento->kmPastillaFrenoDelantero <=8000)
+                        class="progressVerde"
+                        @elseif($mantenimiento->kmPastillaFrenoDelantero <=9500)
+                        class="progressAmarillo"
+                        @elseif($mantenimiento->kmPastillaFrenoDelantero <=12000)
+                        class="progressRojo"
+                        @elseif($mantenimiento->kmPastillaFrenoDelantero >12000)
+                        class="progressNegro"
+                        @endif
+                        max="12000" value="{{ $mantenimiento->kmPastillaFrenoDelantero }}">
+                        </progress> 12000 km</p>
+                        @if($mantenimiento->kmPastillaFrenoDelantero >12000)
+                        <p style="color: red"> <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i> ¡Has superado el kilometraje recomendado!</p>
+                        @endif   
+                        @else
+                    </p>
                     <p class="card-text">No hay datos registrados</p>
                     @endif
                     <form
@@ -217,7 +346,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
             </div>
@@ -226,10 +355,26 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Pastillas de freno trasero</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-compact-disc" style="color: #c65f20;"></i> Pastillas de freno trasero</h5>
                     @if(isset($mantenimiento->kmPastillaFrenoTrasero))
-                    <p class="card-text">{{ $mantenimiento->kmPastillaFrenoTrasero }} km</p>
-                    @else
+                    <p class="card-text">{{ $mantenimiento->kmPastillaFrenoTrasero }} km 
+                        <progress id="file" 
+                        @if($mantenimiento->kmPastillaFrenoTrasero <=10000)
+                        class="progressVerde"
+                        @elseif($mantenimiento->kmPastillaFrenoTrasero <=12500)
+                        class="progressAmarillo"
+                        @elseif($mantenimiento->kmPastillaFrenoTrasero <=15000)
+                        class="progressRojo"
+                        @elseif($mantenimiento->kmPastillaFrenoTrasero >15000)
+                        class="progressNegro"
+                        @endif
+                        max="15000" value="{{ $mantenimiento->kmPastillaFrenoTrasero }}">
+                        </progress> 15000 km</p>
+                        @if($mantenimiento->kmPastillaFrenoTrasero >15000)
+                        <p style="color: red"> <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i> ¡Has superado el kilometraje recomendado!</p>
+                        @endif   
+                        @else
+                    </p>
                     <p class="card-text">No hay datos registrados</p>
                     @endif
                     <form
@@ -238,7 +383,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
             </div>
@@ -247,10 +392,26 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Reglaje de válvulas</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-screwdriver-wrench" style="color: #c65f20;"></i> Reglaje de válvulas</h5>
                     @if(isset($mantenimiento->kmReglajeValvulas))
-                    <p class="card-text">{{ $mantenimiento->kmReglajeValvulas }} km</p>
-                    @else
+                    <p class="card-text">{{ $mantenimiento->kmReglajeValvulas }} km 
+                        <progress id="file" 
+                        @if($mantenimiento->kmReglajeValvulas <=25000)
+                        class="progressVerde"
+                        @elseif($mantenimiento->kmReglajeValvulas <=33000)
+                        class="progressAmarillo"
+                        @elseif($mantenimiento->kmReglajeValvulas <=35000)
+                        class="progressRojo"
+                        @elseif($mantenimiento->kmReglajeValvulas >35000)
+                        class="progressNegro"
+                        @endif
+                        max="35000" value="{{ $mantenimiento->kmReglajeValvulas }}">
+                        </progress> 35000 km</p>
+                        @if($mantenimiento->kmReglajeValvulas >35000)
+                        <p style="color: red"> <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i> ¡Has superado el kilometraje recomendado!</p>
+                        @endif   
+                        @else
+                    </p>
                     <p class="card-text">No hay datos registrados</p>
                     @endif
                     <form
@@ -259,7 +420,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
             </div>
@@ -268,10 +429,26 @@
         <div class="col-md-4 mb-4">
             <div class ="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Cadena</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-link" style="color: #c65f20;"></i> Cadena</h5>
                     @if(isset($mantenimiento->kmCadena))
-                    <p class="card-text">{{ $mantenimiento->kmCadena }} km</p>
-                    @else
+                    <p class="card-text">{{ $mantenimiento->kmCadena }} km 
+                        <progress id="file" 
+                        @if($mantenimiento->kmCadena <=25000)
+                        class="progressVerde"
+                        @elseif($mantenimiento->kmCadena <=33000)
+                        class="progressAmarillo"
+                        @elseif($mantenimiento->kmCadena <=35000)
+                        class="progressRojo"
+                        @elseif($mantenimiento->kmCadena >35000)
+                        class="progressNegro"
+                        @endif
+                        max="35000" value="{{ $mantenimiento->kmCadena }}">
+                        </progress> 35000 km</p>
+                        @if($mantenimiento->kmCadena >35000)
+                        <p style="color: red"> <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i> ¡Has superado el kilometraje recomendado!</p>
+                        @endif   
+                        @else
+                    </p>
                     <p class="card-text">No hay datos registrados</p>
                     @endif
                     <form
@@ -280,7 +457,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
             </div>
@@ -289,10 +466,26 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Retenes de la horquilla</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-heading" style="color: #c65f20;"></i> Retenes de la horquilla</h5>
                     @if(isset($mantenimiento->kmRetenesHorquilla))
-                    <p class="card-text">{{ $mantenimiento->kmRetenesHorquilla }} km</p>
-                    @else
+                    <p class="card-text">{{ $mantenimiento->kmRetenesHorquilla }} km 
+                        <progress id="file" 
+                        @if($mantenimiento->kmRetenesHorquilla <=25000)
+                        class="progressVerde"
+                        @elseif($mantenimiento->kmRetenesHorquilla <=33000)
+                        class="progressAmarillo"
+                        @elseif($mantenimiento->kmRetenesHorquilla <=35000)
+                        class="progressRojo"
+                        @elseif($mantenimiento->kmRetenesHorquilla >35000)
+                        class="progressNegro"
+                        @endif
+                        max="35000" value="{{ $mantenimiento->kmRetenesHorquilla }}">
+                        </progress> 35000 km</p>
+                        @if($mantenimiento->kmRetenesHorquilla >35000)
+                        <p style="color: red"> <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i> ¡Has superado el kilometraje recomendado!</p>
+                        @endif   
+                        @else
+                    </p>
                     <p class="card-text">No hay datos registrados</p>
                     @endif
                     <form
@@ -301,7 +494,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
             </div>
@@ -310,10 +503,26 @@
         <div class="col-md-4 mb-4">
             <div class="card shadow transition">
                 <div class="card-body">
-                    <h5 class="card-title">Kit de transmisión</h5>
+                    <h5 class="card-title"><i class="fa-solid fa-screwdriver" style="color: #c65f20;"></i> Kit de transmisión</h5>
                     @if(isset($mantenimiento->kmKitTransmision))
-                    <p class="card-text">{{ $mantenimiento->kmKitTransmision }} km</p>
-                    @else
+                    <p class="card-text">{{ $mantenimiento->kmKitTransmision }} km 
+                        <progress id="file" 
+                        @if($mantenimiento->kmKitTransmision <=18000)
+                        class="progressVerde"
+                        @elseif($mantenimiento->kmKitTransmision <=20000)
+                        class="progressAmarillo"
+                        @elseif($mantenimiento->kmKitTransmision <=25000)
+                        class="progressRojo"
+                        @elseif($mantenimiento->kmKitTransmision >25000)
+                        class="progressNegro"
+                        @endif
+                        max="25000" value="{{ $mantenimiento->kmKitTransmision }}">
+                        </progress> 25000 km</p>
+                        @if($mantenimiento->kmKitTransmision >25000)
+                        <p style="color: red"> <i class="fa-solid fa-triangle-exclamation" style="color: red;"></i> ¡Has superado el kilometraje recomendado!</p>
+                        @endif   
+                        @else
+                    </p>
                     <p class="card-text">No hay datos registrados</p>
                     @endif
                     <form
@@ -322,7 +531,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
             </div>
@@ -347,7 +556,7 @@
                         que tenías anteriormente <b>no se sumarán</b> a los otros apartados del mantenimiendo de la moto. <b>Si quieres sumar</b> kilómetros
                         tanto al tacómetro como a todos los apartados, deberás usar la opcion <b><i>"Añadir kilómetros"</i></b></p>
                         <input type="number" class="form-control mb-3" name="nuevoKilometraje" value="{{ $mantenimiento->kilometraje }}" placeholder="Introduce los kilómetros" oninput="limitarLongitud(this, 9)">
-                        <button type="submit" class="btn btn-sm btn-warning">Actualizar</button>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
             </div>

@@ -61,16 +61,6 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Confirma la
-                        contraseña</label>
-
-                    <div class="col-md-6">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                            required autocomplete="new-password" placeholder="Confirma la contraseña">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
                     <label for="fechaNacimiento" class="col-md-4 col-form-label text-md-end">Fecha de
                         Nacimiento</label>
                     <div class="col-md-6">
