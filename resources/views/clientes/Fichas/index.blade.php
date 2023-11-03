@@ -43,8 +43,7 @@
 
 
 <div class="container ">
-    <h1 class="mb-3"><i class="fa-solid fa-motorcycle" style="color: #c65f20;"></i> {{$moto->marca}} {{$moto->modelo}}
-    </h1>
+    <h1 class="mb-3"><i class="fa-solid fa-motorcycle" style="color: #c65f20;"></i> {{$moto->marca}} {{$moto->modelo}}</h1>    
     <div class="row d-flex justify-content-around">
         <div class="col-md-6 mb-4">
             <div class="card shadow transition">
@@ -537,7 +536,11 @@
             </div>
 
         </div>
-    </div>
+    </div> 
+
+    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#kmUpdateModal">
+        Modificación múltiple
+    </button>
 
     <!--Modal para kilometraje-->
     <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
@@ -562,4 +565,73 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="kmUpdateModal" tabindex="-1" role="dialog" aria-labelledby="kmUpdateModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="kmUpdateModalLabel">Actualizar Kilometraje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('fichas.updateKilometrajeMultiple', ['idMoto' => $moto->idMoto]) }}" method="POST">
+                        @csrf                       
+                        {{-- <div class="form-group">
+                            <label for="fechaVencimientoITV"><i class="fa-solid fa-calendar" style="color: #c65f20;"></i> Vencimiento de la ITV</label>
+                            <input type="date" class="form-control" name="fechaVencimientoITV" value="{{ $mantenimiento->fechaVencimientoITV }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaVencimientoSeguro"><i class="fa-regular fa-calendar" style="color: #c65f20;"></i> Vencimiento del Seguro</label>
+                            <input type="date" class="form-control" name="fechaVencimientoSeguro" value="{{ $mantenimiento->fechaVencimientoSeguro }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaBateria"><i class="fa-regular fa-calendar-days" style="color: #c65f20;"></i> Fecha de la Batería</label>
+                            <input type="date" class="form-control" name="fechaBateria" value="{{ $mantenimiento->fechaBateria }}">
+                        </div> --}}
+                        <div class="form-group">
+                            <label for="kmAceiteMotor"><i class="fa-solid fa-oil-can" style="color: #c65f20;"></i> Aceite del motor</label>
+                            <input type="number" class="form-control" name="kmAceiteMotor" value="{{ $mantenimiento->kmAceiteMotor }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="kmRuedaTrasera"><i class="fa-solid fa-person-biking" style="color: #c65f20;"></i> Neumático trasero</label>
+                            <input type="number" class="form-control" name="kmRuedaTrasera" value="{{ $mantenimiento->kmRuedaTrasera }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="kmRuedaDelantera"><i class="fa-solid fa-person-biking" style="color: #c65f20;"></i> Neumático delantero</label>
+                            <input type="number" class="form-control" name="kmRuedaDelantera" value="{{ $mantenimiento->kmRuedaDelantera }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="kmPastillaFrenoDelantero"><i class="fa-solid fa-compact-disc" style="color: #c65f20;"></i> Pastillas de freno delantero</label>
+                            <input type="number" class="form-control" name="kmPastillaFrenoDelantero" value="{{ $mantenimiento->kmPastillaFrenoDelantero }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="kmPastillaFrenoTrasero"><i class="fa-solid fa-compact-disc" style="color: #c65f20;"></i> Pastillas de freno trasero</label>
+                            <input type="number" class="form-control" name="kmPastillaFrenoTrasero" value="{{ $mantenimiento->kmPastillaFrenoTrasero }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="kmReglajeValvulas"><i class="fa-solid fa-screwdriver-wrench" style="color: #c65f20;"></i> Reglaje de válvulas</label>
+                            <input type="number" class="form-control" name="kmReglajeValvulas" value="{{ $mantenimiento->kmReglajeValvulas }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="kmCadena"><i class="fa-solid fa-link" style="color: #c65f20;"></i> Cadena</label>
+                            <input type="number" class="form-control" name="kmCadena" value="{{ $mantenimiento->kmCadena }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="kmRetenesHorquilla"><i class="fa-solid fa-heading" style="color: #c65f20;"></i> Retenes de la horquilla</label>
+                            <input type="number" class="form-control" name="kmRetenesHorquilla" value="{{ $mantenimiento->kmRetenesHorquilla }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="kmKitTransmision"><i class="fa-solid fa-screwdriver" style="color: #c65f20;"></i> Kit de transmision</label>
+                            <input type="number" class="form-control" name="kmKitTransmision" value="{{ $mantenimiento->kmKitTransmision }}">
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Modificar</button>
+                    </form>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
     @endsection

@@ -97,5 +97,47 @@ class FichaController extends Controller
         return redirect()->route('fichas.index', ['idMoto' => $idMoto]);
     }
     
+    public function updateKilometrajeMultiple(Request $request, $idMoto) {
+        $moto = Moto::find($idMoto);
+    
+        if ($moto->idUsuario !== auth()->user()->idUsuario) {
+            return abort(403);
+        }
+    
+        $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
+    
+        if (!$mantenimiento) {
+            return abort(404);
+        }
+    
+       // $fechaVencimientoSeguro = Carbon::parse('Y-m-d', $request->input('fechaVencimientoSeguro'));
+      //  $fechaVencimientoITV = Carbon::createFromFormat('Y-m-d', $request->input('fechaVencimientoITV'));
+       // $fechaBateria = Carbon::createFromFormat('Y-m-d', $request->input('fechaBateria'));
+        $kmAceiteMotor = $request->input('kmAceiteMotor');
+        $kmRuedaTrasera = $request->input('kmRuedaTrasera');
+        $kmRuedaDelantera = $request->input('kmRuedaDelantera');
+        $kmPastillaFrenoDelantero = $request->input('kmPastillaFrenoDelantero');
+        $kmPastillaFrenoTrasero = $request->input('kmPastillaFrenoTrasero');
+        $kmReglajeValvulas = $request->input('kmReglajeValvulas');
+        $kmCadena = $request->input('kmCadena');
+        $kmRetenesHorquilla = $request->input('kmRetenesHorquilla');
+        $kmKitTransmision = $request->input('kmKitTransmision');
+
+        $mantenimiento->update([
+            //'fechaVencimientoSeguro' => $fechaVencimientoSeguro,
+            //'fechaVencimientoITV' => $fechaVencimientoITV,
+            //'fechaBateria' => $fechaBateria,
+            'kmAceiteMotor' => $kmAceiteMotor,
+            'kmRuedaTrasera' => $kmRuedaTrasera,
+            'kmRuedaDelantera' => $kmRuedaDelantera,
+            'kmPastillaFrenoDelantero' => $kmPastillaFrenoDelantero,
+            'kmPastillaFrenoTrasero' => $kmPastillaFrenoTrasero,
+            'kmReglajeValvulas' => $kmReglajeValvulas,
+            'kmCadena' => $kmCadena,
+            'kmRetenesHorquilla' => $kmRetenesHorquilla,
+            'kmKitTransmision' => $kmKitTransmision
+        ]);
+        return redirect()->route('fichas.index', ['idMoto' => $idMoto]);
+    }
     
 }
