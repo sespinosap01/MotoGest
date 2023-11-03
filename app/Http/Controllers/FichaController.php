@@ -53,7 +53,7 @@ class FichaController extends Controller
             return abort(403); 
         }
     
-        $nuevoKilometraje = $request->input('kilometraje');
+        $nuevoCampo = $request->input('kilometraje');
     
         $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
     
@@ -62,36 +62,36 @@ class FichaController extends Controller
         }
     
         $mantenimiento->update([
-            'kilometraje' => $mantenimiento->kilometraje + $nuevoKilometraje,
-            'kmAceiteMotor' => $mantenimiento->kmAceiteMotor + $nuevoKilometraje,
-            'kmRuedaTrasera' => $mantenimiento->kmRuedaTrasera + $nuevoKilometraje,
-            'kmRuedaDelantera' => $mantenimiento->kmRuedaDelantera + $nuevoKilometraje,
-            'kmPastillaFrenoDelantero' => $mantenimiento->kmPastillaFrenoDelantero + $nuevoKilometraje,
-            'kmPastillaFrenoTrasero' => $mantenimiento->kmPastillaFrenoTrasero + $nuevoKilometraje,
-            'kmReglajeValvulas' => $mantenimiento->kmReglajeValvulas + $nuevoKilometraje,
-            'kmCadena' => $mantenimiento->kmCadena + $nuevoKilometraje,
-            'kmRetenesHorquilla' => $mantenimiento->kmRetenesHorquilla + $nuevoKilometraje,
-            'kmKitTransmision' => $mantenimiento->kmKitTransmision + $nuevoKilometraje,
+            'kilometraje' => $mantenimiento->kilometraje + $nuevoCampo,
+            'kmAceiteMotor' => $mantenimiento->kmAceiteMotor + $nuevoCampo,
+            'kmRuedaTrasera' => $mantenimiento->kmRuedaTrasera + $nuevoCampo,
+            'kmRuedaDelantera' => $mantenimiento->kmRuedaDelantera + $nuevoCampo,
+            'kmPastillaFrenoDelantero' => $mantenimiento->kmPastillaFrenoDelantero + $nuevoCampo,
+            'kmPastillaFrenoTrasero' => $mantenimiento->kmPastillaFrenoTrasero + $nuevoCampo,
+            'kmReglajeValvulas' => $mantenimiento->kmReglajeValvulas + $nuevoCampo,
+            'kmCadena' => $mantenimiento->kmCadena + $nuevoCampo,
+            'kmRetenesHorquilla' => $mantenimiento->kmRetenesHorquilla + $nuevoCampo,
+            'kmKitTransmision' => $mantenimiento->kmKitTransmision + $nuevoCampo,
         ]);
     
         return redirect()->route('fichas.index', ['idMoto' => $idMoto]);
     }
     
-    public function updateKilometraje(Request $request, $idMoto, $field) {
+    public function updateCampos(Request $request, $idMoto, $field) {
         $moto = Moto::find($idMoto);
     
         if ($moto->idUsuario !== auth()->user()->idUsuario) {
             return abort(403);
         }
 
-        $nuevoKilometraje = $request->input('nuevoKilometraje');
+        $nuevoCampo = $request->input('nuevoCampo');
         $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
     
         if (!$mantenimiento) {
             return abort(404);
         }
     
-        $mantenimiento->$field = $nuevoKilometraje;
+        $mantenimiento->$field = $nuevoCampo;
         $mantenimiento->save();
     
         return redirect()->route('fichas.index', ['idMoto' => $idMoto]);
@@ -110,9 +110,6 @@ class FichaController extends Controller
             return abort(404);
         }
     
-       // $fechaVencimientoSeguro = Carbon::parse('Y-m-d', $request->input('fechaVencimientoSeguro'));
-      //  $fechaVencimientoITV = Carbon::createFromFormat('Y-m-d', $request->input('fechaVencimientoITV'));
-       // $fechaBateria = Carbon::createFromFormat('Y-m-d', $request->input('fechaBateria'));
         $kmAceiteMotor = $request->input('kmAceiteMotor');
         $kmRuedaTrasera = $request->input('kmRuedaTrasera');
         $kmRuedaDelantera = $request->input('kmRuedaDelantera');
@@ -124,9 +121,6 @@ class FichaController extends Controller
         $kmKitTransmision = $request->input('kmKitTransmision');
 
         $mantenimiento->update([
-            //'fechaVencimientoSeguro' => $fechaVencimientoSeguro,
-            //'fechaVencimientoITV' => $fechaVencimientoITV,
-            //'fechaBateria' => $fechaBateria,
             'kmAceiteMotor' => $kmAceiteMotor,
             'kmRuedaTrasera' => $kmRuedaTrasera,
             'kmRuedaDelantera' => $kmRuedaDelantera,

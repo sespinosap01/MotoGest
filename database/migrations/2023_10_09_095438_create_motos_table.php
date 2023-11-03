@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('cilindrada');
             $table->integer('potencia');
             $table->integer('fechaFabricacion');
-            $table->string('imagen');
+            $table->string('imagen')->nullable();
             $table->string('matricula');
             $table->timestamps();
         });
