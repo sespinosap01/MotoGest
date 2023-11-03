@@ -30,6 +30,7 @@
                         <th>Año de fabricación</th>
                         <th>Propietario</th>
                         <th>Matricula</th>
+                        <th>Foto</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -44,6 +45,12 @@
                             <td>{{ $moto->fechaFabricacion }}</td>
                             <td>{{ $moto->usuario->email }}</td>
                             <td>{{ $moto->matricula }}</td>
+                            @if ($moto->imagen)
+                            <td><img src="{{ asset($moto->imagen)}}" alt="imgFoto" style="width:35px; height:35px; border-radius:24px;"></td>
+                            @else
+                            <td><img src="{{ asset("images/iconos/motoDefault.png")}}" alt="imgFoto" style="width:35px; height:35px; border-radius:24px;"></td>
+
+                            @endif
                             <td>
                                 <div class="d-flex gap-3">
                                     <a href="{{route('moto.edit' , $moto->idMoto)}}" class="btn btn-warning btn-sm">Editar</a>

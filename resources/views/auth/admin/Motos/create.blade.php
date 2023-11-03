@@ -1,6 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
+<script>
+    function loadImage(input) {
+        var imgElement = document.getElementById('pic');
+        
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+    
+            reader.onload = function (e) {
+                imgElement.src = e.target.result;
+                imgElement.style.display = 'block';
+            };
+    
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            imgElement.style.display = 'none';
+        }
+    }
+</script>
+
 <div class="container" data-aos="fade-up">
 
     @if(Auth::user()->rol->name == "User")
@@ -13,7 +32,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <form method="POST" action="{{ route('moto.store') }}">
+            <form method="POST" action="{{ route('moto.store') }}"  enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
                     <label for="idUsuario" class="col-md-4 col-form-label text-md-end">Propietario</label>
@@ -90,9 +109,10 @@
                 <div class="row mb-3">
                     <label for="imagen" class="col-md-4 col-form-label text-md-end">Imagen</label>
                     <div class="col-md-6">
-                        <input id="imagen" type="text" class="form-control" name="imagen" required value="img.png">                                                
-                    </div>
-                </div> 
+                        <input id="imagen" class="form-control" name="imagen" type="file" onchange="loadImage(this)">
+                        <img style="width: 100px; height: 100px; display: none;" class="mt-3" id="pic">
+                    </div>                                    
+                </div>  
 
                 <div class="row mb-3">
                     <label for="matricula" class="col-md-4 col-form-label text-md-end">Matricula</label>

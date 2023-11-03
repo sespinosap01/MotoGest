@@ -1,11 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
+
+<script>
+    function loadImage(input) {
+        var imgElement = document.getElementById('pic');
+        
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+    
+            reader.onload = function (e) {
+                imgElement.src = e.target.result;
+                imgElement.style.display = 'block';
+            };
+    
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            imgElement.style.display = 'none';
+        }
+    }
+</script>
+
+
 <div class="container" data-aos="fade-up">
-    <h3><i class="fa-solid fa-motorcycle" style="color: #c65f20;"></i> Editando <b>{{$moto->marca}} {{$moto->modelo}}</b></h3>
+    @if ($moto->imagen)
+    <h3><img src="{{ asset($moto->imagen)}}" alt="imgFoto" style="width:50px; height:50px; border-radius:24px;"> Editando <b>{{$moto->marca}} {{$moto->modelo}}</b> </h3>
+    @else
+    <h3><img src="{{ asset("images/iconos/motoDefault.png")}}" alt="imgFoto" style="width:50px; height:50px; border-radius:24px;"> Editando <b>{{$moto->marca}} {{$moto->modelo}}</b> </h3>
+
+    @endif
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form method="POST" action="{{ route('motopanel.update', $moto->idMoto) }}">
+            <form method="POST" action="{{ route('motopanel.update', $moto->idMoto) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row mb-3">
@@ -70,10 +96,11 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="imagen" class="col-md-4 col-form-label text-md-end">Imagen</label>
+                    <label for="imagen" class="col-md-4 col-form-label text-md-end">Imagen </label>
                     <div class="col-md-6">
-                        <input id="imagen" type="text" class="form-control" name="imagen" @isset($moto) value="{{$moto->imagen}}" @endisset required value="img.png">                                                
-                    </div>
+                        <input id="imagen" class="form-control" name="imagen" type="file" onchange="loadImage(this)">
+                        <img style="width: 100px; height: 100px; display: none;" class="mt-3" id="pic">
+                    </div>          
                 </div> 
 
                 <div class="row mb-3">

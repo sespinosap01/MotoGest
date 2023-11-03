@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Moto;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use App\Models\User;
 
 
 class ClientPanelController extends Controller
@@ -40,24 +40,38 @@ class ClientPanelController extends Controller
     } 
 
     public function saveMoto(Request $request, $idMoto){
-        if($idMoto){
+        if ($idMoto) {
             $moto = Moto::find($idMoto);
-        }else{
-            $moto = new Moto();            
+            $oldImagePath = $moto->imagen;
+        } else {
+            $moto = new Moto();
+            $oldImagePath = null;
         }
-
-        $moto->idUsuario =  Auth::user()->idUsuario ;
+    
+        $moto->idUsuario = Auth::user()->idUsuario;
         $moto->marca = $request->input('marca');
         $moto->modelo = $request->input('modelo');
         $moto->cilindrada = $request->input('cilindrada');
         $moto->potencia = $request->input('potencia');
         $moto->fechaFabricacion = $request->input('fechaFabricacion');
-        $moto->imagen = $request->input('imagen');        
-        $moto->matricula = $request->input('matricula');        
-
+        
+        if ($request->hasFile('imagen')) {
+            $image = $request->file('imagen');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/motoUsers'), $imageName);
+            $moto->imagen = 'images/motoUsers/' . $imageName;
+    
+            if ($oldImagePath) {
+                File::delete(public_path($oldImagePath));
+            }
+        }
+    
+        $moto->matricula = $request->input('matricula');
+    
         $moto->save();
         return redirect()->route('clientes.clientPanel');
     }
+    
 
      public function edit($idMoto){
         $moto = Moto::find($idMoto);
@@ -69,9 +83,16 @@ class ClientPanelController extends Controller
 
     public function destroy(string $idMoto){
         $moto = Moto::find($idMoto);
-
-        $moto ->delete();
-
+    
+        $imagePath = $moto->imagen;
+    
+        $moto->delete();
+    
+        if ($imagePath) {
+            File::delete(public_path($imagePath));
+        }
+    
         return redirect()->route('clientes.clientPanel');
     }
+    
 }

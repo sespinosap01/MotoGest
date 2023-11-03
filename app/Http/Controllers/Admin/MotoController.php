@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Moto;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+
 
 class MotoController extends Controller
 {
@@ -37,8 +39,12 @@ class MotoController extends Controller
     public function saveMoto(Request $request, $idMoto){
         if($idMoto){
             $moto = Moto::find($idMoto);
+            $oldImagePath = $moto->imagen;
+
         }else{
-            $moto = new Moto();            
+            $moto = new Moto();   
+            $oldImagePath = null;
+         
         }
 
         $moto->idUsuario = $request->input('idUsuario');
@@ -47,7 +53,18 @@ class MotoController extends Controller
         $moto->cilindrada = $request->input('cilindrada');
         $moto->potencia = $request->input('potencia');
         $moto->fechaFabricacion = $request->input('fechaFabricacion');
-        $moto->imagen = $request->input('imagen');        
+
+        if ($request->hasFile('imagen')) {
+            $image = $request->file('imagen');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/motoUsers'), $imageName);
+            $moto->imagen = 'images/motoUsers/' . $imageName;
+    
+            if ($oldImagePath) {
+                File::delete(public_path($oldImagePath));
+            }
+        }        
+        
         $moto->matricula = $request->input('matricula');        
 
         $moto->save();
@@ -65,7 +82,13 @@ class MotoController extends Controller
     public function destroy(string $idMoto){
         $moto = Moto::find($idMoto);
 
+        $imagePath = $moto->imagen;
+
         $moto ->delete();
+
+        if ($imagePath) {
+            File::delete(public_path($imagePath));
+        }
 
         return redirect()->route('motos.index');
     }

@@ -10,6 +10,12 @@
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
     transform: translate(0, -5px);
 }
+
+.fixed-size-image{
+    width: auto;
+    height: 370px;
+}
+
 </style>
 <div class="container" data-aos="fade-up">
     <div class="row">
@@ -26,9 +32,16 @@
 
         @if (count($motos) > 0)
         @foreach ($motos as $moto)
-        <div class="col-lg-4 col-md-6 col-sm-12"> <!-- Tamaños de columna responsivos -->
+        <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="card mb-4 shadow transition">
-                <img src="{{ asset('images/iconos/motoDefault.png') }}" class="card-img-top img-thumbnail" alt="Imagen de la moto">
+                <img
+                @if ($moto->imagen) 
+                src="{{ asset($moto->imagen) }}" 
+                @else
+                src="{{ asset("images/iconos/motoDefault.png") }}" 
+                @endif                 
+                 class="card-img-top fixed-size-image" alt="{{ $moto->imagen }}">
+
                 <div class="card-body">
                     <h3 class="card-title">{{ $moto->marca }} {{ $moto->modelo }}</h3>
                     <p class="card-text"><i class="fa-solid fa-gears" style="color: #c65f20;"></i> {{ $moto->cilindrada }} cc</p>
