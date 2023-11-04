@@ -13,7 +13,7 @@
 
 .fixed-size-image{
     width: auto;
-    height: 370px;
+    height: 400px;
 }
 
 </style>

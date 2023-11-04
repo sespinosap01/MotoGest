@@ -7,15 +7,23 @@ use App\Models\Mantenimiento;
 use App\Models\Moto;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class FichaController extends Controller
 {
     public function index($idMoto){
         $moto = Moto::find($idMoto);
     
-        if ($moto->idUsuario !== auth()->user()->idUsuario) {
-            return abort(403); //Si la moto no pertenece al usuario autenticado.
+        if($moto){ //si un usuario accede a una moto que no existe por la URL
+            if ($moto->idUsuario !== auth()->user()->idUsuario) {
+                return abort(403); //Si la moto no pertenece al usuario autenticado.
+            }
+        }else{
+            $user = Auth::user();
+            $motos = $user->motos;
+            return view('clientes.clientPanel', compact('motos'));
         }
+        
 
         $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
     
