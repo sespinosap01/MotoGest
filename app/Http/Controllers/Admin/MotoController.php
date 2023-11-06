@@ -74,6 +74,10 @@ class MotoController extends Controller
     public function edit($idMoto){
         $moto = Moto::find($idMoto);
 
+        if(!$moto){
+            return $this->index();
+        }
+
         $users = User::all();
         
         return view('auth.admin.motos.edit', ['moto' => $moto], ['users' => $users]);

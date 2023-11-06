@@ -60,6 +60,10 @@ class UserController extends Controller
     public function edit($idUsuario){
         $user = User::find($idUsuario);
 
+        if(!$user){
+            return $this->index();
+        }
+
         $roles = Rol::all();
         
         return view('auth.admin.users.edit', ['user' => $user], ['roles' => $roles]);
