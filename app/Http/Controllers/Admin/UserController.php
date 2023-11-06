@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Rol;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,7 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
+
         return $this->saveUser($request, null);
     }
 
@@ -70,5 +72,14 @@ class UserController extends Controller
 
         return redirect()->route('users.index');
     }
+
+    public function checkEmail(Request $request)
+    {
+        $email = $request->input('email');
+        $userExists = User::where('email', $email)->exists();
+
+        return response()->json(['exists' => $userExists]);
+    }
+    
 
 }

@@ -37,6 +37,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('moto', 'App\Http\Controllers\Admin\MotoController');
     Route::resource('mantenimiento', 'App\Http\Controllers\Admin\MantenimientoController');
 
+    Route::get('/checkEmail', 'App\Http\Controllers\Admin\UserController@checkEmail')->name('checkEmail');
+
 });
 
 
@@ -44,9 +46,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 // Prefijo para las rutas de cliente
 Route::prefix('clientes')->middleware('auth')->group(function () {
     Route::get('/clientPanel', 'App\Http\Controllers\ClientPanelController@clientPanel')->name('clientes.clientPanel');
-    Route::get('clientes/fichas/index/{idMoto}', [App\Http\Controllers\FichaController::class, 'index'])->name('fichas.index');
+    Route::get('/clientPanel/fichas/{idMoto}', [App\Http\Controllers\FichaController::class, 'index'])->name('fichas.index');
 
-    Route::resource('motopanel', 'App\Http\Controllers\ClientPanelController');
+    Route::resource('clientPanel/motopanel', 'App\Http\Controllers\ClientPanelController');
     Route::resource('ficha', 'App\Http\Controllers\FichaController');
 
     Route::post('clientes/fichas/{idMoto}/agregarGastos', [App\Http\Controllers\FichaController::class, 'agregarGastos'])->name('fichas.agregarGastos');

@@ -11,10 +11,11 @@
     transform: translate(0, -5px);
 }
 
-.fixed-size-image{
-    width: auto;
-    height: 400px;
-}
+ .fixed-size-image{
+    width: auto; 
+    height: 350px; 
+    object-fit: cover; 
+} 
 
 </style>
 <div class="container" data-aos="fade-up">

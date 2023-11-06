@@ -51,6 +51,10 @@
             color: white
         }
 
+        a:hover{            
+            color: #c65f20
+        }
+
         #logoOverlay {
             position: fixed;
             top: 30%;
@@ -72,8 +76,7 @@
 </head>
 
 <body>
-    <a href="{{ url('/home') }}">    <img id="logoOverlay" src="{!! asset('images/logo/logoPNG.png') !!}" width="350px">
-    </a>
+    <a href="{{ url('/home') }}">    <img id="logoOverlay" src="{!! asset('images/logo/logoPNG.png') !!}" width="350px"></a>
 
     <video autoplay muted loop id="backgroundVideo">
         <source src="{!! asset('images/varios/backgroundVideo.mp4') !!}" type="video/mp4">
@@ -81,21 +84,27 @@
     </video>
 
     <div class="content">
-        <h1>MotoGest</h1>
+        <h1><a href="{{ url('/home') }}">MotoGest</a></h1>
         <p>Tu web donde podrás gestionar el mantenimiento de tus motos de la manera más sencilla</p>
-        <button id="botonPausar" class="btn btn-success" onclick="funcionPausar()">Pausar</button>
 
         <div class="botonesDerecha">
-            @if (Route::has('login'))
-            @auth
-            <a href="{{ url('/home') }}" class="btn text-white" style="background-color: #c65f20;">Entrar</a>
-            @else
-            <a href="{{ route('login') }}" class="btn btn-primary">Iniciar Sesión</a>
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="btn btn-warning">Registrarse</a>
-            @endif
-            @endauth
-            @endif
+            <div class="row">
+                <div class="col-1">
+                    <button id="botonPausar" class="btn btn-success" onclick="funcionPausar()">Pausar</button>
+                </div>
+                <div class="col-11">
+                    @if (Route::has('login'))
+                    @auth
+                    <a href="{{ url('/home') }}" class="btn text-white" style="background-color: #c65f20;">Entrar</a>
+                    @else
+                    <a href="{{ route('login') }}" class="btn btn-primary">Iniciar Sesión</a>
+                    @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="btn btn-warning">Registrarse</a>
+                    @endif
+                    @endauth
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 

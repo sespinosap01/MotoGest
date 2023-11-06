@@ -135,12 +135,16 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                @if(Auth::user()->rol->name == "Admin")
+                                <a class="dropdown-item" href="{{ route('clientes.clientPanel') }}">
+                                    <i class="fa-solid fa-table-columns" style="color: #c65f20;"></i> Panel de usuario</a>
+                                @endif
                                 <a class="dropdown-item" href="{{ route('profile.edit', ['profile' => Auth::user()->idUsuario]) }}">
-                                    Editar perfil
+                                    <i class="fa-solid fa-user-pen" style="color: #c65f20;"></i> Editar perfil
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    Cerrar Sesión
+                                    <i class="fa-solid fa-right-from-bracket" style="color: #c65f20;"></i> Cerrar Sesión
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf

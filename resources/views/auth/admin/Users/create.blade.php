@@ -1,6 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
+<script>
+function validateEmail() {
+    var email = $('#email').val();
+
+    $.get('/admin/checkEmail', { email: email }, function(data) {
+        if (data.exists) {
+            $('#msgErrorEmail').text('El correo electrónico ya está registrado').show();
+            $('#crearUsuario').prop('disabled', true);
+            $('#email').addClass('is-invalid');
+
+
+        } else {
+            $('#msgErrorEmail').text('').hide();
+            $('#crearUsuario').prop('disabled', false);
+            $('#email').removeClass('is-invalid');
+
+        }
+    });
+}
+
+
+</script>
 <div class="container" data-aos="fade-up">
 
     @if(Auth::user()->rol->name == "User")
@@ -33,14 +55,9 @@
                     <label for="email" class="col-md-4 col-form-label text-md-end">Correo electrónico</label>
 
                     <div class="col-md-6">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Ej: micorreo@gmail.com">
-
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>Este correo electrónico ya está en uso</strong>
-                        </span>
-                        @enderror
+                        <input id="email" type="email" class="form-control" name="email" 
+                        value="{{ old('email') }}" required autocomplete="email" placeholder="Ej: micorreo@gmail.com" onchange="validateEmail()">
+                        <span class="invalid-feedback" role="alert" id="msgErrorEmail"></span>
                     </div>
                 </div>
 
@@ -66,7 +83,7 @@
                     <div class="col-md-6">
                         <input id="fechaNacimiento" type="date" class="form-control" name="fechaNacimiento"
                             name="fechaNacimiento" value="{{ old('fechaNacimiento') }}" required
-                            autocomplete="fechaNacimiento" autofocus required>
+                            autocomplete="fechaNacimiento" autofocus required oninput="limitarLongitud(this, 10)">
                     </div>
                 </div>
 
@@ -99,7 +116,7 @@
 
                 <div class="row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-sm text-white" style="background-color: #c65f20;">
+                        <button type="submit" id="crearUsuario" class="btn btn-sm text-white" style="background-color: #c65f20;">
                             Crear usuario
                         </button>
                         <a href="{{ route('users.index') }}" class="btn btn-sm btn-secondary" >Cancelar</a>

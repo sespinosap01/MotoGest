@@ -46,9 +46,9 @@
                             <td>{{ $moto->usuario->email }}</td>
                             <td>{{ $moto->matricula }}</td>
                             @if ($moto->imagen)
-                            <td><img src="{{ asset($moto->imagen)}}" alt="imgFoto" style="width:35px; height:35px; border-radius:24px;"></td>
+                            <td><img src="{{ asset($moto->imagen)}}" alt="imgFoto" style="width:35px; height:35px; border-radius:24px; object-fit: cover;"></td>
                             @else
-                            <td><img src="{{ asset("images/iconos/motoDefault.png")}}" alt="imgFoto" style="width:35px; height:35px; border-radius:24px;"></td>
+                            <td><img src="{{ asset("images/iconos/motoDefault.png")}}" alt="imgFoto" style="width:35px; height:35px; border-radius:24px; object-fit: cover;"></td>
 
                             @endif
                             <td>

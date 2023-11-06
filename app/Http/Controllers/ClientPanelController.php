@@ -67,7 +67,7 @@ class ClientPanelController extends Controller
         }
     
         $moto->matricula = $request->input('matricula');
-    
+
         $moto->save();
         return redirect()->route('clientes.clientPanel');
     }

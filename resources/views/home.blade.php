@@ -223,15 +223,9 @@ hr{
     <div class="container p-4">
       <section class="mb-4">
         <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-facebook-f"></i
-        ></a>
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
           ><i class="fab fa-x-twitter"></i
         ></a>
 
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-google"></i
-        ></a>
         <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
           ><i class="fab fa-instagram"></i
         ></a>

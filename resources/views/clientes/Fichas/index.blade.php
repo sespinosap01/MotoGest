@@ -49,7 +49,7 @@
 </style>
 
 
-<div class="container ">
+<div class="container">
     <h1 class="mb-3"><i class="fa-solid fa-motorcycle" style="color: #c65f20;"></i> {{$moto->marca}} {{$moto->modelo}}</h1>    
     <div class="row d-flex justify-content-around">
         <div class="col-md-6 mb-4">

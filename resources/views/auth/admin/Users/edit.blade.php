@@ -32,18 +32,17 @@
 
                 <div class="row mb-3">
                     <label for="email" class="col-md-4 col-form-label text-md-end">Correo electrónico</label>
-
+                
                     <div class="col-md-6">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" @isset($user) value="{{$user->email}}" @endisset required autocomplete="email">
-
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>Este correo electrónico ya está en uso</strong>
-                        </span>
-                        @enderror
+                        <input id="email" type="email" class="form-control" name="email" 
+                        @isset($user) value="{{$user->email}}" @endisset  required autocomplete="email" 
+                        placeholder="Ej: micorreo@gmail.com" disabled>
+                        
+                        <input type="hidden" name="email" value="{{$user->email}}">
                     </div>
                 </div>
+                
+                    
 
                 <div class="row mb-3">
                     <label for="password" class="col-md-4 col-form-label text-md-end">Contraseña</label>
@@ -67,7 +66,7 @@
                     <div class="col-md-6">
                         <input id="fechaNacimiento" type="date" class="form-control" name="fechaNacimiento"
                             name="fechaNacimiento" @isset($user) value="{{$user->fechaNacimiento}}" @endisset required
-                            autocomplete="fechaNacimiento" autofocus required>
+                            autocomplete="fechaNacimiento" autofocus required oninput="limitarLongitud(this, 10)">
                     </div>
                 </div>
 
@@ -75,14 +74,8 @@
                     <label for="numTelefono" class="col-md-4 col-form-label text-md-end">Teléfono</label>
                     <div class="col-md-6">
                         <input id="numTelefono" type="number"
-                            class="form-control @error('numTelefono') is-invalid @enderror" name="numTelefono"
-                            @isset($user) value="{{$user->numTelefono}}" @endisset required autocomplete="numTelefono" autofocus oninput="limitarLongitud(this, 9)">
-
-                        @error('numTelefono')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>El numero de telefono debe tener 9 caracteres</strong>
-                        </span>
-                        @enderror
+                            class="form-control" name="numTelefono"
+                            @isset($user) value="{{$user->numTelefono}}" @endisset required autocomplete="numTelefono" autofocus oninput="limitarLongitud(this, 9)">                
                     </div>
                 </div>
 
@@ -100,7 +93,7 @@
 
                 <div class="row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn text-white btn-sm" style="background-color: #c65f20;">
+                        <button type="submit" id="crearUsuario"  class="btn text-white btn-sm" style="background-color: #c65f20;">
                             Editar usuario
                         </button>
                         <a href="{{ route('users.index') }}" class="btn btn-sm btn-secondary" >Cancelar</a>

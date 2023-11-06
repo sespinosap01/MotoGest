@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><h4>Registro</h4></div>
+                <div class="card-header"><h4>Registrarse</h4></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -72,7 +72,7 @@
                             <label for="fechaNacimiento" class="col-md-4 col-form-label text-md-end">Fecha de nacimiento</label>
                             <div class="col-md-6">
                                 <input id="fechaNacimiento" type="date" class="form-control @error('fechaNacimiento') is-invalid @enderror"
-                                    name="fechaNacimiento" value="{{ old('fechaNacimiento') }}" required autocomplete="fechaNacimiento" autofocus>
+                                    name="fechaNacimiento" value="{{ old('fechaNacimiento') }}" required autocomplete="fechaNacimiento" autofocus  oninput="limitarLongitud(this, 10)">
 
                                 @error('fechaNacimiento')
                                 <span class="invalid-feedback" role="alert">
@@ -91,20 +91,11 @@
 
                                 @error('numTelefono')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>El numero de telefono debe tener 9 caracteres</strong>
+                                    <strong>El numero de teléfono debe tener 9 caracteres</strong>
                                 </span>
                                 @enderror
                             </div>
                         </div>
-
-                       <!--Rol en hidden para pasarle que cualquier registro sea User--> 
-                        <select name="rol_id" id="rol_id" class="form-control" hidden>
-                            <option value="1">rol</option>
-                            @foreach ($roles as $rol)
-                            <option value="{{$rol->id}}"></option>
-                            @endforeach
-                        </select>
-
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
