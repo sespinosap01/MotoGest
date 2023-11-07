@@ -1,6 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
+<script>
+    var sortOrder = -1; 
+    $(document).ready(function () {
+        var table = document.querySelector("table");
+        function sortTable(col) {
+            var tbody = table.tBodies[0];
+            var rows = Array.from(tbody.rows);
+
+            rows.sort((a, b) => {
+                var valA = a.cells[col].textContent.trim().toLowerCase();
+                var valB = b.cells[col].textContent.trim().toLowerCase();
+                if (!isNaN(valA) && !isNaN(valB)) {
+                    valA = parseFloat(valA);
+                    valB = parseFloat(valB);
+                }
+                return (valA > valB ? 1 : -1) * sortOrder;
+            });
+
+            tbody.innerHTML = "";
+            rows.forEach((row) => tbody.appendChild(row));
+        }
+
+        $("#th-id, #th-anio, #th-propietario").on("click", function () {
+            var col = $(this).index();
+            sortTable(col);
+            sortOrder *= -1; 
+        });
+    });
+</script>
+
 <div class="container" data-aos="fade-up">
     @if(Auth::user()->rol->name == "User")
         <p>No tienes acceso a esta página</p>
@@ -19,16 +49,16 @@
         </div>
         <br>
         @if(count($motos) > 0)
-            <table class="table table-hover">
-                <thead>
+        <table class="table table-hover table-striped ">
+            <thead>
                     <tr>
-                        <th>ID</th>
+                        <th id="th-id" style="cursor: pointer">ID <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
                         <th>Marca</th>
                         <th>Modelo</th>
                         <th>Cilindrada</th>
                         <th>Potencia</th>
-                        <th>Año de fabricación</th>
-                        <th>Propietario</th>
+                        <th id="th-anio" style="cursor: pointer">Año de fabricación <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
+                        <th id="th-propietario" style="cursor: pointer">Propietario <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
                         <th>Matricula</th>
                         <th>Foto</th>
                         <th>Acciones</th>
@@ -37,7 +67,7 @@
                 <tbody>
                     @foreach ($motos as $moto)
                         <tr>
-                            <th>{{ $moto->idMoto }}</th>
+                            <th class="pr-4">{{ $moto->idMoto }}</th>
                             <td>{{ $moto->marca }}</td>
                             <td>{{ $moto->modelo }}</td>
                             <td>{{ $moto->cilindrada }}cc</td>
@@ -49,7 +79,6 @@
                             <td><img src="{{ asset($moto->imagen)}}" alt="imgFoto" style="width:35px; height:35px; border-radius:24px; object-fit: cover;"></td>
                             @else
                             <td><img src="{{ asset("images/iconos/motoDefault.png")}}" alt="imgFoto" style="width:35px; height:35px; border-radius:24px; object-fit: cover;"></td>
-
                             @endif
                             <td>
                                 <div class="d-flex gap-3">
@@ -60,7 +89,7 @@
                         </tr>
                     @endforeach
                 </tbody>
-            </table>
+        </table>
         @else
             <br>
             <p>No hay motos registradas</p>

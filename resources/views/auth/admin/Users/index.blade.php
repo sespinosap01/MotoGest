@@ -1,6 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .pointer{
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    var sortOrder = -1; 
+    $(document).ready(function () {
+        var table = document.querySelector("table");
+        function sortTable(col) {
+            var tbody = table.tBodies[0];
+            var rows = Array.from(tbody.rows);
+
+            rows.sort((a, b) => {
+                var valA = a.cells[col].textContent.trim().toLowerCase();
+                var valB = b.cells[col].textContent.trim().toLowerCase();
+                if (!isNaN(valA) && !isNaN(valB)) {
+                    valA = parseFloat(valA);
+                    valB = parseFloat(valB);
+                }
+                return (valA > valB ? 1 : -1) * sortOrder;
+            });
+
+            tbody.innerHTML = "";
+            rows.forEach((row) => tbody.appendChild(row));
+        }
+
+        $("#th-id, #th-email, #th-rol").on("click", function () {
+            var col = $(this).index();
+            sortTable(col);
+            sortOrder *= -1; 
+        });
+    });
+</script>
+
+
 <div class="container" data-aos="fade-up">
 
 @if(Auth::user()->rol->name == "User")
@@ -22,25 +59,25 @@
 <br>
 
     @if(count($users) > 0)
-        <table class="table table-hover">
+        <table class="table table-hover table-striped ">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Email</th>
+                    <th id="th-id" style="cursor: pointer">ID <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
+                    <th id="th-email" style="cursor: pointer">Email <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>                    
+                    <th>Nombre</th>                    
                     <th>Fecha de Nacimiento</th>
                     <th>Numero de telefono</th>
                     <th>Fecha de Registro</th>
-                    <th>Rol</th>
+                    <th id="th-rol" style="cursor: pointer">Rol <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>                    
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($users as $user)
                     <tr>
-                        <th>{{ $user->idUsuario }}</th>
-                        <td>{{ $user->nombre }}</td>
+                        <th class="pr-4">{{ $user->idUsuario }} </th>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->nombre }}</td>
                         <td>{{ \Carbon\Carbon::parse($user->fechaNacimiento)->format('d/m/Y') }}</td>
                         <td>{{ $user->numTelefono }}</td>
                         <td>{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i:s') }}</td>

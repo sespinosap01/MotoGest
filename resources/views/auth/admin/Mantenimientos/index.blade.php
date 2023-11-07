@@ -1,6 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
+<script>
+    var sortOrder = -1; 
+    $(document).ready(function () {
+        var table = document.querySelector("table");
+        function sortTable(col) {
+            var tbody = table.tBodies[0];
+            var rows = Array.from(tbody.rows);
+
+            rows.sort((a, b) => {
+                var valA = a.cells[col].textContent.trim().toLowerCase();
+                var valB = b.cells[col].textContent.trim().toLowerCase();
+                if (!isNaN(valA) && !isNaN(valB)) {
+                    valA = parseFloat(valA);
+                    valB = parseFloat(valB);
+                }
+                return (valA > valB ? 1 : -1) * sortOrder;
+            });
+
+            tbody.innerHTML = "";
+            rows.forEach((row) => tbody.appendChild(row));
+        }
+
+        $("#th-id, #th-moto").on("click", function () {
+            var col = $(this).index();
+            sortTable(col);
+            sortOrder *= -1; 
+        });
+    });
+</script>
 <div class="container" data-aos="fade-up">
     @if(Auth::user()->rol->name == "User")
         <p>No tienes acceso a esta página</p>
@@ -21,9 +50,9 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>ID mantenimiento</th>
-                        <th>Moto</th>
-                        <th>Matricula</th>
+                        <th id="th-id" style="cursor: pointer">ID <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
+                        <th id="th-moto" style="cursor: pointer">Moto <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
+                        <th>Matrícula</th>
                         <th>Kilometraje</th>
                         <th>Rueda trasera</th>
                         <th>Rueda delantera</th>
@@ -33,13 +62,12 @@
                         <th>Reglaje de válvulas</th>
                         <th>Gastos</th>
                         <th>Acciones</th>
-
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($mantenimientos as $mantenimiento)
                         <tr>
-                            <td>{{ $mantenimiento->idMantenimiento }}</td>
+                            <th class="pr-4">{{ $mantenimiento->idMantenimiento }}</th>
                             <td>{{ $mantenimiento->Moto->marca }} {{ $mantenimiento->Moto->modelo }}</td>
                             <td>{{ $mantenimiento->Moto->matricula }}</td>
                             <td>
