@@ -92,6 +92,19 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function deleteMultiple(Request $request) {
+        $selectedUserIds = $request->input('selectedUsers');
+    
+        if (empty($selectedUserIds)) {
+            return redirect()->back();
+        }
+    
+        User::whereIn('idUsuario', $selectedUserIds)->delete();
+    
+        return redirect()->back();
+    }
+    
+
     public function checkEmail(Request $request)
     {
         $email = $request->input('email');

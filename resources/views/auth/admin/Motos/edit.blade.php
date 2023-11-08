@@ -154,7 +154,7 @@
                         <button type="submit" class="btn text-white btn-sm" style="background-color: #c65f20;">
                             Editar moto
                         </button>
-                        <a href="{{ route('motos.index') }}" class="btn btn-sm btn-secondary" >Cancelar</a>
+                        <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary" >Cancelar</a>
                     </div>
                 </div>
             </form>

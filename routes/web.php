@@ -39,6 +39,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/checkEmail', 'App\Http\Controllers\Admin\UserController@checkEmail')->name('checkEmail');
 
+    Route::delete('/users/deleteMultiple', 'App\Http\Controllers\Admin\UserController@deleteMultiple')->name('users.deleteMultiple');
+
 });
 
 

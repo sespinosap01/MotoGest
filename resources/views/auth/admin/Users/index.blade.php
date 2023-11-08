@@ -59,9 +59,14 @@
 <br>
 
     @if(count($users) > 0)
+    <form action="{{ route('users.deleteMultiple') }}" method="post">
+        @csrf
+        @method('DELETE')
+        
         <table class="table table-hover table-striped ">
             <thead>
                 <tr>
+                    <th><i class="fa-regular fa-trash-can" style="color: red"></i></th>
                     <th id="th-id" style="cursor: pointer">ID <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
                     <th id="th-email" style="cursor: pointer">Email <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>                    
                     <th>Nombre</th>                    
@@ -75,6 +80,7 @@
             <tbody>
                 @foreach ($users as $user)
                     <tr>
+                        <td><input type="checkbox" name="selectedUsers[]" value="{{ $user->idUsuario }}"></td>
                         <th class="pr-4">{{ $user->idUsuario }} </th>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->nombre }}</td>
@@ -93,13 +99,15 @@
                         <td>
                             <div class="d-flex gap-3">
                                 <a href="{{route('user.edit' , $user->idUsuario)}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>   
-                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$user->idUsuario}}"><i class="fa-regular fa-trash-can"></i></button> 
+                                <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$user->idUsuario}}"><i class="fa-regular fa-trash-can"></i></a> 
                             </div>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        <button type="submit" class="btn btn-danger btn-sm">Eliminar seleccionados</button>
+    </form>
     @else
         <p>No hay usuarios registrados en esta pagina</p>
     @endif

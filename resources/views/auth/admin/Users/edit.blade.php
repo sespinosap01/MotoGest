@@ -96,7 +96,7 @@
                         <button type="submit" id="crearUsuario"  class="btn text-white btn-sm" style="background-color: #c65f20;">
                             Editar usuario
                         </button>
-                        <a href="{{ route('users.index') }}" class="btn btn-sm btn-secondary" >Cancelar</a>
+                        <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary" >Cancelar</a>
                     </div>
                 </div>
             </form>
