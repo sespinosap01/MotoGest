@@ -82,8 +82,8 @@
                             @endif
                             <td>
                                 <div class="d-flex gap-3">
-                                    <a href="{{route('moto.edit' , $moto->idMoto)}}" class="btn btn-warning btn-sm">Editar</a>
-                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$moto->idMoto}}">Eliminar</button> 
+                                    <a href="{{route('moto.edit' , $moto->idMoto)}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$moto->idMoto}}"><i class="fa-regular fa-trash-can"></i></button> 
                                 </div>
                             </td>
                         </tr>

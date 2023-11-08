@@ -92,8 +92,8 @@
                         </td>
                         <td>
                             <div class="d-flex gap-3">
-                                <a href="{{route('user.edit' , $user->idUsuario)}}" class="btn btn-warning btn-sm">Editar</a>   
-                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$user->idUsuario}}">Eliminar</button> 
+                                <a href="{{route('user.edit' , $user->idUsuario)}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>   
+                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$user->idUsuario}}"><i class="fa-regular fa-trash-can"></i></button> 
                             </div>
                         </td>
                     </tr>

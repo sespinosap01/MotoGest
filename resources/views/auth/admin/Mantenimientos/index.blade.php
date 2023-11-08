@@ -135,7 +135,7 @@
                             </td>
                             <td>
                                 <div class="d-flex gap-3">
-                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$mantenimiento->idMantenimiento}}">Eliminar</button> 
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$mantenimiento->idMantenimiento}}"><i class="fa-regular fa-trash-can"></i></button> 
                                 </div>
                             </td>
                         </tr>
