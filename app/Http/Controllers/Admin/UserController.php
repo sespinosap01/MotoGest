@@ -53,6 +53,12 @@ class UserController extends Controller
         $user->numTelefono = $request->input('numTelefono');
         $user->rol_id = $request->input('rol_id');
 
+        $existsteEmail = User::where('email', $user->email)->first();
+        if ($existsteEmail && $existsteEmail->idUsuario !== $user->idUsuario) {
+            $roles = Rol::all();
+            return view('auth.admin.users.create')->with('roles', $roles);       
+        }
+
         $user->save();
         return redirect()->route('users.index');
     }

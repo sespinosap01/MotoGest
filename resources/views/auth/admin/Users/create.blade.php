@@ -10,13 +10,10 @@ function validateEmail() {
             $('#msgErrorEmail').text('El correo electrónico ya está registrado').show();
             $('#crearUsuario').prop('disabled', true);
             $('#email').addClass('is-invalid');
-
-
         } else {
             $('#msgErrorEmail').text('').hide();
             $('#crearUsuario').prop('disabled', false);
             $('#email').removeClass('is-invalid');
-
         }
     });
 }
@@ -56,7 +53,7 @@ function validateEmail() {
 
                     <div class="col-md-6">
                         <input id="email" type="email" class="form-control" name="email" 
-                        value="{{ old('email') }}" required autocomplete="email" placeholder="Ej: micorreo@gmail.com" onchange="validateEmail()">
+                        value="{{ old('email') }}" required autocomplete="email" placeholder="Ej: micorreo@gmail.com" oninput="validateEmail()">
                         <span class="invalid-feedback" role="alert" id="msgErrorEmail"></span>
                     </div>
                 </div>

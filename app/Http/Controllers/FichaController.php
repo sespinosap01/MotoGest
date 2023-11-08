@@ -45,7 +45,8 @@ class FichaController extends Controller
         
         $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
    
-        $nuevosGastos = $request->input('sumarGastos');
+        $nuevosGastos = max(0, $request->input('sumarGastos'));
+
     
         $mantenimiento->gastosGeneral += $nuevosGastos;
         $mantenimiento->save();
@@ -61,8 +62,8 @@ class FichaController extends Controller
             return abort(403); 
         }
     
-        $nuevoCampo = $request->input('kilometraje');
-    
+        $nuevoCampo = max(0, $request->input('kilometraje'));
+
         $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
     
         if (!$mantenimiento) {
@@ -92,7 +93,8 @@ class FichaController extends Controller
             return abort(403);
         }
 
-        $nuevoCampo = $request->input('nuevoCampo');
+        $nuevoCampo = max(0, $request->input('nuevoCampo'));
+
         $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
     
         if (!$mantenimiento) {
@@ -118,15 +120,15 @@ class FichaController extends Controller
             return abort(404);
         }
     
-        $kmAceiteMotor = $request->input('kmAceiteMotor');
-        $kmRuedaTrasera = $request->input('kmRuedaTrasera');
-        $kmRuedaDelantera = $request->input('kmRuedaDelantera');
-        $kmPastillaFrenoDelantero = $request->input('kmPastillaFrenoDelantero');
-        $kmPastillaFrenoTrasero = $request->input('kmPastillaFrenoTrasero');
-        $kmReglajeValvulas = $request->input('kmReglajeValvulas');
-        $kmCadena = $request->input('kmCadena');
-        $kmRetenesHorquilla = $request->input('kmRetenesHorquilla');
-        $kmKitTransmision = $request->input('kmKitTransmision');
+        $kmAceiteMotor = max(0, $request->input('kmAceiteMotor'));
+        $kmRuedaTrasera = max(0, $request->input('kmRuedaTrasera'));
+        $kmRuedaDelantera = max(0, $request->input('kmRuedaDelantera'));
+        $kmPastillaFrenoDelantero = max(0, $request->input('kmPastillaFrenoDelantero'));
+        $kmPastillaFrenoTrasero = max(0, $request->input('kmPastillaFrenoTrasero'));
+        $kmReglajeValvulas = max(0, $request->input('kmReglajeValvulas'));
+        $kmCadena = max(0, $request->input('kmCadena'));
+        $kmRetenesHorquilla = max(0, $request->input('kmRetenesHorquilla'));
+        $kmKitTransmision = max(0, $request->input('kmKitTransmision'));
 
         $mantenimiento->update([
             'kmAceiteMotor' => $kmAceiteMotor,

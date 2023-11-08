@@ -91,8 +91,8 @@
                     <h5 class="card-title"><i class="fa-solid fa-plus" style="color: #c65f20;"></i> Añadir kilómetros</h5>
                     <form action="{{ route('fichas.sumarKilometraje', ['idMoto' => $moto->idMoto]) }}" method="POST">
                         @csrf
-                        <input type="number" class="form-control mb-3" name="kilometraje" placeholder="Introduce los kilómetros a sumar" oninput="limitarLongitud(this, 9)">
-
+                        <input type="number" class="form-control mb-3" name="kilometraje" 
+                        placeholder="Introduce los kilómetros a sumar" oninput="limitarLongitud(this, 9)" required>
                         <button type="submit" class="btn btn-success btn-sm">Sumar kilómetros</button>
                     </form>
                 </div>
@@ -105,7 +105,7 @@
                     <form action="{{ route('fichas.agregarGastos', ['idMoto' => $moto->idMoto]) }}" method="POST">
                         @csrf
                         <input type="number" class="form-control mb-3" name="sumarGastos"
-                            placeholder="Introduce los gastos a sumar" oninput="limitarLongitud(this, 9)">
+                            placeholder="Introduce los gastos a sumar" oninput="limitarLongitud(this, 9)" required>
                         <button type="submit" class="btn btn-success btn-sm">Sumar gastos</button>
                     </form>
                 </div>
@@ -221,7 +221,7 @@
                 <h1>Kilometrajes</h1>
                 <button type="button"  class="btn btn-sm btn-warning transition" data-toggle="modal" data-target="#kmUpdateModal">
                     <i class="fa-solid fa-pen-to-square"></i> 
-                    Modificar campos
+                    Modificar kilometrajes
                 </button>
             </div>
         </div>
@@ -584,7 +584,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="kmUpdateModalLabel">Modificar Kilometraje</h5>
+                    <h5 class="modal-title" id="kmUpdateModalLabel"><i class="fa-solid fa-pen-to-square" style="color: #c65f20"></i> Modificar kilometrajes</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

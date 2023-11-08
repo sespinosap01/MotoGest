@@ -47,7 +47,7 @@
         </div>
 
         @if(count($mantenimientos) > 0)
-            <table class="table table-hover">
+        <table class="table table-hover table-striped ">
                 <thead>
                     <tr>
                         <th id="th-id" style="cursor: pointer">ID <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
