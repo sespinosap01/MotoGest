@@ -11,8 +11,8 @@ class MantenimientoController extends Controller
 {
     public function index()
     {
-        $mantenimientos = Mantenimiento::all();
-        $motos = Moto::all();
+        $mantenimientos = Mantenimiento::paginate(10);
+        $motos = Moto::paginate(10); 
 
         $totalMantenimientos = Mantenimiento::count();
 
@@ -25,6 +25,6 @@ class MantenimientoController extends Controller
 
         $mantenimiento ->delete();
 
-        return redirect()->route('mantenimientos.index');
+        return redirect()->back();
     }
 }

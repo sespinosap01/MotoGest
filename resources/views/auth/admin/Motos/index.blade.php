@@ -94,6 +94,27 @@
             <br>
             <p>No hay motos registradas</p>
         @endif
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item {{ $motos->onFirstPage() ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $motos->previousPageUrl() }}" aria-label="Anterior">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                </li>
+                @for ($i = 1; $i <= $motos->lastPage(); $i++)
+                    <li class="page-item {{ $i == $motos->currentPage() ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $motos->url($i) }}">{{ $i }}</a>
+                    </li>
+                @endfor
+                <li class="page-item {{ $motos->hasMorePages() ? '' : 'disabled' }}">
+                    <a class="page-link" href="{{ $motos->nextPageUrl() }}" aria-label="Siguiente">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Siguiente</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     @endif
     <br><br>
 </div>

@@ -13,7 +13,7 @@ class MotoController extends Controller
 {
     public function index()
     {
-        $motos = Moto::all();
+        $motos = Moto::paginate(10); 
         $users = User::all();
         $totalMotos = Moto::count();
         return view('auth.admin.motos.index', ['motos' => $motos, 'users' => $users, 'totalMotos' => $totalMotos]);
@@ -30,11 +30,18 @@ class MotoController extends Controller
         return $this->saveMoto($request, null);
     }
 
-    public function update(Request $request , $idMoto){
+    public function update(Request $request, $idMoto){
         $moto = Moto::find($idMoto);
-
-        return $this->saveMoto($request, $idMoto);
+    
+        $this->saveMoto($request, $idMoto);
+    
+        // Recupera la URL anterior de la sesión.
+        $previousUrl = $request->session()->get('previous_url');
+    
+        // Redirige al usuario de vuelta a la URL anterior.
+        return redirect($previousUrl);
     }
+    
 
     public function saveMoto(Request $request, $idMoto){
         if($idMoto){
@@ -71,17 +78,20 @@ class MotoController extends Controller
         return redirect()->route('motos.index');
     }
 
-    public function edit($idMoto){
+    public function edit($idMoto, Request $request){
         $moto = Moto::find($idMoto);
-
+    
         if(!$moto){
             return $this->index();
         }
-
+    
         $users = User::all();
-        
-        return view('auth.admin.motos.edit', ['moto' => $moto], ['users' => $users]);
+    
+        $request->session()->put('previous_url', url()->previous());
+    
+        return view('auth.admin.motos.edit', ['moto' => $moto, 'users' => $users]);
     }
+    
 
     public function destroy(string $idMoto){
         $moto = Moto::find($idMoto);
@@ -94,6 +104,6 @@ class MotoController extends Controller
             File::delete(public_path($imagePath));
         }
 
-        return redirect()->route('motos.index');
+        return redirect()->back();
     }
 }
