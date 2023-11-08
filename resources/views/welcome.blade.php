@@ -43,16 +43,16 @@
         }
 
         .botonesDerecha {
-            text-align: right
+            text-align: right;
         }
 
         a {
             text-decoration: none;
-            color: white
+            color: white;
         }
 
         a:hover{            
-            color: #c65f20
+            color: #c65f20;
         }
 
         #logoOverlay {
@@ -85,43 +85,21 @@
 
     <div class="content">
         <h1><a href="{{ url('/home') }}">MotoGest</a></h1>
-        <p>Tu web donde podrás gestionar el mantenimiento de tus motos de la manera más sencilla</p>
+        <p>Tu aplicación web donde podrás gestionar el mantenimiento de tus motos de la manera más sencilla</p>
 
+        <a href="{{ url('/home') }}" class="btn text-white" style="background-color: #c65f20;">Entrar</a>
         <div class="botonesDerecha">
-            <div class="row">
-                <div class="col-1">
-                    <button id="botonPausar" class="btn btn-success" onclick="funcionPausar()">Pausar</button>
-                </div>
-                <div class="col-11">
-                    @if (Route::has('login'))
-                    @auth
-                    <a href="{{ url('/home') }}" class="btn text-white" style="background-color: #c65f20;">Entrar</a>
+            @if (Route::has('login'))
+                @auth
                     @else
-                    <a href="{{ route('login') }}" class="btn btn-primary">Iniciar Sesión</a>
+                        <a href="{{ route('login') }}" class="btn btn-primary">Iniciar Sesión</a>
                     @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="btn btn-warning">Registrarse</a>
+                        <a href="{{ route('register') }}" class="btn btn-warning">Registrarse</a>
                     @endif
-                    @endauth
-                    @endif
-                </div>
-            </div>
+                @endauth
+            @endif
         </div>
     </div>
-
-    <script>
-        var video = document.getElementById("backgroundVideo");
-        var btn = document.getElementById("botonPausar");
-
-        function funcionPausar() {
-            if (video.paused) {
-                video.play();
-                btn.innerHTML = "Pausar";
-            } else {
-                video.pause();
-                btn.innerHTML = "Reproducir";
-            }
-        }
-    </script>
 </body>
 
 </html>

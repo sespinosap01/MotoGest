@@ -101,8 +101,29 @@
             </tbody>
         </table>
     @else
-        <p>No hay usuarios registrados</p>
+        <p>No hay usuarios registrados en esta pagina</p>
     @endif
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item {{ $users->onFirstPage() ? 'disabled' : '' }}">
+                <a class="page-link" href="{{ $users->previousPageUrl() }}" aria-label="Anterior">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+            </li>
+            @for ($i = 1; $i <= $users->lastPage(); $i++)
+                <li class="page-item {{ $i == $users->currentPage() ? 'active' : '' }}">
+                    <a class="page-link" href="{{ $users->url($i) }}">{{ $i }}</a>
+                </li>
+            @endfor
+            <li class="page-item {{ $users->hasMorePages() ? '' : 'disabled' }}">
+                <a class="page-link" href="{{ $users->nextPageUrl() }}" aria-label="Siguiente">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 
 @endif
 </div>

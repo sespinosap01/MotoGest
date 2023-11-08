@@ -13,12 +13,12 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        $totalUsers = User::count();
-
-
-        return view('auth.admin.users.index',  ['users'=>$users, 'totalUsers'=>$totalUsers]);
+        $users = User::paginate(10); 
+        $totalUsers = User::count(); 
+    
+        return view('auth.admin.users.index', ['users' => $users, 'totalUsers' => $totalUsers]);
     }
+    
 
     public function create(){
         
@@ -32,11 +32,16 @@ class UserController extends Controller
         return $this->saveUser($request, null);
     }
 
-    public function update(Request $request , $idUsuario){
+    public function update(Request $request, $idUsuario){
         $user = User::find($idUsuario);
-
-        return $this->saveUser($request, $idUsuario);
+    
+        $this->saveUser($request, $idUsuario);
+    
+        $previousUrl = $request->session()->get('previous_url');
+    
+        return redirect($previousUrl);
     }
+    
 
 
     public function saveUser(Request $request, $idUsuario){
@@ -63,24 +68,28 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function edit($idUsuario){
+    public function edit($idUsuario, Request $request){
         $user = User::find($idUsuario);
-
+    
         if(!$user){
             return $this->index();
         }
-
+    
         $roles = Rol::all();
-        
-        return view('auth.admin.users.edit', ['user' => $user], ['roles' => $roles]);
+    
+        // Almacena la URL anterior en la sesión.
+        $request->session()->put('previous_url', url()->previous());
+    
+        return view('auth.admin.users.edit', ['user' => $user, 'roles' => $roles]);
     }
+    
 
     public function destroy($idUsuario){
         $user = User::find($idUsuario);
 
         $user ->delete();
 
-        return redirect()->route('users.index');
+        return redirect()->back();
     }
 
     public function checkEmail(Request $request)
