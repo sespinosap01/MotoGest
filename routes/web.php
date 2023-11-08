@@ -40,6 +40,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/checkEmail', 'App\Http\Controllers\Admin\UserController@checkEmail')->name('checkEmail');
 
     Route::delete('/users/deleteMultiple', 'App\Http\Controllers\Admin\UserController@deleteMultiple')->name('users.deleteMultiple');
+    Route::delete('/motos/deleteMultiple', 'App\Http\Controllers\Admin\MotoController@deleteMultiple')->name('motos.deleteMultiple');
+    Route::delete('/mantenimientos/deleteMultiple', 'App\Http\Controllers\Admin\MantenimientoController@deleteMultiple')->name('mantenimientos.deleteMultiple');
 
 });
 

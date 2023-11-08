@@ -49,9 +49,14 @@
         </div>
         <br>
         @if(count($motos) > 0)
+        <form action="{{ route('motos.deleteMultiple') }}" method="post">
+            @csrf
+            @method('DELETE')
+            
         <table class="table table-hover table-striped ">
             <thead>
                     <tr>
+                        <th><i class="fa-regular fa-trash-can" style="color: red"></i></th>
                         <th id="th-id" style="cursor: pointer">ID <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
                         <th>Marca</th>
                         <th>Modelo</th>
@@ -67,6 +72,7 @@
                 <tbody>
                     @foreach ($motos as $moto)
                         <tr>
+                            <td><input type="checkbox" name="selectedMotos[]" value="{{ $moto->idMoto }}"></td>
                             <th class="pr-4">{{ $moto->idMoto }}</th>
                             <td>{{ $moto->marca }}</td>
                             <td>{{ $moto->modelo }}</td>
@@ -83,13 +89,15 @@
                             <td>
                                 <div class="d-flex gap-3">
                                     <a href="{{route('moto.edit' , $moto->idMoto)}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$moto->idMoto}}"><i class="fa-regular fa-trash-can"></i></button> 
+                                    <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$moto->idMoto}}"><i class="fa-regular fa-trash-can"></i></a> 
                                 </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
         </table>
+        <button type="submit" class="btn btn-danger btn-sm">Eliminar seleccionados</button>
+    </form>
         @else
             <br>
             <p>No hay motos registradas</p>

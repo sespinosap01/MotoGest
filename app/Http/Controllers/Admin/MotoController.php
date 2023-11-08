@@ -106,4 +106,16 @@ class MotoController extends Controller
 
         return redirect()->back();
     }
+
+    public function deleteMultiple(Request $request) {
+        $selectedMotoIds = $request->input('selectedMotos');
+    
+        if (empty($selectedMotoIds)) {
+            return redirect()->back();
+        }
+    
+        Moto::whereIn('idMoto', $selectedMotoIds)->delete();
+    
+        return redirect()->back();
+    }
 }

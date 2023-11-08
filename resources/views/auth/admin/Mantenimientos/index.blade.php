@@ -47,9 +47,14 @@
         </div>
 
         @if(count($mantenimientos) > 0)
+        <form action="{{ route('mantenimientos.deleteMultiple') }}" method="post">
+            @csrf
+            @method('DELETE')
+            
         <table class="table table-hover table-striped ">
                 <thead>
                     <tr>
+                        <th><i class="fa-regular fa-trash-can" style="color: red"></i></th>
                         <th id="th-id" style="cursor: pointer">ID <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
                         <th id="th-moto" style="cursor: pointer">Moto <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
                         <th>Matrícula</th>
@@ -67,6 +72,7 @@
                 <tbody>
                     @foreach ($mantenimientos as $mantenimiento)
                         <tr>
+                            <td><input type="checkbox" name="selectedMantenimientos[]" value="{{ $mantenimiento->idMantenimiento }}"></td>
                             <th class="pr-4">{{ $mantenimiento->idMantenimiento }}</th>
                             <td>{{ $mantenimiento->Moto->marca }} {{ $mantenimiento->Moto->modelo }}</td>
                             <td>{{ $mantenimiento->Moto->matricula }}</td>
@@ -135,13 +141,15 @@
                             </td>
                             <td>
                                 <div class="d-flex gap-3">
-                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$mantenimiento->idMantenimiento}}"><i class="fa-regular fa-trash-can"></i></button> 
+                                    <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$mantenimiento->idMantenimiento}}"><i class="fa-regular fa-trash-can"></i></a> 
                                 </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+        <button type="submit" class="btn btn-danger btn-sm">Eliminar seleccionados</button>
+        </form>
         @else
             <br>
             <p>No hay mantenimientos registrados</p>
