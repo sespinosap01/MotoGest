@@ -97,6 +97,19 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="politicaPrivacidad"
+                                           id="politicaPrivacidad" required>
+                                    <label class="form-check-label" for="politicaPrivacidad">
+                                        Acepto la <a href="{{ asset('documents/docpdf.pdf') }}" target="_blank" style="text-decoration: none;">política de privacidad y uso</a>.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn text-white" style="background-color: #c65f20;">

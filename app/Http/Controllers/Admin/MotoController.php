@@ -114,8 +114,16 @@ class MotoController extends Controller
             return redirect()->back();
         }
     
+        $imagePaths = Moto::whereIn('idMoto', $selectedMotoIds)->pluck('imagen');
+        foreach ($imagePaths as $imagePath) {
+            if ($imagePath) {
+                File::delete(public_path($imagePath));
+            }
+        }
+    
         Moto::whereIn('idMoto', $selectedMotoIds)->delete();
     
         return redirect()->back();
     }
+    
 }

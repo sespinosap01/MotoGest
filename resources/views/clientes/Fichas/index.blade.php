@@ -40,17 +40,41 @@
     }
 
     hr{
-        height: 2px;
-        width: 70%;
+        height: 3px;
         position: relative;
         margin: 30px auto;
         background: black;
     }
+    .pointer{
+        cursor: pointer;
+    }
+
+    @keyframes latidos {
+    from { transform: none; }
+    50% { transform: scale(1.2); }
+    to { transform: none; }
+    }
+
+    .latidoInfo {
+    display: inline-block;
+    animation: latidos 3s infinite;
+    transform-origin: center;
+    }
+
 </style>
 
 
 <div class="container">
-    <h1 class="mb-3"><i class="fa-solid fa-motorcycle" style="color: #c65f20;"></i> {{$moto->marca}} {{$moto->modelo}}</h1>    
+    <div class="row">
+        <div class="col-6 text-left">
+            <h1 class="mb-3"><i class="fa-solid fa-motorcycle" style="color: #c65f20;"></i> {{$moto->marca}} {{$moto->modelo}}</h1>    
+        </div>
+        <div class="col-6 text-right" >
+            <a type="button" data-toggle="modal" data-target="#modalInfo">
+                <h4><i class="fa-solid fa-circle-info fa-2xl pointer latidoInfo" ></i></h4>
+            </a>
+        </div>
+    </div>
     <div class="row d-flex justify-content-around">
         <div class="col-md-6 mb-4">
             <div class="card shadow transition">
@@ -70,7 +94,7 @@
         <div class=" col-md-6 mb-4">
             <div class="card shadow transition">
                 <div class="card-body text-center">
-                    <h2 class="card-title"><i class="fa-solid fa-money-bills" style="color: #c65f20;"></i> Gastos totales</h2>
+                    <h2 class="card-title"><i class="fa-solid fa-money-bills" style="color: #c65f20;"></i> Gastos</h2>
                     @if(isset($mantenimiento->gastosGeneral))
                     <p><h5 class="card-text">{{ $mantenimiento->gastosGeneral }}€</h5></p>
                     @else
@@ -202,7 +226,7 @@
                         @elseif ($diasDesdeCambio == 1)
                         <p class="card-text">La batería se cambió ayer</p>
                         @else
-                        <p class="card-text">La batería tiene {{ $diasDesdeCambio }} días desde el último cambio</p>
+                        <p class="card-text">Cambiaste la batería hace {{ $diasDesdeCambio }} días </p>
                         @endif
                     @else
                         <p class="card-text">No hay datos registrados</p>
@@ -215,11 +239,20 @@
                 </div>
             </div>
         </div>
-        <hr class="mt-3 mb-4">
+        <hr class="mt-3 mb-4 w-75">
         <div class="row mb-4">
-            <div class="col-6">
-                <h1>Kilometrajes</h1>
-                <button type="button"  class="btn btn-sm btn-warning transition" data-toggle="modal" data-target="#kmUpdateModal">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6 text-left">
+                        <h1>Kilometrajes</h1>                    
+                    </div>
+                    <div class="col-6 text-right" >
+                        <a type="button" data-toggle="modal" data-target="#modalInfoKM">
+                            <h4><i class="fa-solid fa-circle-info fa-2xl pointer latidoInfo" ></i></h4>
+                        </a>
+                    </div>
+                </div>
+                    <button type="button"  class="btn btn-sm btn-warning transition" data-toggle="modal" data-target="#kmUpdateModal">
                     <i class="fa-solid fa-pen-to-square"></i> 
                     Modificar kilometrajes
                 </button>
@@ -555,8 +588,7 @@
         </div>
     </div> 
 
-
-    <!--Modal para kilometraje-->
+    <!--Modal para modificar tacometro-->
     <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -580,6 +612,7 @@
         </div>
     </div>
 
+    <!--Modal de modificar kilometros-->
     <div class="modal fade" id="kmUpdateModal" tabindex="-1" role="dialog" aria-labelledby="kmUpdateModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -645,6 +678,79 @@
             </div>
         </div>
     </div>
-    
 
+    <!--Modal de info-->
+    <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="modalInfo" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">¿Cómo Funciona?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ¡Hola! Si es tu primera vez utilizando la aplicación, te sugerimos que revises la siguiente información:
+              <br><br>
+              <ul>
+                <li>Para ajustar el kilometraje del tacómetro sin afectar otros aspectos de la moto, utiliza la primera 
+                    carta de <i><b>"Kilometraje del tacómetro"</i></b>. Por ejemplo, si adquiriste una moto de segunda 
+                    mano y necesitas introducir su información, podrás <b>actualizar solo el tacómetro</b> si el kilometraje entre piezas
+                    es distinto y más tarde en el boton naranja de <i><b>"Modificar kilometrajes"</b></i>
+                    podrás actualizar los otros kilometrajes.
+                </li>
+                <br>
+                <li>Al hacer uso del boton <b><i>"Sumar kilómetros"</i></b> sumarás el kilometraje introducido tanto al tacómetro
+                    como a todos los apartados de la moto. Esta opcion es ideal <b>si quieres introducir el kilometraje que has 
+                    recorrido</b> a lo largo de una semana o saliendo de ruta.
+                </li>
+                <br>
+                <li>Los gastos te permiten agregar costos específicos y llevar un control durante un periodo determinado.
+                     <b>Tú tienes el control</b>.
+                </li>
+                <br>
+                <li>Introduce las fechas indicadas en las cartas y la aplicación <b>te avisará</b> cuando falten  
+                    <b>menos de 50</b> días para el vencimiento de la ITV y o el seguro.
+                </li>
+              </ul>
+              Agradecemos tu atención. Recuerda que si tienes alguna duda o alguna propuesta de mejora puedes
+              contactar con nosotros en <a href="mailto:motogestsoporte@gmail.com" style="text-decoration: none;">este correo.</a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn text-white btn-sm" style="background-color: #c65f20;" data-dismiss="modal"><i class="fa-regular fa-circle-check"></i> Entendido</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!--Modal de info KM-->
+    <div class="modal fade" id="modalInfoKM" tabindex="-1" role="dialog" aria-labelledby="modalInfoKM" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Sobre los kilometrajes</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Información sobre como manejar los kilometrajes de tu moto:
+              <br><br>
+              <ul>
+                <li>Si has realizado un mantenimiento simplemente actualiza su kilometraje a 0 o usa el boton de 
+                    <i><b>"Reestablecer"</b></i> para volver a llevar el control de nuevo.
+                </li>            
+                <br>
+                <li>Ten en cuenta que los <b>kilometrajes recomendados</b> para cada mantenimiento se establecen 
+                    como norma general. <b>Pueden variar significativamente según tu moto y tu estilo de conducción</b>.
+                    Es recomendable que te informes cómo funciona tu moto específica.
+                </li>
+              </ul>              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn text-white btn-sm" style="background-color: #c65f20;" data-dismiss="modal"><i class="fa-regular fa-circle-check"></i> Entendido</button>
+            </div>
+          </div>
+        </div>
+    </div>
     @endsection

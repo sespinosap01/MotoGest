@@ -51,9 +51,9 @@
                     <p class="card-text"><i class="fa-solid fa-ticket" style="color: #c65f20;"></i> {{ $moto->matricula }}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <a href="{{ route('motopanel.edit', $moto->idMoto) }}" class="btn btn-warning btn-sm">Editar</a>
-                    <a href="{{ route('fichas.index', $moto->idMoto) }}" class="btn btn-success btn-sm">Mantenimientos</a>
-                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$moto->idMoto}}">Eliminar</button>
+                    <a href="{{ route('motopanel.edit', $moto->idMoto) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="{{ route('fichas.index', $moto->idMoto) }}" class="btn btn-success btn-sm"><i class="fa-solid fa-gears"></i> Mantenimientos</a>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$moto->idMoto}}"><i class="fa-regular fa-trash-can"></i></button>
                 </div>
             </div>
         </div>

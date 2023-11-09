@@ -77,7 +77,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-md p-3">
             <div class="container">
                 <div class="navbar-brand">
                     <a href="/" class="text-decoration-none"><img src="{!! asset('images/logo/logoPNG.png') !!}"

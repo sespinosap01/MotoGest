@@ -36,7 +36,7 @@ hr{
     <a class="btn text-white btn-xl" style="background-color: #c65f20;" href="#about">Conócenos</a>
    <br><br>
     <!-- Carousel for images -->
-    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel" >
+    <div id="carouselExampleControls" class="carousel slide carousel-fade shadow" data-ride="carousel" >
         <div class="carousel-inner active"> 
             <div class="carousel-item active">
                 <img src="{!! asset('images/varios/slider1.jpg') !!}" class="d-block w-100 rounded" alt="imgSlider1">
@@ -213,7 +213,7 @@ hr{
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h2>Contacto</h2>
-                <p>Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto con nosotros en <a href="mailto:soporte@motogest.es">este correo</a>
+                <p>Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto con nosotros en <a href="mailto:motogestsoporte@gmail.com" style="text-decoration: none;">este correo</a>
                 . Estamos aquí para ayudarte en todo lo que necesites.</p>
             </div>
         </div>
@@ -270,6 +270,7 @@ hr{
             tanto de todo lo relacionado con tu pasión por las motos! Suscríbete hoy.
         </p>
       </section>  
+      <p class="text-center"><a href="{{ asset('documents/docpdf.pdf') }}" target="_blank" style="text-decoration: none;">Política de privacidad y uso</a></p>
     </div>
   
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
