@@ -52,7 +52,7 @@
                 </div>
                 <div class="card-footer d-flex justify-content-between">
                     <a href="{{ route('motopanel.edit', $moto->idMoto) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href="{{ route('fichas.index', $moto->idMoto) }}" class="btn btn-success btn-sm"><i class="fa-solid fa-gears"></i> Mantenimientos</a>
+                    <a href="{{ route('fichas.index', $moto->idMoto) }}" class="btn btn-success btn-sm"><i class="fa-solid fa-wrench"></i> Mantenimientos</a>
                     <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$moto->idMoto}}"><i class="fa-regular fa-trash-can"></i></button>
                 </div>
             </div>

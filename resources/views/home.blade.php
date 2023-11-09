@@ -68,7 +68,7 @@ hr{
 
 <hr  id="about">
 
-    <div class="container px-4 mb-3" data-aos="fade-left">
+    <div class="container px-4 mb-3">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h2>Sobre nosotros</h2>
@@ -86,18 +86,18 @@ hr{
 
     <hr>
 
-    <div class="container px-4 mb-3" data-aos="fade-right">
+    <div class="container px-4 mb-3">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h2>¡Descarga próximamente la app de <b>MotoGest</b>!</h2>
-                <div class="row text-center mb-4"> <!-- Añadido text-center para centrar los botones horizontalmente -->
+                <div class="row text-center mb-4"> 
                     <img src="{{ asset('images/varios/appPubli.png') }}" width="100%">
                 </div>
-                <div class="row text-center"> <!-- Añadido text-center para centrar los botones horizontalmente -->
-                    <div class="col-md-6 col-6"> <!-- Cambiado col-md-6 a col-md-6 col-6 para que estén uno al lado del otro -->
+                <div class="row text-center"> 
+                    <div class="col-md-6 col-6"> 
                         <a href="https://www.apple.com/es/app-store/" class="btn btn-dark" target="_blank"><i class="fa-brands fa-app-store fa-lg" style="color: #ffffff;"></i> Ver en IOS</a>
                     </div>
-                    <div class="col-md-6 col-6"> <!-- Cambiado col-md-6 a col-md-6 col-6 para que estén uno al lado del otro -->
+                    <div class="col-md-6 col-6">
                         <a href="https://play.google.com/store/" class="btn btn-dark" target="_blank"><i class="fa-brands fa-google-play fa-lg" style="color: #ffffff;"></i> Ver en Android</a>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ hr{
     
     <hr>
 
-    <div class="container px-4 mb-3" data-aos="fade-left">
+    <div class="container px-4 mb-3">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h2>Preguntas frecuentes</h2>
@@ -209,12 +209,12 @@ hr{
     
     <hr>
 
-    <div class="container px-4 mb-3" data-aos="fade-right">
+    <div class="container px-4 mb-3">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h2>Contacto</h2>
                 <p>Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto con nosotros en <a href="mailto:motogestsoporte@gmail.com" style="text-decoration: none;">este correo</a>
-                . Estamos aquí para ayudarte en todo lo que necesites.</p>
+                . Estamos para ayudarte en todo lo que necesites.</p>
             </div>
         </div>
     </div>
