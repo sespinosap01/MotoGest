@@ -42,10 +42,6 @@
             z-index: 1; 
         }
 
-        .botonesDerecha {
-            text-align: right;
-        }
-
         a {
             text-decoration: none;
             color: white;
@@ -86,16 +82,18 @@
     <div class="content">
         <h1><a href="{{ url('/home') }}">MotoGest</a></h1>
         <p>Tu aplicación web donde podrás gestionar el mantenimiento de tus motos de la manera más sencilla</p>
-
-        <a href="{{ url('/home') }}" class="btn text-white" style="background-color: #c65f20;">Entrar</a>
-        <div class="botonesDerecha">
+    
+        <div class="d-md-flex justify-content-between align-items-center">
+            <a href="{{ url('/home') }}" class="btn text-white" style="background-color: #c65f20;">Entrar</a>
             @if (Route::has('login'))
                 @auth
-                    @else
-                        <a href="{{ route('login') }}" class="btn btn-primary">Iniciar Sesión</a>
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="btn btn-warning">Registrarse</a>
-                    @endif
+                @else
+                    <div class="d-md-flex gap-3">
+                        <a href="{{ route('login') }}" class="btn btn-primary btn ml-md-2 mt-md-0 mt-2">Iniciar Sesión</a>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="btn btn-warning ml-md-2 mt-md-0 mt-2">Registrarse</a>
+                        @endif
+                    </div>
                 @endauth
             @endif
         </div>
