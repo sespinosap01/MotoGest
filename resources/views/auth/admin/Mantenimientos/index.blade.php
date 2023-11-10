@@ -154,16 +154,26 @@
             <br>
             <p>No hay mantenimientos registrados</p>
         @endif
-
+        <br><br>
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
+                <li class="page-item {{ $motos->onFirstPage() ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $motos->url(1) }}" aria-label="Primera">
+                        <span aria-hidden="true">&laquo;&laquo;</span>
+                        <span class="sr-only">Primera</span>
+                    </a>
+                </li>
                 <li class="page-item {{ $motos->onFirstPage() ? 'disabled' : '' }}">
                     <a class="page-link" href="{{ $motos->previousPageUrl() }}" aria-label="Anterior">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Anterior</span>
                     </a>
                 </li>
-                @for ($i = 1; $i <= $motos->lastPage(); $i++)
+                @php
+                    $start = max(1, $motos->currentPage() - 2);
+                    $end = min($start + 4, $motos->lastPage());
+                @endphp
+                @for ($i = $start; $i <= $end; $i++)
                     <li class="page-item {{ $i == $motos->currentPage() ? 'active' : '' }}">
                         <a class="page-link" href="{{ $motos->url($i) }}">{{ $i }}</a>
                     </li>
@@ -174,8 +184,15 @@
                         <span class="sr-only">Siguiente</span>
                     </a>
                 </li>
+                <li class="page-item {{ $motos->hasMorePages() ? '' : 'disabled' }}">
+                    <a class="page-link" href="{{ $motos->url($motos->lastPage()) }}" aria-label="Última">
+                        <span aria-hidden="true">&raquo;&raquo;</span>
+                        <span class="sr-only">Última</span>
+                    </a>
+                </li>
             </ul>
         </nav>
+        
     @endif
     <br><br>
 </div>

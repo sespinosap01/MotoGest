@@ -706,7 +706,7 @@
                 </li>
                 <br>
                 <li>Los gastos te permiten agregar costos específicos y llevar un control durante un periodo determinado.
-                     <b>Tú tienes el control</b>.
+                     <b>Tú tienes el control</b> y puedes reestablecerlos cuando quieras.
                 </li>
                 <br>
                 <li>Introduce las fechas indicadas en las cartas y la aplicación <b>te avisará</b> cuando falten  

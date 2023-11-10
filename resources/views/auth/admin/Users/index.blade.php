@@ -111,15 +111,26 @@
     @else
         <p>No hay usuarios registrados en esta pagina</p>
     @endif
+    <br><br>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
+            <li class="page-item {{ $users->onFirstPage() ? 'disabled' : '' }}">
+                <a class="page-link" href="{{ $users->url(1) }}" aria-label="Primera">
+                    <span aria-hidden="true">&laquo;&laquo;</span>
+                    <span class="sr-only">Primera</span>
+                </a>
+            </li>
             <li class="page-item {{ $users->onFirstPage() ? 'disabled' : '' }}">
                 <a class="page-link" href="{{ $users->previousPageUrl() }}" aria-label="Anterior">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Anterior</span>
                 </a>
             </li>
-            @for ($i = 1; $i <= $users->lastPage(); $i++)
+            @php
+                $start = max(1, $users->currentPage() - 2);
+                $end = min($start + 4, $users->lastPage());
+            @endphp
+            @for ($i = $start; $i <= $end; $i++)
                 <li class="page-item {{ $i == $users->currentPage() ? 'active' : '' }}">
                     <a class="page-link" href="{{ $users->url($i) }}">{{ $i }}</a>
                 </li>
@@ -130,8 +141,14 @@
                     <span class="sr-only">Siguiente</span>
                 </a>
             </li>
+            <li class="page-item {{ $users->hasMorePages() ? '' : 'disabled' }}">
+                <a class="page-link" href="{{ $users->url($users->lastPage()) }}" aria-label="Última">
+                    <span aria-hidden="true">&raquo;&raquo;</span>
+                    <span class="sr-only">Última</span>
+                </a>
+            </li>
         </ul>
-    </nav>
+    </nav>  
 
 @endif
 </div>
