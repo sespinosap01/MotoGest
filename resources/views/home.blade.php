@@ -68,7 +68,7 @@ hr{
 
 <hr  id="about">
 
-    <div class="container px-4 mb-3">
+    <div class="container px-4 mb-3" data-aos="fade-up">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h2>Sobre nosotros</h2>
@@ -86,7 +86,7 @@ hr{
 
     <hr>
 
-    <div class="container px-4 mb-3">
+    <div class="container px-4 mb-3" data-aos="fade-up">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h2>¡Descarga próximamente la app de <b>MotoGest</b>!</h2>
@@ -108,7 +108,7 @@ hr{
     
     <hr>
 
-    <div class="container px-4 mb-3">
+    <div class="container px-4 mb-3" data-aos="fade-up">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h2>Preguntas frecuentes</h2>
