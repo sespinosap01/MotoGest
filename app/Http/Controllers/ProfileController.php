@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    //metodo que muestra el formulario para editar tu propio perfil
     public function edit($profile)
     {
         $user = Auth::user();
@@ -16,6 +17,7 @@ class ProfileController extends Controller
         return view('perfil.edit', compact('user'));
     }
 
+    //metodo que actualiza los campos que hayan cambiado
     public function update(Request $request, $profile)
     {
         $user = Auth::user();
@@ -31,6 +33,7 @@ class ProfileController extends Controller
         return redirect()->route('home', ['profile' => $user->idUsuario]);
     }
 
+    //metodo para eliminar tu propio perfil
     public function destroy($profile){
         $user = Auth::user();
 

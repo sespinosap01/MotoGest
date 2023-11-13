@@ -41,15 +41,13 @@
                         <input type="hidden" name="email" value="{{$user->email}}">
                     </div>
                 </div>
-                
-                    
-
+                                    
                 <div class="row mb-3">
                     <label for="password" class="col-md-4 col-form-label text-md-end">Contraseña</label>
 
                     <div class="col-md-6">
                         <input id="password" type="password"
-                            class="form-control @error('password') is-invalid @enderror" name="password"@isset($user) value="{{$user->password}}" @endisset  required
+                            class="form-control @error('password') is-invalid @enderror" name="password"
                             autocomplete="new-password">
 
                         @error('password')

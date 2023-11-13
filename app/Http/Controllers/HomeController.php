@@ -13,7 +13,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        //comentado el middleware para poder acceder al home sin necesidad de iniciar sesión
+        //$this->middleware('auth');    
     }
 
     /**

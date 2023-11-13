@@ -15,6 +15,7 @@ class Mantenimiento extends Model
         return $this->belongsTo(Moto::class, 'idMoto');
     }
 
+    //habilita poder hacer updates de manera multiple
     protected $fillable = [
         'kilometraje',
         'kmAceiteMotor',

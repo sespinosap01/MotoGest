@@ -11,22 +11,26 @@ use Illuminate\Support\Facades\Auth;
 
 class FichaController extends Controller
 {
+    //metodo que carga la ficha de mantenimiento de la moto
     public function index($idMoto){
         $moto = Moto::find($idMoto);
-    
-        if($moto){ //si un usuario accede a una moto que no existe por la URL
+        //si un usuario accede a una moto que no existe por la url
+        if($moto){ 
+            //si la moto no pertenece al usuario autenticado
             if ($moto->idUsuario !== auth()->user()->idUsuario) {
-                return abort(403); //Si la moto no pertenece al usuario autenticado.
+                return abort(403); 
             }
         }else{
+            //si la moto no existe, obtiene el usuario autenticado y sus motos
             $user = Auth::user();
             $motos = $user->motos;
             return view('clientes.clientPanel', compact('motos'));
         }
         
-
+        //busca un registro de mantenimiento asociado a la moto
         $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
     
+        //si no hay registro de mantenimiento, crea uno nuevo asociado a la moto
         if (!$mantenimiento) {
             $nuevoMantenimiento = new Mantenimiento();
             $nuevoMantenimiento->idMoto = $idMoto;
@@ -36,18 +40,23 @@ class FichaController extends Controller
         return view("clientes.fichas.index", ['mantenimiento' => $mantenimiento, 'moto' => $moto ]);
     }
 
+    //metodo para sumar gastos
     public function agregarGastos(Request $request, $idMoto) {
+        //busca la instancia de la moto con el id proporcionado
         $moto = Moto::find($idMoto);
     
+        //verifica si la moto no pertenece al usuario autenticado
         if ($moto->idUsuario !== auth()->user()->idUsuario) {
             return abort(403); 
         }
         
+        //busca el registro de mantenimiento asociado a la moto
         $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
-   
+
+        //obtiene la cantidad de gastos introducidos y en caso de ser menos de 0 se convierte en 0
         $nuevosGastos = max(0, $request->input('sumarGastos'));
 
-    
+        //suma los nuevos gastos al total de gastos en el mantenimiento
         $mantenimiento->gastosGeneral += $nuevosGastos;
         $mantenimiento->save();
     
@@ -55,21 +64,27 @@ class FichaController extends Controller
 
     }
     
+    //metodo para sumar kilometraje
     public function sumarKilometraje(Request $request, $idMoto) {
+        //busca la instancia de la moto con el id proporcionado
         $moto = Moto::find($idMoto);
     
+        //verifica si la moto no pertenece al usuario autenticado
         if ($moto->idUsuario !== auth()->user()->idUsuario) {
             return abort(403); 
         }
     
+        //obtiene el kilometraje introducido y en caso de ser menos de 0 se convierte en 0
         $nuevoCampo = max(0, $request->input('kilometraje'));
 
         $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
     
+        //maneja el caso en el que no se encuentre el mantenimiento
         if (!$mantenimiento) {
-            return abort(404); // Maneja el caso en el que no se encuentre el mantenimiento.
+            return abort(404); 
         }
     
+        //actualiza los campos de kilometraje en el registro de mantenimiento
         $mantenimiento->update([
             'kilometraje' => $mantenimiento->kilometraje + $nuevoCampo,
             'kmAceiteMotor' => $mantenimiento->kmAceiteMotor + $nuevoCampo,
@@ -86,21 +101,28 @@ class FichaController extends Controller
         return redirect()->route('fichas.index', ['idMoto' => $idMoto]);
     }
     
+    //metodo para actualizar los campos
     public function updateCampos(Request $request, $idMoto, $field) {
+        //busca la instancia de la moto con el id proporcionado
         $moto = Moto::find($idMoto);
     
+        //verifica si la moto no pertenece al usuario autenticado
         if ($moto->idUsuario !== auth()->user()->idUsuario) {
             return abort(403);
         }
 
+        //obtiene el kilometraje introducido y en caso de ser menos de 0 se convierte en 0
         $nuevoCampo = max(0, $request->input('nuevoCampo'));
 
+        //busca el registro de mantenimiento asociado a la moto
         $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
     
+        //maneja el caso en el que no se encuentre el mantenimiento
         if (!$mantenimiento) {
             return abort(404);
         }
     
+        //actualiza el campo especificado en el registro de mantenimiento
         $mantenimiento->$field = $nuevoCampo;
         $mantenimiento->save();
     
@@ -108,18 +130,23 @@ class FichaController extends Controller
     }
     
     public function updateKilometrajeMultiple(Request $request, $idMoto) {
+        //busca la instancia de la moto con el id proporcionado
         $moto = Moto::find($idMoto);
     
+        //verifica si la moto no pertenece al usuario autenticado
         if ($moto->idUsuario !== auth()->user()->idUsuario) {
             return abort(403);
         }
     
+        //busca el registro de mantenimiento asociado a la moto
         $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();
     
+        //maneja el caso en el que no se encuentre el mantenimiento
         if (!$mantenimiento) {
             return abort(404);
         }
     
+        //actualiza los campos de kilometraje en el registro de mantenimiento
         $kmAceiteMotor = max(0, $request->input('kmAceiteMotor'));
         $kmRuedaTrasera = max(0, $request->input('kmRuedaTrasera'));
         $kmRuedaDelantera = max(0, $request->input('kmRuedaDelantera'));
