@@ -42,8 +42,10 @@
 <div class="container" data-aos="fade-up">
 
     @if(Auth::user()->rol->name == "User")
-    <p>No tienes acceso a esta página</p>
-    <a href="/home">Volver</a>
+    <div class="alert alert-danger mt-3">
+        <p>No tienes acceso a esta página</p>
+        <a href="/home" class="btn btn-sm btn-dark">Volver</a>
+    </div>
     @endif
 
     @if(Auth::user()->rol->name == "Admin")

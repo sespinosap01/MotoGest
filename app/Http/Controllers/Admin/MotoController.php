@@ -116,7 +116,7 @@ class MotoController extends Controller
     }
     
     //metodo para borrar registros
-    public function destroy(string $idMoto){
+/*     public function destroy(string $idMoto){
         //obtiene el id de la moto seleccionada a borrar
         $moto = Moto::find($idMoto);
 
@@ -132,7 +132,7 @@ class MotoController extends Controller
         }
 
         return redirect()->back();
-    }
+    } */
 
     //metodo para borrar varios registros a la vez
     public function deleteMultiple(Request $request) {

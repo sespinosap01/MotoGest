@@ -16,7 +16,7 @@
     @if(Auth::user()->rol->name == "User")
         <div class="alert alert-danger mt-3">
             <p>No tienes acceso a esta página</p>
-            <a href="/home" class="btn btn-primary">Volver</a>
+            <a href="/home" class="btn btn-sm btn-dark">Volver</a>
         </div>
     @endif
     @if(Auth::user()->rol->name == "Admin")

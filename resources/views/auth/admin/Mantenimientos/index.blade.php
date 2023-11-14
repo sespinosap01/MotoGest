@@ -32,8 +32,10 @@
 </script>
 <div class="container" data-aos="fade-up">
     @if(Auth::user()->rol->name == "User")
+    <div class="alert alert-danger mt-3">
         <p>No tienes acceso a esta página</p>
-        <a href="/home">Volver</a>
+        <a href="/home" class="btn btn-sm btn-dark">Volver</a>
+    </div>
     @endif
 
     @if(Auth::user()->rol->name == "Admin")
@@ -47,7 +49,7 @@
         </div>
 
         @if(count($mantenimientos) > 0)
-        <form action="{{ route('mantenimientos.deleteMultiple') }}" method="post">
+        <form action="{{ route('mantenimientos.deleteMultiple') }}" method="post" id="deleteMultiple">
             @csrf
             @method('DELETE')
             
@@ -66,7 +68,6 @@
                         <th>Aceite</th>
                         <th>Reglaje de válvulas</th>
                         <th>Gastos</th>
-                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -139,16 +140,12 @@
                                 N/D
                                 @endif
                             </td>
-                            <td>
-                                <div class="d-flex gap-3">
-                                    <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$mantenimiento->idMantenimiento}}"><i class="fa-regular fa-trash-can"></i></a> 
-                                </div>
-                            </td>
+
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-        <button type="submit" class="btn btn-danger btn-sm">Eliminar seleccionados</button>
+        <button type="button" class="btn btn-danger btn-sm" id="deleteSelectedMantenimientos" disabled>Eliminar seleccionados</button>
         </form>
         @else
             <br>
@@ -196,28 +193,43 @@
     @endif
     <br><br>
 </div>
-@foreach ($mantenimientos as $mantenimiento)
-<!-- Modal de confirmación de eliminación -->
-<div class="modal top fade" data-mdb-backdrop="false" id="confirmDeleteModal{{$mantenimiento->idMantenimiento}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><b>Confirmar eliminación</b></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ¿Estás seguro de que deseas eliminar el mantenimiento con ID <b>{{$mantenimiento->idMantenimiento}}</b>?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <form action="{{ route('mantenimiento.destroy', $mantenimiento->idMantenimiento) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-@endforeach
+
+<script>
+    $(document).ready(function () {
+        $("#deleteSelectedMantenimientos").on("click", function () {
+            var selectedMantenimientos = [];
+            $("input[name='selectedMantenimientos[]']:checked").each(function () {
+                var mantID = $(this).val();
+                var motoMarcaModelo = $(this).closest("tr").find("td:eq(1)").text();
+
+                selectedMantenimientos.push({ id: mantID, marcaModelo: motoMarcaModelo});
+            });
+
+            Swal.fire({
+                title: "Confirma la eliminación",
+                html: "Vas a eliminar los siguientes mantenimientos:<br><br>" +
+                selectedMantenimientos.map(moto => `<b>ID:</b> ${moto.id} || ${moto.marcaModelo}`).join("<br>"),
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#5C636A",
+                cancelButtonText:"Cancelar",
+                confirmButtonText: "Eliminar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Registros eliminados, actualizando la tabla...",
+                        confirmButtonText: "Ok",
+                        confirmButtonColor: "#5C636A"
+                    });
+                     $("#deleteMultiple").submit();
+                }
+            });
+        });
+        $("input[name='selectedMantenimientos[]']").on("change", function () {
+            var numSelected = $("input[name='selectedMantenimientos[]']:checked").length;
+            $("#deleteSelectedMantenimientos").prop("disabled", numSelected === 0);
+        });
+    });
+</script>
+
 @endsection

@@ -104,7 +104,7 @@ class UserController extends Controller
     }
     
     //metodo para borrar usuarios
-    public function destroy($idUsuario){
+/*     public function destroy($idUsuario){
         //obtiene el id del usuario
         $user = User::find($idUsuario);
 
@@ -112,7 +112,7 @@ class UserController extends Controller
         $user ->delete();
 
         return redirect()->back();
-    }
+    } */
 
     //metodo para borrar varios usuarios
     public function deleteMultiple(Request $request) {

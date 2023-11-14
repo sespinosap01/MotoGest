@@ -270,8 +270,11 @@ hr{
             tanto de todo lo relacionado con tu pasión por las motos! Suscríbete hoy.
         </p>
       </section>  
-      <p class="text-center"><a href="{{ asset('documents/docpdf.pdf') }}" target="_blank" style="text-decoration: none;">Política de privacidad y uso</a></p>
+      <p class="text-center"><a href="{{ asset('documents/politicaPrivacidad.pdf') }}" target="_blank" style="text-decoration: none;">Política de privacidad</a></p>
+      <p class="text-center"><a href="{{ asset('documents/avisoLegal.pdf') }}" target="_blank" style="text-decoration: none;">Aviso legal</a></p>
+
     </div>
+    
   
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
       ©2023 <b>MotoGest</b>

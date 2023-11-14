@@ -41,8 +41,10 @@
 <div class="container" data-aos="fade-up">
 
 @if(Auth::user()->rol->name == "User")
+<div class="alert alert-danger mt-3">
     <p>No tienes acceso a esta página</p>
-    <a href="/home">Volver</a>
+    <a href="/home" class="btn btn-sm btn-dark">Volver</a>
+</div>
 @endif
 
 @if(Auth::user()->rol->name == "Admin")
@@ -59,7 +61,7 @@
 <br>
 
     @if(count($users) > 0)
-    <form action="{{ route('users.deleteMultiple') }}" method="post">
+    <form action="{{ route('users.deleteMultiple') }}" method="post" id="deleteMultiple">
         @csrf
         @method('DELETE')
         
@@ -97,16 +99,16 @@
                             @endif
                         </td>
                         <td>
-                            <div class="d-flex gap-3">
+                            <div class="d-flex justify-content-center">
                                 <a href="{{route('user.edit' , $user->idUsuario)}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>   
-                                <a class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{$user->idUsuario}}"><i class="fa-regular fa-trash-can"></i></a> 
                             </div>
                         </td>
+                        
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <button type="submit" class="btn btn-danger btn-sm">Eliminar seleccionados</button>
+        <button type="button" class="btn btn-danger btn-sm" id="deleteSelectedUsers" disabled>Eliminar seleccionados</button>
     </form>
     @else
         <p>No hay usuarios registrados en esta pagina</p>
@@ -152,28 +154,42 @@
 
 @endif
 </div>
-@foreach ($users as $user)
-<!-- Modal de confirmación de eliminación -->
-<div class="modal top fade" data-mdb-backdrop="false" id="confirmDeleteModal{{$user->idUsuario}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><b>Confirmar eliminación</b></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ¿Estás seguro de que deseas eliminar a <b>{{$user->nombre}} con ID <b>{{$user->idUsuario}}</b>?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <form action="{{ route('user.destroy', $user->idUsuario) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-@endforeach
+
+<script>
+    $(document).ready(function () {
+        $("#deleteSelectedUsers").on("click", function () {
+            var selectedUsers = [];
+            $("input[name='selectedUsers[]']:checked").each(function () {
+                var userId = $(this).val();
+                var userEmail = $(this).closest("tr").find("td:eq(1)").text();
+                selectedUsers.push({ id: userId, email: userEmail });
+            });
+
+            Swal.fire({
+                title: "Confirma la eliminación",
+                html: "Vas a eliminar los siguientes usuarios:<br><br>" +
+                selectedUsers.map(user => `<b>ID:</b> ${user.id} || <b>Email:</b> ${user.email}`).join("<br>"),
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#5C636A",
+                cancelButtonText:"Cancelar",
+                confirmButtonText: "Eliminar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Registros eliminados, actualizando la tabla...",
+                        confirmButtonText: "Ok",
+                        confirmButtonColor: "#5C636A"
+                    });
+                     $("#deleteMultiple").submit();
+                }
+            });
+        });
+        $("input[name='selectedUsers[]']").on("change", function () {
+            var numSelected = $("input[name='selectedUsers[]']:checked").length;
+            $("#deleteSelectedUsers").prop("disabled", numSelected === 0);
+        });
+    });
+</script>
+
 @endsection
