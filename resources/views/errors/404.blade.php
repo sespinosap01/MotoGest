@@ -153,9 +153,7 @@
             <div class="error-text">
                 <h2>¡Vaya!, Parece que te has perdido...</h2>
                 <p>La página que buscabas no existe o esta inactiva</p>
-                <span class="input-group-btn">
-                    <a href="/home">Volver al inicio</a>
-                </span>
+                <p><a href="/home">Volver al inicio</a></p>
             </div>
         </div>
     </main>

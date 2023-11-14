@@ -2,6 +2,7 @@
 
 @section('content')
 <script>
+//funcion ajax para validar que el correo electrónico no esté en uso
 function validateEmail() {
     var email = $('#email').val();
 

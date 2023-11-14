@@ -2,6 +2,7 @@
 
 @section('content')
 <script>
+    //script para la ordenacion de las tablas
     var sortOrder = -1; 
     $(document).ready(function () {
         var table = document.querySelector("table");
@@ -152,6 +153,7 @@
             <p>No hay mantenimientos registrados</p>
         @endif
         <br><br>
+        <!--Paginacion de las tablas-->
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li class="page-item {{ $motos->onFirstPage() ? 'disabled' : '' }}">
@@ -195,6 +197,7 @@
 </div>
 
 <script>
+    //script de la ventana de sweetalert
     $(document).ready(function () {
         $("#deleteSelectedMantenimientos").on("click", function () {
             var selectedMantenimientos = [];

@@ -8,6 +8,7 @@
 </style>
 
 <script>
+    //script para la ordenacion de las tablas
     var sortOrder = -1; 
     $(document).ready(function () {
         var table = document.querySelector("table");
@@ -114,6 +115,7 @@
         <p>No hay usuarios registrados en esta pagina</p>
     @endif
     <br><br>
+    <!--Paginacion de las tablas-->
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item {{ $users->onFirstPage() ? 'disabled' : '' }}">
@@ -156,6 +158,7 @@
 </div>
 
 <script>
+        //script de la ventana de sweetalert
     $(document).ready(function () {
         $("#deleteSelectedUsers").on("click", function () {
             var selectedUsers = [];

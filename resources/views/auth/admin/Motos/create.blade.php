@@ -2,6 +2,8 @@
 
 @section('content')
 <script>
+    /* este script se utiliza para validar que el input reciba una
+    imagen que sea menor al tamaño establecido y mostrar la previsualización */
     function validarYMostrarImagen(input) {
         var file = input.files[0];
         var errorElement = document.getElementById('imagen-error');
