@@ -85,11 +85,14 @@
                         <select name="rol_id" id="rol_id" class="form-control">
                             <option value="1">Selecciona el rol</option>
                             @foreach ($roles as $rol)
-                            <option value="{{$rol->id}}">{{$rol->name}}</option>
+                            <option value="{{$rol->id}}" @if(isset($user) && $user->rol_id == $rol->id) selected @endif>
+                                {{$rol->name}}
+                            </option>
                             @endforeach
                         </select>
                     </div>
                 </div>
+                
 
                 <div class="row mb-0">
                     <div class="col-md-6 offset-md-4">
