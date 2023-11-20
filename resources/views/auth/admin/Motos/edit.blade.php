@@ -149,7 +149,7 @@
                 <div class="row mb-3">
                     <label for="matricula" class="col-md-4 col-form-label text-md-end">Matricula</label>
                     <div class="col-md-6">
-                        <input id="matricula" type="text" class="form-control" @isset($moto) value="{{$moto->matricula}}" @endisset name="matricula" required>                                                
+                        <input id="matricula" type="text" class="form-control" @isset($moto) value="{{$moto->matricula}}" @endisset name="matricula" required oninput="limitarLongitud(this, 7)">>                                                
                     </div>
                 </div>
                 
