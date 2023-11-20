@@ -89,9 +89,9 @@
                 @auth
                 @else
                     <div class="d-md-flex gap-3">
-                        <a href="{{ route('login') }}" class="btn btn-primary btn ml-md-2 mt-md-0 mt-2">Iniciar Sesión</a>
+                        <a href="{{ route('login') }}" class="btn ml-md-2 mt-md-0 mt-2 text-white" style="background-color: #c65f20;">Iniciar Sesión</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn btn-warning ml-md-2 mt-md-0 mt-2">Registrarse</a>
+                            <a href="{{ route('register') }}" class="btn btn-light ml-md-2 mt-md-0 mt-2">Registrarse</a>
                         @endif
                     </div>
                 @endauth
