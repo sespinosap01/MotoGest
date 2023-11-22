@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+<script>
+    $(document).ready(function() {
+    $('#show-password').change(function() {
+        if ($(this).is(':checked')) {
+            $('#password').attr('type', 'text');
+        } else {
+            $('#password').attr('type', 'password');
+        }
+    });
+});
+</script>
+
 <div class="container" data-aos="fade-up">
     <h1><i class="fa-solid fa-user-pen" style="color: #c65f20;"></i> Editar Perfil</h1>
     <div class="row justify-content-center">
@@ -31,9 +43,16 @@
                 <div class="row mb-3">
                     <label for="password" class="col-md-4 col-form-label text-md-end">Contraseña</label>
                     <div class="col-md-6">
-                        <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
+                        <div class="d-flex align-items-center">
+                            <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
+                            <div class="form-check ms-2 mt-2">
+                                <input type="checkbox" class="form-check-input" id="show-password">
+                                <label class="form-check-label" for="show-password"><i class="fa-solid fa-eye"></i></label>
+                            </div>
+                        </div>
                     </div>
-                </div>            
+                </div>
+                         
 
                 <div class="row mb-3">
                     <label for="fechaNacimiento" class="col-md-4 col-form-label text-md-end">Fecha de
