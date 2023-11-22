@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+<script>
+    $(document).ready(function() {
+    $('#show-password').change(function() {
+        if ($(this).is(':checked')) {
+            $('#password').attr('type', 'text');
+        } else {
+            $('#password').attr('type', 'password');
+        }
+    });
+});
+</script>
+
 <div class="container" data-aos="fade-up">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -26,8 +38,13 @@
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">Contraseña</label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Introduce la contraseña">
-
+                                <div class="d-flex align-items-center">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Introduce la contraseña">
+                                    <div class="form-check ms-2 mt-2">
+                                        <input type="checkbox" class="form-check-input" id="show-password">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </div>
+                                </div>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
