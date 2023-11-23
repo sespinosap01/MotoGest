@@ -27,7 +27,8 @@
                             <label for="nombre" class="col-md-4 col-form-label text-md-end">Nombre</label>
                             <div class="col-md-6">
                                 <input id="nombre" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus  placeholder="Ej: Pedro López">
+                                    name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus  placeholder="Ej: Pedro López"
+                                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" title="Debes introducir un nombre válido">
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">

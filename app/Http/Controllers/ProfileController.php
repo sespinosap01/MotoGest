@@ -26,8 +26,15 @@ class ProfileController extends Controller
         $user->email = $request->input('email');
         $user->password = $request->input('password');
         $user->fechaNacimiento = $request->input('fechaNacimiento');
+        
+        $fechaNacimiento =  $request->input('fechaNacimiento');
+        $minDate = now()->subYears(15);
+        if ($fechaNacimiento > $minDate) {
+            return back()->withInput()->withErrors(['fechaNacimiento' => 'Debes ser mayor de 15 años.']);
+        }
+
         $user->numTelefono = $request->input('numTelefono');
-        $user->rol_id = $request->input('rol_id');
+        $user->rol_id = Auth::user()->rol->id;
 
         $user->save();
         return redirect()->route('home', ['profile' => $user->idUsuario]);

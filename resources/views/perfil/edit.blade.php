@@ -24,7 +24,8 @@
                     <label for="nombre" class="col-md-4 col-form-label text-md-end">Nombre</label>
                     <div class="col-md-6">
                         <input id="nombre" type="text" class="form-control"
-                            name="nombre" required autocomplete="nombre" autofocus @isset($user) value="{{$user->nombre}}" @endisset>
+                            name="nombre" required autocomplete="nombre" autofocus @isset($user) value="{{$user->nombre}}" @endisset
+                            pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+">
                     </div>
                 </div>
 
@@ -44,15 +45,14 @@
                     <label for="password" class="col-md-4 col-form-label text-md-end">Contraseña</label>
                     <div class="col-md-6">
                         <div class="d-flex align-items-center">
-                            <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
+                            <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password" pattern=".{8,}" title="La contraseña debe tener al menos 8 caracteres">
                             <div class="form-check ms-2 mt-2">
                                 <input type="checkbox" class="form-check-input" id="show-password">
                                 <label class="form-check-label" for="show-password"><i class="fa-solid fa-eye"></i></label>
                             </div>
                         </div>
                     </div>
-                </div>
-                         
+                </div>                         
 
                 <div class="row mb-3">
                     <label for="fechaNacimiento" class="col-md-4 col-form-label text-md-end">Fecha de
@@ -60,35 +60,22 @@
                     <div class="col-md-6">
                         <input id="fechaNacimiento" type="date" class="form-control" name="fechaNacimiento"
                             name="fechaNacimiento" @isset($user) value="{{$user->fechaNacimiento}}" @endisset required
-                            autocomplete="fechaNacimiento" autofocus required  oninput="limitarLongitud(this, 10)">
-                    </div>
+                            autocomplete="fechaNacimiento" autofocus required  oninput="limitarLongitud(this, 10)">                   
+                            @if ($errors->has('fechaNacimiento'))
+                                <span style="color: red;">{{ $errors->first('fechaNacimiento') }}</span>
+                            @endif                        
+                    </div>                    
                 </div>
 
                 <div class="row mb-3">
                     <label for="numTelefono" class="col-md-4 col-form-label text-md-end">Teléfono</label>
                     <div class="col-md-6">
-                        <input id="numTelefono" type="number"
-                            class="form-control @error('numTelefono') is-invalid @enderror" name="numTelefono"
-                            @isset($user) value="{{$user->numTelefono}}" @endisset required autocomplete="numTelefono" autofocus  oninput="limitarLongitud(this, 9)">
-
-                        @error('numTelefono')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>El numero de telefono debe tener 9 caracteres</strong>
-                        </span>
-                        @enderror
+                        <input id="numTelefono" type="number" class="form-control @error('numTelefono') is-invalid @enderror" name="numTelefono"
+                            @isset($user) value="{{$user->numTelefono}}" @endisset required autocomplete="numTelefono" autofocus 
+                            oninput="limitarLongitud(this, 9)">
                     </div>
                 </div>
-
-                <label for="rol_id" class="col-md-4 col-form-label text-md-end" hidden>Rol</label>
-                <div class="col-md-6">
-                    <select name="rol_id" id="rol_id" class="form-control" hidden>
-                        @if (Auth::user()->rol->name == "Admin")
-                            <option value="2" selected>Admin</option>
-                        @else
-                            <option value="1" selected>User</option>
-                        @endif
-                    </select>
-                </div>            
+      
                 <div class="row mb-0">
                     <div class="col-md-6 offset-md-4">
                         <button type="submit" class="btn text-white btn-sm" style="background-color: #c65f20;">
