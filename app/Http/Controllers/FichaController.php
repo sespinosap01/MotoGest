@@ -113,6 +113,7 @@ class FichaController extends Controller
 
         //obtiene el kilometraje introducido y en caso de ser menos de 0 se convierte en 0
         $nuevoCampo = max(0, $request->input('nuevoCampo'));
+        $nuevoCampo = max(null, $request->input('fechas'));
 
         //busca el registro de mantenimiento asociado a la moto
         $mantenimiento = Mantenimiento::where('idMoto', $idMoto)->first();

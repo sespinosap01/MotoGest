@@ -164,7 +164,7 @@
                 @endif                
                     <form action="{{ route('fichas.updateCampos', ['idMoto' => $moto->idMoto, 'field' => 'fechaVencimientoITV']) }}" method="POST">
                         @csrf
-                        <input type="date" class="form-control mb-3" name="nuevoCampo">
+                        <input type="date" class="form-control mb-3" name="fechas">
                         <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
@@ -200,7 +200,7 @@
                 @endif
                     <form action="{{ route('fichas.updateCampos', ['idMoto' => $moto->idMoto, 'field' => 'fechaVencimientoSeguro']) }}" method="POST">
                         @csrf
-                        <input type="date" class="form-control mb-3" name="nuevoCampo">
+                        <input type="date" class="form-control mb-3" name="fechas">
                         <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
@@ -233,7 +233,7 @@
                     @endif
                     <form action="{{ route('fichas.updateCampos', ['idMoto' => $moto->idMoto, 'field' => 'fechaBateria']) }}" method="POST">
                         @csrf
-                        <input type="date" class="form-control mb-3" name="nuevoCampo">
+                        <input type="date" class="form-control mb-3" name="fechas">
                         <button type="submit" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i> Actualizar</button>
                     </form>
                 </div>
