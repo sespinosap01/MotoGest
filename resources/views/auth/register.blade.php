@@ -117,7 +117,7 @@
                                     <input class="form-check-input" type="checkbox" value="politicaPrivacidad"
                                            id="politicaPrivacidad" required>
                                     <label class="form-check-label" for="politicaPrivacidad">
-                                        Acepto la <a href="{{ asset('documents/politicaPrivacidad.pdf') }}" target="_blank" style="text-decoration: none;">política de privacidad y
+                                        Acepto la <a href="{{ asset('documents/politicaPrivacidad.pdf') }}" target="_blank" style="text-decoration: none;">política de privacidad
                                         </a> y he leido el <a href="{{ asset('documents/avisoLegal.pdf') }}" target="_blank" style="text-decoration: none;">aviso legal </a>.
                                     </label>
                                 </div>
