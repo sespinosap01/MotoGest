@@ -104,7 +104,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoCampo"
                               oninput="limitarLongitud(this, 9)" hidden>
-                              <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Reestablecer</button>
+                              <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Restablecer</button>
                     </form>
                 </div>
             </div>
@@ -286,7 +286,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoCampo"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)" hidden>
-                        <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Reestablecer</button>
+                        <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Restablecer</button>
                     </form>
                 </div>
             </div>
@@ -322,7 +322,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoCampo"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)" hidden>
-                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Reestablecer</button>
+                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Restablecer</button>
                         </form>
                 </div>
             </div>
@@ -358,7 +358,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoCampo"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)" hidden>
-                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Reestablecer</button>
+                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Restablecer</button>
                         </form>
                 </div>
             </div>
@@ -395,7 +395,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoCampo"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)" hidden>
-                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Reestablecer</button>
+                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Restablecer</button>
                         </form>
                 </div>
             </div>
@@ -432,7 +432,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoCampo"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)" hidden>
-                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Reestablecer</button>
+                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Restablecer</button>
                         </form>
                 </div>
             </div>
@@ -469,7 +469,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoCampo"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)" hidden>
-                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Reestablecer</button>
+                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Restablecer</button>
                         </form>
                 </div>
             </div>
@@ -506,7 +506,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoCampo"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)" hidden>
-                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Reestablecer</button>
+                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Restablecer</button>
                         </form>
                 </div>
             </div>
@@ -543,7 +543,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoCampo"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)" hidden>
-                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Reestablecer</button>
+                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Restablecer</button>
                         </form>
                 </div>
             </div>
@@ -580,7 +580,7 @@
                         @csrf
                         <input type="number" class="form-control mb-3" name="nuevoCampo"
                             placeholder="Modificar kilómetros" oninput="limitarLongitud(this, 9)" hidden>
-                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Reestablecer</button>
+                            <button type="submit" class="btn btn-sm btn-dark"><i class="fa-solid fa-brush"></i> Restablecer</button>
                         </form>
                 </div>
             </div>
@@ -690,31 +690,31 @@
               </button>
             </div>
             <div class="modal-body">
-              ¡Hola! Si es tu primera vez utilizando la aplicación, te sugerimos que revises la siguiente información:
+              ¡Hola! Si es tu primera vez utilizando la aplicación, te recomiendo que revises la siguiente información:
               <br><br>
               <ul>
                 <li>Para ajustar el kilometraje del tacómetro sin afectar otros aspectos de la moto, utiliza la primera 
                     carta de <i><b>"Kilometraje del tacómetro"</i></b>. Por ejemplo, si adquiriste una moto de segunda 
                     mano y necesitas introducir su información, podrás <b>actualizar solo el tacómetro</b> si el kilometraje entre piezas
-                    es distinto y más tarde en el boton naranja de <i><b>"Modificar kilometrajes"</b></i>
+                    es distinto y más tarde en el botón naranja de <i><b>"Modificar kilometrajes"</b></i>
                     podrás actualizar los otros kilometrajes.
                 </li>
                 <br>
-                <li>Al hacer uso del boton <b><i>"Sumar kilómetros"</i></b> sumarás el kilometraje introducido tanto al tacómetro
+                <li>Al hacer uso del botón <b><i>"Sumar kilómetros"</i></b> sumarás el kilometraje introducido tanto al tacómetro
                     como a todos los apartados de la moto. Esta opcion es ideal <b>si quieres introducir el kilometraje que has 
                     recorrido</b> a lo largo de una semana o saliendo de ruta.
                 </li>
                 <br>
                 <li>Los gastos te permiten agregar costos específicos y llevar un control durante un periodo determinado.
-                     <b>Tú tienes el control</b> y puedes reestablecerlos cuando quieras.
+                     <b>Tú tienes el control</b> y puedes restablecerlos cuando quieras.
                 </li>
                 <br>
                 <li>Introduce las fechas indicadas en las cartas y la aplicación <b>te avisará</b> cuando falten  
                     <b>menos de 50</b> días para el vencimiento de la ITV y o el seguro.
                 </li>
               </ul>
-              Agradecemos tu atención. Recuerda que si tienes alguna duda o alguna propuesta de mejora puedes
-              contactar con nosotros en <a href="mailto:motogestsoporte@gmail.com" style="text-decoration: none;">este correo.</a>
+              Gracias tu atención. Recuerda que si tienes alguna duda o alguna propuesta de mejora puedes
+              contactar conmigo en <a href="mailto:motogestsoporte@gmail.com" style="text-decoration: none;">este correo.</a>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn text-white btn-sm" style="background-color: #c65f20;" data-dismiss="modal"><i class="fa-regular fa-circle-check"></i> Entendido</button>
@@ -737,8 +737,8 @@
               Información sobre como manejar los kilometrajes de tu moto:
               <br><br>
               <ul>
-                <li>Si has realizado un mantenimiento simplemente actualiza su kilometraje a 0 o usa el boton de 
-                    <i><b>"Reestablecer"</b></i> para volver a llevar el control de nuevo.
+                <li>Si has realizado un mantenimiento simplemente actualiza su kilometraje a 0 o usa el botón de 
+                    <i><b>"Restablecer"</b></i> para volver a llevar el control de nuevo.
                 </li>            
                 <br>
                 <li>Ten en cuenta que los <b>kilometrajes recomendados</b> para cada mantenimiento se establecen 

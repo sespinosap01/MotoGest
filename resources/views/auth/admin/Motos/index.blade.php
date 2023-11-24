@@ -67,7 +67,7 @@
                         <th>Potencia</th>
                         <th id="th-anio" style="cursor: pointer">Año de fabricación <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
                         <th id="th-propietario" style="cursor: pointer">Propietario <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>
-                        <th>Matricula</th>
+                        <th>Matrícula</th>
                         <th>Foto</th>
                         <th>Acciones</th>
                     </tr>

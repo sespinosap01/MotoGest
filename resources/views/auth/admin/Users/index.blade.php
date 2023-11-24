@@ -74,7 +74,7 @@
                     <th id="th-email" style="cursor: pointer">Email <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>                    
                     <th>Nombre</th>                    
                     <th>Fecha de Nacimiento</th>
-                    <th>Numero de telefono</th>
+                    <th>Numero de teléfono</th>
                     <th>Fecha de Registro</th>
                     <th id="th-rol" style="cursor: pointer">Rol <i class="fa-solid fa-sort" style="color: #c65f20"></i></th>                    
                     <th>Acciones</th>

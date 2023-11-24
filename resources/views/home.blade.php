@@ -32,7 +32,9 @@ hr{
     @else
     <h1>¡Hola invitado!</h1>
     @endif
-    <p>Bienvenido a <b>MotoGest</b>, la aplicación web para llevar un control sobre los mantenimientos actuales de tu moto</p>
+    <br>
+    <h4>Esto es <b>MotoGest</b>, la aplicación web para llevar un control sobre los mantenimientos actuales de tu moto</h4>
+    <br>
     <a class="btn text-white btn-xl" style="background-color: #c65f20;" href="#about">Conócenos</a>
    <br><br>
     <!-- Carousel for images -->
@@ -71,15 +73,9 @@ hr{
     <div class="container px-4 mb-3" data-aos="fade-up">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
-                <h2>Sobre nosotros</h2>
-                <p> En <b>MotoGest</b>, como programadores apasionados, nos hemos comprometido a brindarte una solución eficiente y 
-                    sencilla para el seguimiento de los mantenimientos de tu moto. Nuestra aplicación, diseñada con la experiencia 
-                    de quienes comprenden la importancia de la gestión eficaz, te permite llevar un registro detallado y sin 
-                    complicaciones de todas las tareas de mantenimiento necesarias para mantener tu moto en óptimas condiciones. 
-                    Con <b>MotoGest</b>, podrás estar seguro de que tu moto recibirá la atención que merece, y todo esto al alcance de tu mano 
-                    de manera sencilla y conveniente.
-                </p>
-          
+                <h2>Sobre mí</h2>
+                <p> Hola, soy Sergio Espinosa, y estoy emocionado de presentarte <b>MotoGest</b>. Esta aplicación web es el resultado de tres meses de duro trabajo para mi proyecyo de <b>Desarrollo de Aplicaciones Web</b>. En <b>MotoGest</b>, me he comprometido a brindarte una solución eficiente y sencilla para el seguimiento de los mantenimientos de tu moto. Diseñada para quienes comprenden la importancia de la gestión eficaz, te permite llevar un registro detallado y sin complicaciones de todas las tareas de mantenimiento necesarias para mantener tu moto en óptimas condiciones. Con <b>MotoGest</b>, podrás estar seguro de que tu moto recibirá la atención que merece, y todo esto al alcance de tu mano de manera sencilla y conveniente.
+              </p>
             </div>
         </div>
     </div>
@@ -213,8 +209,7 @@ hr{
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
                 <h2>Contacto</h2>
-                <p>Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto con nosotros en <a href="mailto:motogestsoporte@gmail.com" style="text-decoration: none;">este correo</a>
-                . Estamos para ayudarte en todo lo que necesites.</p>
+                <p>Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto conmigo mediante <a href="mailto:motogestsoporte@gmail.com" style="text-decoration: none;">este correo</a>.</p>
             </div>
         </div>
     </div>
@@ -243,7 +238,7 @@ hr{
           <div class="row d-flex justify-content-center">
             <div class="col-auto">
               <p class="pt-2">
-                <strong>Suscribete a nuestra newsletter para estar a la última</strong>
+                <strong>Suscribete a la newsletter para estar a la última</strong>
               </p>
             </div>
   
@@ -263,7 +258,7 @@ hr{
   
       <section class="mb-4">
         <p>
-            Suscribirte a nuestra newsletter te brinda información exclusiva sobre las últimas actualizaciones, 
+            Suscribirte a la newsletter te brinda información exclusiva sobre las últimas actualizaciones, 
             consejos y ofertas relacionados con el mundo de las motocicletas y el mantenimiento de tu moto.
             Mantente informado sobre las novedades de MotoGest, recibe sugerencias útiles y descubre ofertas 
             especiales para optimizar el rendimiento de tu moto. ¡No te pierdas esta oportunidad de estar al 
