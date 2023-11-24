@@ -156,35 +156,35 @@
         <!--Paginacion de las tablas-->
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-                <li class="page-item {{ $motos->onFirstPage() ? 'disabled' : '' }}">
-                    <a class="page-link" href="{{ $motos->url(1) }}" aria-label="Primera">
+                <li class="page-item {{ $mantenimientos->onFirstPage() ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $mantenimientos->url(1) }}" aria-label="Primera">
                         <span aria-hidden="true">&laquo;&laquo;</span>
                         <span class="sr-only">Primera</span>
                     </a>
                 </li>
-                <li class="page-item {{ $motos->onFirstPage() ? 'disabled' : '' }}">
-                    <a class="page-link" href="{{ $motos->previousPageUrl() }}" aria-label="Anterior">
+                <li class="page-item {{ $mantenimientos->onFirstPage() ? 'disabled' : '' }}">
+                    <a class="page-link" href="{{ $mantenimientos->previousPageUrl() }}" aria-label="Anterior">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Anterior</span>
                     </a>
                 </li>
                 @php
-                    $start = max(1, $motos->currentPage() - 2);
-                    $end = min($start + 4, $motos->lastPage());
+                    $start = max(1, $mantenimientos->currentPage() - 2);
+                    $end = min($start + 4, $mantenimientos->lastPage());
                 @endphp
                 @for ($i = $start; $i <= $end; $i++)
-                    <li class="page-item {{ $i == $motos->currentPage() ? 'active' : '' }}">
-                        <a class="page-link" href="{{ $motos->url($i) }}">{{ $i }}</a>
+                    <li class="page-item {{ $i == $mantenimientos->currentPage() ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $mantenimientos->url($i) }}">{{ $i }}</a>
                     </li>
                 @endfor
-                <li class="page-item {{ $motos->hasMorePages() ? '' : 'disabled' }}">
-                    <a class="page-link" href="{{ $motos->nextPageUrl() }}" aria-label="Siguiente">
+                <li class="page-item {{ $mantenimientos->hasMorePages() ? '' : 'disabled' }}">
+                    <a class="page-link" href="{{ $mantenimientos->nextPageUrl() }}" aria-label="Siguiente">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Siguiente</span>
                     </a>
                 </li>
-                <li class="page-item {{ $motos->hasMorePages() ? '' : 'disabled' }}">
-                    <a class="page-link" href="{{ $motos->url($motos->lastPage()) }}" aria-label="Última">
+                <li class="page-item {{ $mantenimientos->hasMorePages() ? '' : 'disabled' }}">
+                    <a class="page-link" href="{{ $mantenimientos->url($mantenimientos->lastPage()) }}" aria-label="Última">
                         <span aria-hidden="true">&raquo;&raquo;</span>
                         <span class="sr-only">Última</span>
                     </a>
